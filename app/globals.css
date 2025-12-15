@@ -2,12 +2,12 @@
 
 :root {
   /* Reference-style dark palette */
-  --background: #1f1a12; /* near-black warm brown */
-  --foreground: #e8e5e1; /* warm light foreground */
-  --muted: #a7a39e;      /* muted body text */
+  --background: #1c1917; /* near-black warm brown */
+  --foreground: #ffffff; /* warm light foreground */
+  --muted: #ffffff;      /* muted body text */
   --border: #2a2622;     /* subtle separators */
-  --heading: #eae7e3;    /* headings slightly brighter */
-  --accent: #97a57f;     /* olive-green section title */
+  --heading: #ffffff;    /* headings slightly brighter */
+  --accent: #9da591;     /* olive-green section title */
 }
 
 @theme inline {
@@ -26,7 +26,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:  Arial, Helvetica, sans-serif;
 }
 
 /* Typography */

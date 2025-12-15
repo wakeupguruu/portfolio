@@ -1,5 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Inter_Tight } from "next/font/google";
+const interTight = Inter_Tight({
+  weight: "200",
+  subsets: ["latin"],
+  display: 'swap'
+});
 
 export default function Home() {
   const posts = [
@@ -18,27 +24,34 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Left-aligned container (no mx-auto) */}
-      <div className="w-full max-w-5xl px-6 pt-10 pb-16">
-        {/* Header */}
-        <header className="mb-16 flex items-center justify-between">
-          <Link href="/" className="group inline-flex items-center gap-3 text-base font-semibold tracking-tight no-underline hover:no-underline">
-            <span className="h-2 w-2 rounded-full bg-(--foreground)/30 transition-colors group-hover:bg-foreground" />
-            Guru Vyas
+    <div className="min-h-screen font-interTight pl-9 pr-10 bg-background text-foreground">
+      {/* Full-width header to allow nav at the far right */}
+      <header className="flex w-full items-center justify-between  mt-8 mb-30">
+        <Link href="/" className="inline-flex items-center text-xl ml-7 tracking-tighter font-semibold tracki~g-tight no-underline hover:no-underline">
+          Johann Schopplich
+        </Link>
+        <nav className="flex items-center gap-6 text-lg text-(--foreground)/85">
+          <Link href="#" className="group inline-flex items-center gap-2 decoration-transparent hover:decoration-transparent no-underline hover:no-underline">
+            <span className="h-1.5 w-1.5 rounded-full bg-(--foreground)/30 transition-colors group-hover:bg-foreground" />
+            Blog
           </Link>
-          <nav className="flex items-center gap-4 text-sm text-(--foreground)/85">
-            <span className="-mt-1 inline-block text-[10px] align-middle">•</span>
-            <Link href="#" className="hover:opacity-80">Blog</Link>
-            <span className="-mt-1 inline-block text-[10px] align-middle">•</span>
-            <Link href="#" className="hover:opacity-80">Who?</Link>
-            <span className="-mt-1 inline-block text-[10px] align-middle">•</span>
-            <Link href="#" className="hover:opacity-80">Work</Link>
-            <span className="-mt-1 inline-block text-[10px] align-middle">•</span>
-            <Link href="#" className="hover:opacity-80">Fotografie</Link>
-          </nav>
-        </header>
+          <Link href="#" className="group inline-flex items-center gap-2 decoration-transparent hover:decoration-transparent no-underline hover:no-underline">
+            <span className="h-1.5 w-1.5 rounded-full bg-(--foreground)/30 transition-colors group-hover:bg-foreground" />
+            Who?
+          </Link>
+          <Link href="#" className="group inline-flex items-center gap-2 decoration-transparent hover:decoration-transparent no-underline hover:no-underline">
+            <span className="h-1.5 w-1.5 rounded-full bg-(--foreground)/30 transition-colors group-hover:bg-foreground" />
+            Work
+          </Link>
+          <Link href="#" className="group inline-flex items-center gap-2 decoration-transparent hover:decoration-transparent no-underline hover:no-underline">
+            <span className="h-1.5 w-1.5 rounded-full bg-(--foreground)/30 transition-colors group-hover:bg-foreground" />
+            Fotografie
+          </Link>
+        </nav>
+      </header>
 
+      {/* Constrained content container */}
+      <div className="w-full max-w-5xl px-6 pb-16">
         {/* Hero */}
         <section className="mb-16">
           <h1 className="text-5xl leading-[1.05] tracking-tight">
@@ -61,7 +74,7 @@ export default function Home() {
         {/* Writing */}
         <section className="mb-20">
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-accent">Writing</h2>
+            <h2 className="text-2xl font-semibold decoration-[#9da591]">Writing</h2>
             <Link href="#" className="text-sm">ALL ARTICLES →</Link>
           </div>
 
@@ -94,7 +107,7 @@ export default function Home() {
         {/* Photographs */}
         <section className="mb-24">
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-accent">Photographs</h2>
+            <h2 className="text-2xl font-semibold decoration-[#9da591]">Photographs</h2>
             <Link href="#" className="text-sm">MORE PHOTOGRAPHS →</Link>
           </div>
           <div className="grid grid-cols-2 gap-3 border-t border-border pt-6 sm:grid-cols-3">
