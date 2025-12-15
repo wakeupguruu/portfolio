@@ -6,11 +6,11 @@ export function Header() {
     { href: "/blog", label: "BLOG" },
     { href: "/about", label: "WHO?" },
     { href: "/projects", label: "PROJECTS" },
-    { href: "/photography", label: "PHOTOGRAPHY" },
+    { href: "/photography", label: "FOTOGRAFIE" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full h-[58px] border-b border-transparent transition-all">
+    <header className="sticky -top-5 z-50 w-full h-[78px] border-b border-transparent transition-all">
       {/* Layer 1: The Blur (Visible through the holes) */}
       <div className="absolute inset-0 -z-20 h-full w-full backdrop-blur-md bg-transparent" />
 
@@ -24,7 +24,7 @@ export function Header() {
           WebkitMaskSize: "4px 4px",
         }} 
       />
-      <div className="mx-auto flex h-full max-w-screen-xl items-center justify-between px-5">
+      <div className="mx-auto flex h-full pt-5 max-w-screen-xl items-center justify-between px-5">
         <Link href="/" className="relative z-10 text-base font-bold tracking-tight text-foreground/90 no-underline hover:no-underline">
           Guru Vyas
         </Link>
