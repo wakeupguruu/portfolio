@@ -1,7 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+
+const fredericka = localFont({
+  src: "../public/fonts/FrederickatheGreat-Regular.ttf",
+  variable: "--font-fredericka",
+  display: "swap",
+});
+
+const croissant = localFont({
+  src: "../public/fonts/CroissantOne-Regular.ttf",
+  variable: "--font-croissant",
+  display: "swap",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,6 +24,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,9 +43,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${geistMono.variable} ${fredericka.variable} ${croissant.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
