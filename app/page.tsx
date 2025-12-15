@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Container, Section } from "@/components/ui/section";
 import { Inter_Tight } from "next/font/google";
 const interTight = Inter_Tight({
   weight: "200",
@@ -30,10 +31,12 @@ export default function Home() {
       {/* Full-width header to allow nav at the far right */}
       <Header />
 
+      <Header />
+
       {/* Constrained content container */}
-      <div className="w-full max-w-5xl px-6 pb-16">
+      <Container className="pb-16">
         {/* Hero */}
-        <section className="mb-16">
+        <Section>
           <h1 className="text-5xl leading-[1.05] tracking-tight">
             Hi, I’m Guru. I work as a developer
             <br />
@@ -49,10 +52,10 @@ export default function Home() {
           <p className="mt-8 max-w-3xl text-base leading-7 text-muted">
             My technical preferences are <a href="#" className="underline">Nuxt</a>, <a href="#" className="underline">Kirby</a>, and all things TypeScript. I currently work at <a href="#" className="underline">Finanzfluss</a>, a popular platform for financial education.
           </p>
-        </section>
+        </Section>
 
         {/* Writing */}
-        <section className="mb-20">
+        <Section>
           <div className="mb-5 flex items-center justify-between">
             <h2 className="text-2xl font-semibold decoration-[#9da591]">Writing</h2>
             <Link href="#" className="text-sm">ALL ARTICLES →</Link>
@@ -82,10 +85,10 @@ export default function Home() {
               );
             })}
           </div>
-        </section>
+        </Section>
 
         {/* Photographs */}
-        <section className="mb-24">
+        <Section>
           <div className="mb-5 flex items-center justify-between">
             <h2 className="text-2xl font-semibold decoration-[#9da591]">Photographs</h2>
             <Link href="#" className="text-sm">MORE PHOTOGRAPHS →</Link>
@@ -97,10 +100,10 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </section>
+        </Section>
 
         {/* Say hello */}
-        <section className="mb-16">
+        <Section className="mb-16">
           <h3 className="mb-6 text-3xl font-semibold">Say hello</h3>
           <ul className="divide-y divide-border border-y border-border">
             <li className="flex items-center justify-between py-6">
@@ -116,10 +119,10 @@ export default function Home() {
               <a href="#" className="text-base">your-link-collection</a>
             </li>
           </ul>
-        </section>
+        </Section>
 
         <Footer />
-      </div>
+      </Container>
     </div>
   );
 }
