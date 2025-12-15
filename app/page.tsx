@@ -38,21 +38,21 @@ export default function Home() {
       <Container className="pb-16">
         {/* Hero */}
         <Section className="pt-32">
-          <h1 className="text-5xl font-extrabold leading-[1.0] tracking-[-0.04em] sm:text-7xl max-w-4xl">
-            Hi, I’m Guru. Developer with an eye for design.
+          <h1 className="text-4xl font-extrabold leading-[1.0] tracking-[-0.04em] sm:text-6xl max-w-4xl">
+            <span>Hi, I’m Guru. Developer with an ear for music.</span>
             <span className="inline-block align-middle ml-3">
-              <PixelIcon className="w-12 h-12 sm:w-16 sm:h-16" />
+              <PixelIcon className="w-10 h-10 sm:w-14 sm:h-14" />
             </span>
           </h1>
           
-          <div className="mt-8 flex flex-wrap items-center gap-2 text-sm font-medium text-muted-foreground uppercase tracking-wider">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
+          <div className="mt-8 flex flex-wrap items-center gap-2 text-sm font-mono text-muted-foreground">
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">GitHub</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">LinkedIn</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">Instagram</a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">Instagram</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">X</a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">X</a>
           </div>
 
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground">
