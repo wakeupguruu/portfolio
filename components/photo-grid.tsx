@@ -46,7 +46,7 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
               />
             </div>
             {photo.caption && (
-              <p className="mt-3 text-xs font-mono tracking-wide text-muted font-medium">
+              <p className="mt-3 text-sm font-fredericka tracking-wide text-muted font-medium">
                 {photo.caption}
               </p>
             )}
