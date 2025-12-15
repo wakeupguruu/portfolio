@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PixelIcon } from "@/components/pixel-icon";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -27,29 +28,34 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen font-interTight pl-9 pr-10 bg-background text-foreground">
+    <div className="min-h-screen font-interTight bg-background text-foreground">
       {/* Full-width header to allow nav at the far right */}
       <Header />
 
-      <Header />
+
 
       {/* Constrained content container */}
       <Container className="pb-16">
         {/* Hero */}
-        <Section>
-          <h1 className="text-5xl leading-[1.05] tracking-tight">
-            Hi, I’m Guru. I work as a developer
-            <br />
-            with an aesthetic sense.
+        <Section className="pt-32">
+          <h1 className="text-5xl font-extrabold leading-[1.0] tracking-[-0.04em] sm:text-7xl max-w-4xl">
+            Hi, I’m Guru. Developer with an eye for design.
+            <span className="inline-block align-middle ml-3">
+              <PixelIcon className="w-12 h-12 sm:w-16 sm:h-16" />
+            </span>
           </h1>
-          <div className="mt-6 flex flex-wrap items-center gap-4 text-xl text-(--foreground)/75">
-            {socials.map((s) => (
-              <a key={s.name} href={s.href} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 hover:opacity-90">
-                <span className="pixel-icon rounded-[2px] bg-foreground pixelated group-hover:opacity-80" />
-              </a>
-            ))}
+          
+          <div className="mt-8 flex flex-wrap items-center gap-2 text-sm font-medium text-muted-foreground uppercase tracking-wider">
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
+            <span className="text-muted-foreground/40">/</span>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
+            <span className="text-muted-foreground/40">/</span>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">Instagram</a>
+            <span className="text-muted-foreground/40">/</span>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">X</a>
           </div>
-          <p className="mt-8 max-w-3xl text-base leading-7 text-muted">
+
+          <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground">
             My technical preferences are <a href="#" className="underline">Nuxt</a>, <a href="#" className="underline">Kirby</a>, and all things TypeScript. I currently work at <a href="#" className="underline">Finanzfluss</a>, a popular platform for financial education.
           </p>
         </Section>
