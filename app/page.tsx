@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Inter_Tight } from "next/font/google";
 const interTight = Inter_Tight({
   weight: "200",
@@ -26,29 +28,7 @@ export default function Home() {
   return (
     <div className="min-h-screen font-interTight pl-9 pr-10 bg-background text-foreground">
       {/* Full-width header to allow nav at the far right */}
-      <header className="flex w-full items-center justify-between  mt-8 mb-30">
-        <Link href="/" className="inline-flex items-center text-xl ml-7 tracking-tighter font-semibold tracki~g-tight no-underline hover:no-underline">
-          Johann Schopplich
-        </Link>
-        <nav className="flex items-center gap-6 text-lg text-(--foreground)/85">
-          <Link href="#" className="group inline-flex items-center gap-2 decoration-transparent hover:decoration-transparent no-underline hover:no-underline">
-            <span className="h-1.5 w-1.5 rounded-full bg-(--foreground)/30 transition-colors group-hover:bg-foreground" />
-            Blog
-          </Link>
-          <Link href="#" className="group inline-flex items-center gap-2 decoration-transparent hover:decoration-transparent no-underline hover:no-underline">
-            <span className="h-1.5 w-1.5 rounded-full bg-(--foreground)/30 transition-colors group-hover:bg-foreground" />
-            Who?
-          </Link>
-          <Link href="#" className="group inline-flex items-center gap-2 decoration-transparent hover:decoration-transparent no-underline hover:no-underline">
-            <span className="h-1.5 w-1.5 rounded-full bg-(--foreground)/30 transition-colors group-hover:bg-foreground" />
-            Work
-          </Link>
-          <Link href="#" className="group inline-flex items-center gap-2 decoration-transparent hover:decoration-transparent no-underline hover:no-underline">
-            <span className="h-1.5 w-1.5 rounded-full bg-(--foreground)/30 transition-colors group-hover:bg-foreground" />
-            Fotografie
-          </Link>
-        </nav>
-      </header>
+      <Header />
 
       {/* Constrained content container */}
       <div className="w-full max-w-5xl px-6 pb-16">
@@ -138,14 +118,7 @@ export default function Home() {
           </ul>
         </section>
 
-        {/* Footer */}
-        <footer className="mt-16 flex flex-wrap items-center justify-between gap-y-3 border-t border-border pt-6 text-sm text-muted">
-          <p>© 2025 Guru Vyas</p>
-          <div className="flex gap-6">
-            <Link href="#" className="hover:opacity-80">Legal</Link>
-            <Link href="#" className="hover:opacity-80">Privacy Policy</Link>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
