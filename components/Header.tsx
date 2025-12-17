@@ -39,7 +39,7 @@ export function Header() {
               )}
               <Link 
                 href={link.href} 
-                className="hover:text-foreground hover:scale-105 transition-all duration-200 no-underline hover:no-underline"
+                className="hover:text-foreground hover:scale-105 transition-all duration-75 no-underline hover:no-underline"
               >
                 {link.label}
               </Link>

@@ -46,17 +46,17 @@ export default function Home() {
           </h1>
           
           <div className="mt-8 flex flex-wrap items-center gap-2 text-sm font-mono text-muted-foreground">
-            <a href="https://github.com/wakeupguruu" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">GitHub</a>
+            <a href="https://github.com/wakeupguruu" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-75 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">GitHub</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://www.linkedin.com/in/guru-vyas-16a0b82a7" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/guru-vyas-16a0b82a7" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">LinkedIn</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://www.instagram.com/guruthlesss/" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">Instagram</a>
+            <a href="https://www.instagram.com/guruthlesss/" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">Instagram</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">X</a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">X</a>
           </div>
 
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            My technical preferences are <a href="#" className="underline">Nuxt</a>, <a href="#" className="underline">Kirby</a>, and all things TypeScript. I currently work at <a href="#" className="underline">Finanzfluss</a>, a popular platform for financial education.
+            I build clear, well-structured TypeScript architectures. I'm focusing on Open Source Contribution and building tools for the web.
           </p>
         </Section>
 
