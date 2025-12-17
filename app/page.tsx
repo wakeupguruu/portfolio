@@ -63,7 +63,7 @@ export default function Home() {
         {/* Writing */}
         <Section>
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-2xl text-[#89937a] font-semibold decoration-[#9da591]">Writing</h2>
+            <h2 className="text-2xl text-[#89937b] font-semibold decoration-[#9da591]">Writing</h2>
             <Link href="#" className="text-sm">ALL ARTICLES →</Link>
           </div>
 
@@ -96,7 +96,7 @@ export default function Home() {
         {/* Photographs */}
         <Section>
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-2xl text-[#89937a] font-semibold decoration-[#9da591]">Photographs</h2>
+            <h2 className="text-2xl text-[#89937b] font-semibold decoration-[#9da591]">Photographs</h2>
             <Link href="#" className="text-sm">MORE PHOTOGRAPHS →</Link>
           </div>
           <div className="grid grid-cols-2 gap-3 border-t border-border pt-6 sm:grid-cols-3">

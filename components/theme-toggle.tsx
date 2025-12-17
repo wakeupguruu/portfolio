@@ -15,7 +15,7 @@ export function ThemeToggle() {
     return (
       <div className="flex items-center gap-3 font-vt323 text-lg leading-none opacity-0">
          <div className="h-6 w-6" />
-         <span className="text-xl underline decoration-2 underline-offset-4">Lights on</span>
+         <span className="text-xl hover: underline decoration-2 underline-offset-4">Lights on</span>
       </div>
     ); 
   }
@@ -25,7 +25,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="group flex items-center gap-3 font-vt323 text-lg leading-none transition-colors duration-700 ease-in-out hover:text-foreground/80 focus-visible:outline-none focus:outline-none"
+      className="group flex cursor-pointer items-center gap-3 font-vt323 text-lg leading-none transition-colors duration-700 ease-in-out hover:text-foreground/80 focus-visible:outline-none focus:outline-none"
       aria-label="Toggle theme"
     >
       <div className="relative h-6 w-6">
@@ -102,7 +102,7 @@ export function ThemeToggle() {
             </svg>
         </div>
       </div>
-      <span className="text-xl underline decoration-2 underline-offset-4 min-w-[5rem] text-left">
+      <span className="min-w-[5rem] text-left text-xl decoration-2 underline-offset-4 group-hover:underline">
         {isDark ? "Lights on" : "Lights off"}
       </span>
     </button>

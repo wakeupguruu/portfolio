@@ -3,7 +3,7 @@
 
 :root {
   /* Light by default (or can be flipped, but usually light is default for root) */
-  --background: #fff7e6;
+  --background: #fefcf8;
   --foreground: #1c1917;
   --muted: #57534e;
   --border: #e7e5e4;
