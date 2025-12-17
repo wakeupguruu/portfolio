@@ -39,7 +39,7 @@ export default function Home() {
         {/* Hero */}
         <Section className="pt-32">
           <h1 className="text-4xl font-extrabold leading-[1.0] tracking-[-0.04em] sm:text-6xl max-w-4xl">
-            <span>Hi, I’m Guru. Developer with an ear for music.</span>
+            <span>Hi, I’m Guru. Developer with a taste for music.</span>
             <span className="inline-block align-middle ml-3">
               <PixelIcon className="w-10 h-10 sm:w-14 sm:h-14" />
             </span>
