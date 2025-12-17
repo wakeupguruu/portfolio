@@ -25,13 +25,13 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="group flex items-center gap-3 font-vt323 text-lg leading-none transition-colors hover:text-foreground/80 focus-visible:outline-none focus:outline-none"
+      className="group flex items-center gap-3 font-vt323 text-lg leading-none transition-colors duration-700 ease-in-out hover:text-foreground/80 focus-visible:outline-none focus:outline-none"
       aria-label="Toggle theme"
     >
       <div className="relative h-6 w-6">
         {/* Pixel Moon Icon (shown in dark mode) */}
         <div 
-          className="absolute inset-0 h-full w-full transition-all duration-500 ease-out"
+          className="absolute inset-0 h-full w-full transition-all duration-700 ease-out"
           style={{ 
             opacity: isDark ? 1 : 0, 
             transform: isDark ? 'rotate(0deg) scale(1)' : 'rotate(-15deg) scale(0.9)'
@@ -60,11 +60,6 @@ export function ThemeToggle() {
             {/* Bottom row */}
             <rect x="10" y="16" width="4" height="2" fill="#FACC15" />
 
-            {/* Remove 'tips' if they made it look like a C, or extend them if 'goes far' means tips */}
-            {/* The user said "doesn't have straight line pixel at the end it goes far" */}
-            {/* This usually means the crescent tips are separate or longer. */}
-            {/* Let's Try: Keeping top/bottom row 4px wide makes it look extended. */}
-
             {/* Sparkle 1 (Top Right Plus) - Moved slightly to fit new shape */}
             <rect x="16" y="6" width="2" height="6" fill="#FACC15" />
             <rect x="14" y="8" width="6" height="2" fill="#FACC15" />
@@ -77,7 +72,7 @@ export function ThemeToggle() {
 
         {/* Pixel Sun Icon (shown in light mode) */}
         <div 
-          className="absolute inset-0 h-full w-full transition-all duration-500 ease-out"
+          className="absolute inset-0 h-full w-full transition-all duration-700 ease-out"
           style={{ 
             opacity: isDark ? 0 : 1, 
             transform: isDark ? 'rotate(15deg) scale(0.9)' : 'rotate(0deg) scale(1)'

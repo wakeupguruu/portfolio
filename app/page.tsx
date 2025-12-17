@@ -46,11 +46,11 @@ export default function Home() {
           </h1>
           
           <div className="mt-8 flex flex-wrap items-center gap-2 text-sm font-mono text-muted-foreground">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">GitHub</a>
+            <a href="https://github.com/wakeupguruu" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">GitHub</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/guru-vyas-16a0b82a7" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">LinkedIn</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">Instagram</a>
+            <a href="https://www.instagram.com/guruthlesss/" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">Instagram</a>
             <span className="text-muted-foreground/40">/</span>
             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-200 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">X</a>
           </div>
@@ -63,7 +63,7 @@ export default function Home() {
         {/* Writing */}
         <Section>
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-2xl font-semibold decoration-[#9da591]">Writing</h2>
+            <h2 className="text-2xl text-[#89937a] font-semibold decoration-[#9da591]">Writing</h2>
             <Link href="#" className="text-sm">ALL ARTICLES →</Link>
           </div>
 
@@ -96,7 +96,7 @@ export default function Home() {
         {/* Photographs */}
         <Section>
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-2xl font-semibold decoration-[#9da591]">Photographs</h2>
+            <h2 className="text-2xl text-[#89937a] font-semibold decoration-[#9da591]">Photographs</h2>
             <Link href="#" className="text-sm">MORE PHOTOGRAPHS →</Link>
           </div>
           <div className="grid grid-cols-2 gap-3 border-t border-border pt-6 sm:grid-cols-3">

@@ -52,13 +52,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${inter.variable} ${geistMono.variable} ${fredericka.variable} ${croissant.variable} ${vt323.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
         >
           {children}
         </ThemeProvider>
