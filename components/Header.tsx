@@ -24,26 +24,29 @@ export function Header() {
           WebkitMaskSize: "4px 4px",
         }} 
       />
-      <div className="mx-auto flex h-full pt-5 max-w-screen-xl items-center justify-between px-5">
-        <Link href="/" className="relative z-10 text-base font-bold tracking-tight text-foreground/90 no-underline hover:no-underline">
+      <div className="mx-auto flex h-full pt-5 max-w-7xl items-center justify-between px-2">
+        <Link href="/" className="relative z-10 text-base font-bold tracking-tight text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110">
           Guru Vyas
         </Link>
 
-        <nav className="relative z-10 flex items-center gap-5 text-[11px] font-bold tracking-widest text-muted-foreground uppercase">
-          {links.map((link, index) => (
-            <div key={link.href} className="flex items-center gap-5">
-              {index > 0 && (
-                <span className="text-[6px] opacity-30" aria-hidden="true">
-                  ●
-                </span>
-              )}
-              <Link 
-                href={link.href} 
-                className="hover:text-foreground hover:scale-105 transition-all duration-75 no-underline hover:no-underline"
-              >
+        <nav className="relative z-10 flex items-center gap-6">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="group flex items-center gap-2 no-underline hover:no-underline"
+            >
+              {/* Circle: Light gray by default, Olive on group hover */}
+              <div 
+                className="h-2 w-2 rounded-full bg-[#e5e5e5] transition-colors duration-200 group-hover:bg-[#89937a]" 
+                aria-hidden="true" 
+              />
+              
+              {/* Text: Tall and slim (text-lg + tracking-tight), theme-aware default, Olive on group hover */}
+              <span className="inline-block transform scale-y-110 text-sm font-medium uppercase tracking-tight text-muted-foreground transition-colors duration-200 group-hover:text-[#89937a]">
                 {link.label}
-              </Link>
-            </div>
+              </span>
+            </Link>
           ))}
           <div className="ml-2 border-l border-white/10 pl-5">
             <ThemeToggle />

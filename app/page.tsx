@@ -38,7 +38,7 @@ export default function Home() {
       <Container className="pb-16">
         {/* Hero */}
         <Section className="pt-32">
-          <h1 className="text-4xl font-extrabold leading-[1.0] tracking-[-0.04em] sm:text-6xl max-w-4xl">
+          <h1 className="text-3xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-5xl max-w-4xl">
             <span>Hi, I’m Guru. Developer with a taste for music.</span>
             <span className="inline-block align-middle ml-3">
               <PixelIcon className="w-10 h-10 sm:w-14 sm:h-14" />
@@ -63,7 +63,7 @@ export default function Home() {
         {/* Writing */}
         <Section>
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-2xl text-[#89937b] font-semibold decoration-[#9da591]">Writing</h2>
+            <h2 className="text-2xl font-semibold !text-[#89937a]" style={{ color: '#89937a' }}>Writing</h2>
             <Link href="#" className="text-sm">ALL ARTICLES →</Link>
           </div>
 
@@ -83,7 +83,7 @@ export default function Home() {
                   style={{ borderColor: "var(--border)" }}
                 >
                   <p className="text-xs tracking-widest text-muted">{post.date}</p>
-                  <Link href={post.href} className="mt-2 block text-2xl font-extrabold leading-tight">
+                  <Link href={post.href} className="mt-2 block text-2xl font-extrabold leading-tight text-[#1c1917] dark:text-[#ededed]">
                     {post.title}
                   </Link>
                   <p className="mt-3 text-sm text-muted">{post.excerpt}</p>
@@ -96,7 +96,7 @@ export default function Home() {
         {/* Photographs */}
         <Section>
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-2xl text-[#89937b] font-semibold decoration-[#9da591]">Photographs</h2>
+            <h2 className="text-2xl font-semibold !text-[#89937a]" style={{ color: '#89937a' }}>Photographs</h2>
             <Link href="#" className="text-sm">MORE PHOTOGRAPHS →</Link>
           </div>
           <div className="grid grid-cols-2 gap-3 border-t border-border pt-6 sm:grid-cols-3">
@@ -110,7 +110,7 @@ export default function Home() {
 
         {/* Say hello */}
         <Section className="mb-16">
-          <h3 className="mb-6 text-3xl font-semibold">Say hello</h3>
+          <h3 className="mb-6 text-3xl font-semibold text-[#1c1917] dark:text-[#ededed]">Say hello</h3>
           <ul className="divide-y divide-border border-y border-border">
             <li className="flex items-center justify-between py-6">
               <span className="text-base">E-Mail</span>
