@@ -38,7 +38,9 @@
   --font-tasa: var(--font-tasa);
   --font-robot: var(--font-robot);
   --font-oswald: var(--font-oswald);
+  --font-oswald: var(--font-oswald);
   --font-oxygen: var(--font-oxygen);
+  --font-source-code: var(--font-source-code);
 }
 
 /* We keep dark as default; no auto light mode switch */
@@ -116,7 +118,8 @@ a:hover {
   --text-hello: #171717; /* neutral-900 */
   --bg-footer: #e7e5e4;
   --text-footer: #525252; /* neutral-600 */
-  --border-separator: #57534d;
+  /* User requested specific separator colors */
+  --border-separator: #d6d3d1;
   --color-underline: #89937a;
 }
 
@@ -125,6 +128,7 @@ a:hover {
   --text-hello: #ededed;
   --bg-footer: #44403b;
   --text-footer: #ededed; /* Using opacity in usage or explicit color */
+  --border-separator: #57534d;
 }
 
 /* Semantic Classes (as requested to clean up inline styles) */
