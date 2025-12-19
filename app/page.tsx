@@ -122,41 +122,36 @@ export default function Home() {
       </Container>
 
       {/* Say hello - Full Width */}
-      <div className="w-full bg-[#292524] text-[#ededed]">
+      <div className="w-full bg-[#f5f5f4] dark:bg-[#292524] text-neutral-900 dark:text-[#ededed] transition-colors duration-300">
         <Container className="mb-0 py-12">
            <h3 className="mb-12 text-3xl font-semibold font-tasa">Say hello</h3>
            <ul className="divide-y font-oxygen" style={{ borderColor: '#57534d' }}>
-            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-white/5 transition-colors border-t" style={{ borderColor: '#57534d' }}>
+            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t" style={{ borderColor: '#57534d' }}>
               <span className="text-base font-bold">E-Mail</span>
-              <a href="#" className="text-base flex items-center gap-2 group-hover:text-white/80">
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-neutral-600 dark:group-hover:text-white/80">
                 <span className="font-sans">johann<span className="font-serif italic text-lg">@</span>schopplich.com</span>
               </a>
-              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-white">↗</span>
+              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-neutral-600 dark:group-hover:text-white">↗</span>
             </li>
-            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-white/5 transition-colors border-t" style={{ borderColor: '#57534d' }}>
+            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t" style={{ borderColor: '#57534d' }}>
               <span className="text-base font-bold">LinkedIn</span>
-              <a href="#" className="text-base flex items-center gap-2 group-hover:text-white/80">
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-neutral-600 dark:group-hover:text-white/80">
                 linkedin.com/in/johann-schopplich
               </a>
-              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-white">↗</span>
+              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-neutral-600 dark:group-hover:text-white">↗</span>
             </li>
-            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-white/5 transition-colors border-t border-b" style={{ borderColor: '#57534d' }}>
+            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t border-b" style={{ borderColor: '#57534d' }}>
               <span className="text-base font-bold">Everything else</span>
-              <a href="#" className="text-base flex items-center gap-2 group-hover:text-white/80">
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-neutral-600 dark:group-hover:text-white/80">
                 byjohann.link
               </a>
-              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-white">→</span>
+              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-neutral-600 dark:group-hover:text-white">→</span>
             </li>
           </ul>
 
           {/* Lights On Toggle - Moved here */}
           <div className="flex justify-end py-12 mt-12 border-t" style={{ borderColor: '#57534d' }}>
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                 <ThemeToggle />
-              </div>
-              <span className="uppercase tracking-widest text-xs font-bold font-oxygen">Lights on</span>
-            </div>
+            <ThemeToggle withText={true} />
           </div>
         </Container>
       </div>

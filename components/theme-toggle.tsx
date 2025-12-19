@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useTheme } from "next-themes";
 
-export function ThemeToggle() {
+export function ThemeToggle({ withText = false }: { withText?: boolean }) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -15,6 +15,7 @@ export function ThemeToggle() {
     return (
       <div className="flex items-center gap-3 font-robot text-lg leading-none opacity-0">
          <div className="h-6 w-6" />
+         {withText && <span>Lights on</span>}
       </div>
     ); 
   }
@@ -101,6 +102,11 @@ export function ThemeToggle() {
             </svg>
         </div>
       </div>
+      {withText && (
+        <span className="uppercase tracking-widest text-xs font-bold font-oxygen">
+          {isDark ? "Lights on" : "Lights off"}
+        </span>
+      )}
     </button>
   );
 }
