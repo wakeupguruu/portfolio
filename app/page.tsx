@@ -118,20 +118,29 @@ export default function Home() {
         </Section>
 
         {/* Say hello */}
-        <Section className="mb-16">
+        <Section className="mb-0">
           <h3 className="mb-6 text-3xl font-semibold text-[#1c1917] dark:text-[#ededed] font-tasa">Say hello</h3>
           <ul className="divide-y divide-border border-y border-border font-oxygen">
-            <li className="flex items-center justify-between py-6">
-              <span className="text-base">E-Mail</span>
-              <a href="#" className="text-base">your-email@example.com</a>
+            <li className="flex items-center justify-between py-6 group cursor-pointer hover:bg-muted/5 transition-colors">
+              <span className="text-base font-bold text-foreground">E-Mail</span>
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-foreground/80">
+                your-email@example.com
+                <span className="text-lg leading-none">↗</span>
+              </a>
             </li>
-            <li className="flex items-center justify-between py-6">
-              <span className="text-base">Instagram</span>
-              <a href="#" className="text-base">instagram.com/your-handle</a>
+            <li className="flex items-center justify-between py-6 group cursor-pointer hover:bg-muted/5 transition-colors">
+              <span className="text-base font-bold text-foreground">LinkedIn</span>
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-foreground/80">
+                linkedin.com/in/guru-vyas
+                <span className="text-lg leading-none">↗</span>
+              </a>
             </li>
-            <li className="flex items-center justify-between py-6">
-              <span className="text-base">Everything else</span>
-              <a href="#" className="text-base">your-link-collection</a>
+            <li className="flex items-center justify-between py-6 group cursor-pointer hover:bg-muted/5 transition-colors">
+              <span className="text-base font-bold text-foreground">Everything else</span>
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-foreground/80">
+                byguru.link
+                <span className="text-lg leading-none">↗</span>
+              </a>
             </li>
           </ul>
         </Section>
