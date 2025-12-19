@@ -41,6 +41,7 @@ export default function Home() {
       {/* Constrained content container */}
       <Container className="">
         {/* Hero */}
+        <div className="w-full border-t border-custom-separator px-4" style={{ borderColor: 'var(--border-separator)' }}></div>
         <Section className="pt-16">
           <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-6xl max-w-4xl">
             <span>Hi, I’m Guru. Developer with a taste for music.</span>
@@ -48,7 +49,7 @@ export default function Home() {
               <PixelIcon className="w-10 h-10 sm:w-16 sm:h-16" />
             </span>
           </h1>
-          
+
           <div className="mt-8 flex flex-wrap items-center gap-2 text-sm font-oxygen text-muted-foreground">
             <a href="https://github.com/wakeupguruu" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">GitHub</a>
             <span className="text-muted-foreground/40">/</span>
@@ -103,73 +104,72 @@ export default function Home() {
             <h2 className="font-tasa text-3xl font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Photographs</h2>
             <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
           </div>
-          
+
           {/* Horizontal scroll container with hidden scrollbar for sleek look */}
           <div className="flex gap-6 overflow-x-auto pb-8 pt-8 no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {[...Array(5)].map((_, i) => (
               /* Fixed height container, width adjusts automatically based on image aspect ratio */
               <div key={i} className="relative h-[400px] shrink-0">
-                <Image 
-                  src="/window.svg" 
-                  alt="Placeholder" 
-                  width={600} 
-                  height={800} 
+                <Image
+                  src="/window.svg"
+                  alt="Placeholder"
+                  width={600}
+                  height={800}
                   className="h-full w-auto object-cover grayscale transition-all duration-500 hover:grayscale-0"
                 />
               </div>
             ))}
           </div>
+          <div className="flex justify-end mt-8">
+            <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
+          </div>
         </Section>
-
       </Container>
+
+      <div className="w-full border-t border-custom-separator px-4" style={{ borderColor: 'var(--border-separator)' }}></div>
 
       {/* Say hello - Full Width */}
       <div className="w-full section-hello">
         <Container className="mb-0 pt-24 pb-12"> {/* Increased top padding */}
-           <h3 className="mb-8 text-3xl font-semibold font-tasa">Say hello</h3>
-           
-           {/* List Container - No top border on title, Borders handled by items */}
-           <ul className="flex flex-col">
-            
+          <h3 className="mb-8 text-3xl font-semibold font-tasa">Say hello</h3>
+
+          {/* List Container - No top border on title, Borders handled by items */}
+          <ul className="flex flex-col">
+
             {/* E-Mail */}
-            <li className="relative grid grid-cols-[200px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-t border-[#d6d3d1] hover:border-black dark:border-neutral-800 dark:hover:border-white">
-              <span className="text-base font-bold">E-Mail</span>
-              <div className="text-base flex items-center gap-2 group-hover:text-black/70 dark:group-hover:text-white/80 transition-colors">
-                <span className="font-sans flex items-center">
-                  johann
-                  <span className="mx-[1px] inline-flex items-center justify-center align-middle h-[1em] w-[1em] relative top-[1px]">
-                     <AtSymbol className="w-full h-full" />
-                  </span>
-                  schopplich.com
+            <li className="relative grid grid-cols-[200px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
+              <span className="text-base font-bold text-[#1c1917] dark:text-[#ededed]">E-Mail</span>
+              <div className="text-base flex items-center gap-2 text-[#1c1917] dark:text-[#ededed] group-hover:underline decoration-1 underline-offset-4 transition-colors">
+                <span className="font-source-code flex items-center">
+                  vyasguruwork@gmail.com
                 </span>
               </div>
               <div className="flex justify-end">
-                <PixelArrow className="w-6 h-6 transition-transform duration-500 ease-out -rotate-45 group-hover:rotate-0 text-black dark:text-white" />
+                <PixelArrow className="w-6 h-6 transition-transform duration-500 ease-out -rotate-45 group-hover:rotate-0 text-[#1c1917] dark:text-white" />
               </div>
-              <a href="mailto:johann@schopplich.com" className="absolute inset-0 z-10" aria-label="Send email"></a>
+              <a href="mailto:vyasguruwork@gmail.com" className="absolute inset-0 z-10" aria-label="Send email"></a>
             </li>
 
             {/* LinkedIn */}
-            <li className="relative grid grid-cols-[200px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-t border-[#d6d3d1] hover:border-black dark:border-neutral-800 dark:hover:border-white">
-              <span className="text-base font-bold">LinkedIn</span>
-              <div className="text-base flex items-center gap-2 group-hover:text-black/70 dark:group-hover:text-white/80 transition-colors">
+            <li className="relative grid grid-cols-[200px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
+              <span className="text-base font-bold text-[#1c1917] dark:text-[#ededed]">LinkedIn</span>
+              <div className="text-base flex items-center gap-2 text-[#1c1917] dark:text-[#ededed] group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code">
                 linkedin.com/in/johann-schopplich
               </div>
               <div className="flex justify-end">
-                <PixelArrow className="w-6 h-6 transition-transform duration-500 ease-out -rotate-45 group-hover:rotate-0 text-black dark:text-white" />
+                <PixelArrow className="w-6 h-6 transition-transform duration-500 ease-out -rotate-45 group-hover:rotate-0 text-[#1c1917] dark:text-white" />
               </div>
               <a href="https://linkedin.com/in/johann-schopplich" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label="Visit LinkedIn"></a>
             </li>
 
             {/* Everything else */}
-            <li className="relative grid grid-cols-[200px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-t border-b border-[#d6d3d1] hover:border-black dark:border-neutral-800 dark:hover:border-white">
-              <span className="text-base font-bold">Everything else</span>
-              <div className="text-base flex items-center gap-2 group-hover:text-black/70 dark:group-hover:text-white/80 transition-colors">
+            <li className="relative grid grid-cols-[200px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
+              <span className="text-base font-bold text-[#1c1917] dark:text-[#ededed]">Everything else</span>
+              <div className="text-base flex items-center gap-2 text-[#1c1917] dark:text-[#ededed] group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code">
                 byjohann.link
               </div>
               <div className="flex justify-end">
-                {/* Typically 'Everything else' might be a straight arrow or just differ, keeping consistent animation or straight if desired. User said 'from cross to horizontal'. Assuming uniform behavior. */}
-                <PixelArrow className="w-6 h-6 transition-transform duration-500 ease-out -rotate-45 group-hover:rotate-0 text-black dark:text-white" />
+                <PixelArrow className="w-6 h-6 transition-transform duration-500 ease-out -rotate-45 group-hover:rotate-0 text-[#1c1917] dark:text-white" />
               </div>
               <a href="#" className="absolute inset-0 z-10" aria-label="Everything else"></a>
             </li>
