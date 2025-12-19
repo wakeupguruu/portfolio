@@ -25,7 +25,7 @@ export function Header() {
         }} 
       />
       <div className="mx-auto flex h-full pt-5 max-w-screen-2xl items-center justify-between px-4 md:px-12">
-        <Link href="/" className="relative z-10 text-base font-bold tracking-tight text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110">
+        <Link href="/" className="relative z-10 text-base font-medium tracking-tight text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110 font-oswald">
           Guru Vyas
         </Link>
 
@@ -43,12 +43,12 @@ export function Header() {
               />
               
               {/* Text: Tall and slim (text-lg + tracking-tight), theme-aware default, Olive on group hover */}
-              <span className="inline-block transform scale-y-110 text-sm font-medium uppercase tracking-tight text-muted-foreground transition-colors duration-200 group-hover:text-[#89937a]">
+              <span className="inline-block transform scale-y-110 text-sm uppercase tracking-tight text-muted-foreground transition-colors duration-200 group-hover:text-[#89937a] font-oswald">
                 {link.label}
               </span>
             </Link>
           ))}
-          <div className="ml-2 border-l border-white/10 pl-5">
+          <div className="ml-2 border-l border-border pl-5">
             <ThemeToggle />
           </div>
         </nav>

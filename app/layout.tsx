@@ -44,6 +44,30 @@ export const metadata: Metadata = {
   description: "Portfolio of Guru Vyas. Developer with an aesthetic sense. Writing, work, photos, and contact.",
 };
 
+const tasa = localFont({
+  src: "../public/fonts/tasa/TASAExplorer-VariableFont_wght.ttf",
+  variable: "--font-tasa",
+  display: "swap",
+});
+
+const robotFlex = localFont({
+  src: "../public/fonts/roboto/RobotoFlex.ttf",
+  variable: "--font-robot",
+  display: "swap",
+});
+
+const oswald = localFont({
+  src: "../public/fonts/oswald/Oswald-VariableFont_wght.ttf",
+  variable: "--font-oswald",
+  display: "swap",
+});
+
+const oxygen = localFont({
+  src: "../public/fonts/oxygen-mono/OxygenMono-Regular.ttf",
+  variable: "--font-oxygen",
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -53,7 +77,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${inter.variable} ${geistMono.variable} ${fredericka.variable} ${croissant.variable} ${vt323.variable} font-sans antialiased`}
+        className={`${tasa.variable} ${robotFlex.variable} ${oswald.variable} ${oxygen.variable} ${inter.variable} ${geistMono.variable} ${fredericka.variable} ${croissant.variable} ${vt323.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
