@@ -10,7 +10,7 @@ export function Section({ children, className, id, ...props }: SectionProps) {
   return (
     <section
       id={id}
-      className={cn("mb-16 md:mb-24", className)}
+      className={cn("mb-24 md:mb-36", className)}
       {...props}
     >
       {children}

@@ -37,11 +37,11 @@ export default function Home() {
       {/* Constrained content container */}
       <Container className="pb-16">
         {/* Hero */}
-        <Section className="pt-32">
-          <h1 className="font-tasa text-3xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-5xl max-w-4xl">
+        <Section className="pt-16">
+          <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-6xl max-w-4xl">
             <span>Hi, I’m Guru. Developer with a taste for music.</span>
             <span className="inline-block align-middle ml-3">
-              <PixelIcon className="w-10 h-10 sm:w-14 sm:h-14" />
+              <PixelIcon className="w-10 h-10 sm:w-16 sm:h-16" />
             </span>
           </h1>
           
@@ -55,15 +55,15 @@ export default function Home() {
             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">X</a>
           </div>
 
-          <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground font-oxygen">
+          <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground font-oxygen">
             I build clear, well-structured TypeScript architectures. I'm focusing on Open Source Contribution and building tools for the web.
           </p>
         </Section>
 
         {/* Writing */}
         <Section>
-          <div className="mb-5 flex items-center justify-between">
-            <h2 className="font-tasa text-2xl font-semibold !text-[#89937a]" style={{ color: '#89937a' }}>Writing</h2>
+          <div className="mb-8 flex items-center justify-between">
+            <h2 className="font-tasa text-3xl font-semibold !text-[#89937a]" style={{ color: '#89937a' }}>Writing</h2>
             <Link href="#" className="text-sm font-robot">ALL ARTICLES →</Link>
           </div>
 
@@ -82,11 +82,11 @@ export default function Home() {
                   className={`border-border ${cellBorders}`}
                   style={{ borderColor: "var(--border)" }}
                 >
-                  <p className="text-xs tracking-widest text-muted font-oxygen">{post.date}</p>
+                  <p className="text-sm tracking-widest text-muted font-oxygen">{post.date}</p>
                   <Link href={post.href} className="mt-2 block text-2xl font-extrabold leading-tight text-[#1c1917] dark:text-[#ededed]">
                     {post.title}
                   </Link>
-                  <p className="mt-3 text-sm text-muted font-oxygen">{post.excerpt}</p>
+                  <p className="mt-4 text-lg text-muted font-oxygen">{post.excerpt}</p>
                 </article>
               );
             })}
@@ -96,13 +96,22 @@ export default function Home() {
         {/* Photographs */}
         <Section>
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="font-tasa text-2xl font-semibold !text-[#89937a]" style={{ color: '#89937a' }}>Photographs</h2>
+            <h2 className="font-tasa text-3xl font-semibold !text-[#89937a]" style={{ color: '#89937a' }}>Photographs</h2>
             <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
           </div>
-          <div className="grid grid-cols-2 gap-3 border-t border-border pt-6 sm:grid-cols-3">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="aspect-4/3 overflow-hidden">
-                <Image src="/window.svg" alt="Placeholder" width={800} height={600} className="h-full w-full object-cover pixelated" />
+          
+          {/* Horizontal scroll container with hidden scrollbar for sleek look */}
+          <div className="flex gap-6 overflow-x-auto pb-8 pt-8 no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {[...Array(5)].map((_, i) => (
+              /* Fixed height container, width adjusts automatically based on image aspect ratio */
+              <div key={i} className="relative h-[400px] flex-shrink-0">
+                <Image 
+                  src="/window.svg" 
+                  alt="Placeholder" 
+                  width={600} 
+                  height={800} 
+                  className="h-full w-auto object-cover grayscale transition-all duration-500 hover:grayscale-0"
+                />
               </div>
             ))}
           </div>
