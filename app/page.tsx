@@ -48,13 +48,13 @@ export default function Home() {
           </h1>
           
           <div className="mt-8 flex flex-wrap items-center gap-2 text-sm font-oxygen text-muted-foreground">
-            <a href="https://github.com/wakeupguruu" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-75 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">GitHub</a>
+            <a href="https://github.com/wakeupguruu" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">GitHub</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://www.linkedin.com/in/guru-vyas-16a0b82a7" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/guru-vyas-16a0b82a7" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">LinkedIn</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://www.instagram.com/guruthlesss/" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">Instagram</a>
+            <a href="https://www.instagram.com/guruthlesss/" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">Instagram</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:!text-white dark:hover:bg-white dark:hover:!text-black rounded-sm">X</a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">X</a>
           </div>
 
           <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground font-oxygen">
@@ -65,7 +65,7 @@ export default function Home() {
         {/* Writing */}
         <Section>
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="font-tasa text-3xl font-semibold !text-[#89937a]" style={{ color: '#89937a' }}>Writing</h2>
+            <h2 className="font-tasa text-3xl font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Writing</h2>
             <Link href="#" className="text-sm font-robot">ALL ARTICLES →</Link>
           </div>
 
@@ -98,7 +98,7 @@ export default function Home() {
         {/* Photographs */}
         <Section>
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="font-tasa text-3xl font-semibold !text-[#89937a]" style={{ color: '#89937a' }}>Photographs</h2>
+            <h2 className="font-tasa text-3xl font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Photographs</h2>
             <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
           </div>
           
@@ -122,35 +122,35 @@ export default function Home() {
       </Container>
 
       {/* Say hello - Full Width */}
-      <div className="w-full bg-[#f5f5f4] dark:bg-[#292524] text-neutral-900 dark:text-[#ededed] transition-colors duration-300">
+      <div className="w-full section-hello">
         <Container className="mb-0 py-12">
            <h3 className="mb-12 text-3xl font-semibold font-tasa">Say hello</h3>
-           <ul className="divide-y font-oxygen" style={{ borderColor: '#57534d' }}>
-            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t" style={{ borderColor: '#57534d' }}>
+           <ul className="divide-y font-oxygen border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold">E-Mail</span>
-              <a href="#" className="text-base flex items-center gap-2 group-hover:text-neutral-600 dark:group-hover:text-white/80">
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-black/70 dark:group-hover:text-white/80">
                 <span className="font-sans">johann<span className="font-serif italic text-lg">@</span>schopplich.com</span>
               </a>
-              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-neutral-600 dark:group-hover:text-white">↗</span>
+              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-black dark:group-hover:text-white">↗</span>
             </li>
-            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t" style={{ borderColor: '#57534d' }}>
+            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold">LinkedIn</span>
-              <a href="#" className="text-base flex items-center gap-2 group-hover:text-neutral-600 dark:group-hover:text-white/80">
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-black/70 dark:group-hover:text-white/80">
                 linkedin.com/in/johann-schopplich
               </a>
-              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-neutral-600 dark:group-hover:text-white">↗</span>
+              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-black dark:group-hover:text-white">↗</span>
             </li>
-            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t border-b" style={{ borderColor: '#57534d' }}>
+            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t border-b border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold">Everything else</span>
-              <a href="#" className="text-base flex items-center gap-2 group-hover:text-neutral-600 dark:group-hover:text-white/80">
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-black/70 dark:group-hover:text-white/80">
                 byjohann.link
               </a>
-              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-neutral-600 dark:group-hover:text-white">→</span>
+              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-black dark:group-hover:text-white">→</span>
             </li>
           </ul>
 
           {/* Lights On Toggle - Moved here */}
-          <div className="flex justify-end py-12 mt-12 border-t" style={{ borderColor: '#57534d' }}>
+          <div className="flex justify-end py-12 mt-12 border-t border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}>
             <ThemeToggle withText={true} />
           </div>
         </Container>

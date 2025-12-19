@@ -42,7 +42,7 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               />
             </div>
             {photo.caption && (

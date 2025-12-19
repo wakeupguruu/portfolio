@@ -10,7 +10,7 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky -top-5 z-50 w-full h-[78px] border-b border-transparent transition-colors duration-700 ease-in-out">
+    <header className="sticky -top-5 z-50 w-full h-[78px] border-b border-transparent transition-colors duration-500 ease-in-out">
       {/* Layer 1: The Blur (Visible through the holes) */}
       <div className="absolute inset-0 -z-20 h-full w-full backdrop-blur-md bg-transparent" />
 

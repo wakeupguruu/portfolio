@@ -109,3 +109,51 @@ a:hover {
   width: 12px;
   height: 12px;
 }
+
+/* Semantic Theme Variables */
+:root {
+  --bg-hello: #f5f5f4;
+  --text-hello: #171717; /* neutral-900 */
+  --bg-footer: #e7e5e4;
+  --text-footer: #525252; /* neutral-600 */
+  --border-separator: #57534d;
+  --color-underline: #89937a;
+}
+
+.dark {
+  --bg-hello: #292524;
+  --text-hello: #ededed;
+  --bg-footer: #44403b;
+  --text-footer: #ededed; /* Using opacity in usage or explicit color */
+}
+
+/* Semantic Classes (as requested to clean up inline styles) */
+.section-hello {
+  background-color: var(--bg-hello);
+  color: var(--text-hello);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.section-footer {
+  background-color: var(--bg-footer);
+  color: var(--text-footer);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.border-custom-separator {
+  border-color: var(--border-separator);
+}
+
+.link-custom-underline {
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-underline);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition-property: color, text-decoration-color;
+  transition-duration: 300ms;
+}
+
+.link-custom-underline:hover {
+  /* Using specific colors for hover based on context implies inheriting or utilizing current color */
+  /* For now, keeping text color transition logic simple or handling in component if specific hover needed */
+}
