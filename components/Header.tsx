@@ -24,7 +24,7 @@ export function Header() {
           WebkitMaskSize: "4px 4px",
         }} 
       />
-      <div className="mx-auto flex h-full pt-5 max-w-7xl items-center justify-between px-2">
+      <div className="mx-auto flex h-full pt-5 max-w-screen-2xl items-center justify-between px-4 md:px-12">
         <Link href="/" className="relative z-10 text-base font-bold tracking-tight text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110">
           Guru Vyas
         </Link>
