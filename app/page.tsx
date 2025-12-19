@@ -3,8 +3,10 @@ import { PixelIcon } from "@/components/pixel-icon";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Container, Section } from "@/components/ui/section";
 import { Inter_Tight } from "next/font/google";
+
 const interTight = Inter_Tight({
   weight: "200",
   subsets: ["latin"],
@@ -35,7 +37,7 @@ export default function Home() {
 
 
       {/* Constrained content container */}
-      <Container className="pb-16">
+      <Container className="">
         {/* Hero */}
         <Section className="pt-16">
           <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-6xl max-w-4xl">
@@ -104,7 +106,7 @@ export default function Home() {
           <div className="flex gap-6 overflow-x-auto pb-8 pt-8 no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {[...Array(5)].map((_, i) => (
               /* Fixed height container, width adjusts automatically based on image aspect ratio */
-              <div key={i} className="relative h-[400px] flex-shrink-0">
+              <div key={i} className="relative h-[400px] shrink-0">
                 <Image 
                   src="/window.svg" 
                   alt="Placeholder" 
@@ -117,36 +119,49 @@ export default function Home() {
           </div>
         </Section>
 
-        {/* Say hello */}
-        <Section className="mb-0">
-          <h3 className="mb-6 text-3xl font-semibold text-[#1c1917] dark:text-[#ededed] font-tasa">Say hello</h3>
-          <ul className="divide-y divide-border border-y border-border font-oxygen">
-            <li className="flex items-center justify-between py-6 group cursor-pointer hover:bg-muted/5 transition-colors">
-              <span className="text-base font-bold text-foreground">E-Mail</span>
-              <a href="#" className="text-base flex items-center gap-2 group-hover:text-foreground/80">
-                your-email@example.com
-                <span className="text-lg leading-none">↗</span>
+      </Container>
+
+      {/* Say hello - Full Width */}
+      <div className="w-full bg-[#292524] text-[#ededed]">
+        <Container className="mb-0 py-12">
+           <h3 className="mb-12 text-3xl font-semibold font-tasa">Say hello</h3>
+           <ul className="divide-y font-oxygen" style={{ borderColor: '#57534d' }}>
+            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-white/5 transition-colors border-t" style={{ borderColor: '#57534d' }}>
+              <span className="text-base font-bold">E-Mail</span>
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-white/80">
+                <span className="font-sans">johann<span className="font-serif italic text-lg">@</span>schopplich.com</span>
               </a>
+              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-white">↗</span>
             </li>
-            <li className="flex items-center justify-between py-6 group cursor-pointer hover:bg-muted/5 transition-colors">
-              <span className="text-base font-bold text-foreground">LinkedIn</span>
-              <a href="#" className="text-base flex items-center gap-2 group-hover:text-foreground/80">
-                linkedin.com/in/guru-vyas
-                <span className="text-lg leading-none">↗</span>
+            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-white/5 transition-colors border-t" style={{ borderColor: '#57534d' }}>
+              <span className="text-base font-bold">LinkedIn</span>
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-white/80">
+                linkedin.com/in/johann-schopplich
               </a>
+              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-white">↗</span>
             </li>
-            <li className="flex items-center justify-between py-6 group cursor-pointer hover:bg-muted/5 transition-colors">
-              <span className="text-base font-bold text-foreground">Everything else</span>
-              <a href="#" className="text-base flex items-center gap-2 group-hover:text-foreground/80">
-                byguru.link
-                <span className="text-lg leading-none">↗</span>
+            <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-white/5 transition-colors border-t border-b" style={{ borderColor: '#57534d' }}>
+              <span className="text-base font-bold">Everything else</span>
+              <a href="#" className="text-base flex items-center gap-2 group-hover:text-white/80">
+                byjohann.link
               </a>
+              <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-white">→</span>
             </li>
           </ul>
-        </Section>
 
-        <Footer />
-      </Container>
+          {/* Lights On Toggle - Moved here */}
+          <div className="flex justify-end py-12 mt-12 border-t" style={{ borderColor: '#57534d' }}>
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                 <ThemeToggle />
+              </div>
+              <span className="uppercase tracking-widest text-xs font-bold font-oxygen">Lights on</span>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      <Footer />
     </div>
   );
 }
