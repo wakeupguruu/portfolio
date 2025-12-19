@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, VT323 } from "next/font/google"; // Added VT323
+import { Geist, Geist_Mono, Inter, VT323, Source_Code_Pro } from "next/font/google"; // Added VT323
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -44,6 +44,12 @@ export const metadata: Metadata = {
   description: "Portfolio of Guru Vyas. Developer with an aesthetic sense. Writing, work, photos, and contact.",
 };
 
+const sourceCodePro = Source_Code_Pro({
+  subsets: ["latin"],
+  variable: "--font-source-code",
+  display: "swap",
+});
+
 const tasa = localFont({
   src: "../public/fonts/tasa/TASAExplorer-VariableFont_wght.ttf",
   variable: "--font-tasa",
@@ -77,7 +83,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${tasa.variable} ${robotFlex.variable} ${oswald.variable} ${oxygen.variable} ${inter.variable} ${geistMono.variable} ${fredericka.variable} ${croissant.variable} ${vt323.variable} font-sans antialiased`}
+        className={`${tasa.variable} ${robotFlex.variable} ${oswald.variable} ${oxygen.variable} ${inter.variable} ${geistMono.variable} ${fredericka.variable} ${croissant.variable} ${vt323.variable} ${sourceCodePro.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

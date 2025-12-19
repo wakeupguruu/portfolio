@@ -15,14 +15,14 @@ export function Header() {
       <div className="absolute inset-0 -z-20 h-full w-full backdrop-blur-md bg-transparent" />
 
       {/* Layer 2: The Solid Plate with Holes (Masked) */}
-      <div 
+      <div
         className="absolute inset-0 -z-10 h-full w-full bg-background/90"
         style={{
           maskImage: "radial-gradient(transparent 1px, black 1px)",
           WebkitMaskImage: "radial-gradient(transparent 1px, black 1px)",
           maskSize: "4px 4px",
           WebkitMaskSize: "4px 4px",
-        }} 
+        }}
       />
       <div className="mx-auto flex h-full pt-5 max-w-screen-2xl items-center justify-between px-4 md:px-12">
         <Link href="/" className="relative z-10 text-base font-medium tracking-tight text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110 font-oswald">
@@ -37,11 +37,11 @@ export function Header() {
               className="group flex items-center gap-2 no-underline hover:no-underline"
             >
               {/* Circle: Light gray by default, Olive on group hover */}
-              <div 
-                className="h-2 w-2 rounded-full bg-[#e5e5e5] transition-colors duration-200 group-hover:bg-[#89937a]" 
-                aria-hidden="true" 
+              <div
+                className="h-2 w-2 rounded-full bg-[#e5e5e5] transition-colors duration-200 group-hover:bg-[#89937a]"
+                aria-hidden="true"
               />
-              
+
               {/* Text: Tall and slim (text-lg + tracking-tight), theme-aware default, Olive on group hover */}
               <span className="inline-block transform scale-y-110 text-sm uppercase tracking-tight text-muted-foreground transition-colors duration-200 group-hover:text-[#89937a] font-oswald">
                 {link.label}
