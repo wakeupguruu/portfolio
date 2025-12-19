@@ -129,7 +129,7 @@ export default function Home() {
             <li className="grid grid-cols-[140px_1fr_auto] items-center py-6 group cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors border-t border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold">E-Mail</span>
               <a href="#" className="text-base flex items-center gap-2 group-hover:text-black/70 dark:group-hover:text-white/80">
-                <span className="font-sans">johann<span className="font-serif italic text-lg">@</span>schopplich.com</span>
+                <span className="font-sans">vyasguruwork@gmai.com</span>
               </a>
               <span className="text-xl leading-none transition-transform duration-300 group-hover:rotate-45 group-hover:text-black dark:group-hover:text-white">↗</span>
             </li>
