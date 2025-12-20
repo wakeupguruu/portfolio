@@ -20,7 +20,7 @@ export function Section({ children, className, id, ...props }: SectionProps) {
 
 export function Container({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("mx-auto w-full max-w-screen-2xl px-4 md:px-12", className)} {...props}>
+    <div className={cn("mx-auto w-full max-w-screen-2xl px-5 md:px-16", className)} {...props}>
       {children}
     </div>
   );

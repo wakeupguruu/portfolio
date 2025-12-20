@@ -24,7 +24,7 @@ export function Header() {
           WebkitMaskSize: "4px 4px",
         }}
       />
-      <div className="mx-auto flex h-full pt-5 max-w-screen-2xl items-center justify-between px-4 md:px-12">
+      <div className="mx-auto flex h-full pt-2 max-w-screen-2xl items-center justify-between px-5 md:px-16">
         <Link href="/" className="relative z-10 text-base font-medium tracking-tight text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110 font-oswald">
           Guru Vyas
         </Link>
@@ -34,7 +34,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="group flex items-center gap-2 no-underline hover:no-underline"
+              className="group  flex items-center gap-2 no-underline hover:no-underline"
             >
               {/* Circle: Light gray by default, Olive on group hover */}
               <div
@@ -43,7 +43,7 @@ export function Header() {
               />
 
               {/* Text: Tall and slim (text-lg + tracking-tight), theme-aware default, Olive on group hover */}
-              <span className="inline-block transform scale-y-110 text-sm uppercase tracking-tight text-muted-foreground transition-colors duration-200 group-hover:text-[#89937a] font-oswald">
+              <span className="inline-block transform scale-y-110 text-sm tracking-widest uppercase text-muted-foreground transition-colors duration-200 group-hover:text-[#89937a] font-oswald">
                 {link.label}
               </span>
             </Link>
