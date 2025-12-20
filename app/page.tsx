@@ -66,7 +66,10 @@ export default function Home() {
             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">X</a>
           </div>
 
-          <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground font-oxygen">
+          <p
+            className="mt-10 max-w-2xl tracking-tight text-lg leading-relaxed font-oxygen"
+            style={{ color: "var(--description-text)" }}
+          >
             I build clear, well-structured TypeScript architectures. I'm focusing on Open Source Contribution and building tools for the web.
           </p>
         </Section>
@@ -93,11 +96,17 @@ export default function Home() {
                   className={`border-border ${cellBorders}`}
                   style={{ borderColor: "var(--border)" }}
                 >
-                  <p className="text-sm tracking-widest text-muted font-oxygen">{post.date}</p>
+                  <p
+                    className="text-sm tracking-widest font-oxygen"
+                    style={{ color: "var(--description-text)" }}
+                  >{post.date}</p>
                   <Link href={post.href} className="mt-2 block text-2xl font-extrabold leading-tight text-[#1c1917] dark:text-[#ededed]">
                     {post.title}
                   </Link>
-                  <p className="mt-4 text-lg text-muted font-oxygen">{post.excerpt}</p>
+                  <p
+                    className="mt-4 text-lg font-oxygen"
+                    style={{ color: "var(--description-text)" }}
+                  >{post.excerpt}</p>
                 </article>
               );
             })}
