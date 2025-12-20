@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { PixelIcon } from "@/components/pixel-icon";
+import { MusicNotes } from "@/components/music-notes";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PixelArrow } from "@/components/pixel-arrow";
-import { AtSymbol } from "@/components/at-symbol";
 import { Container, Section } from "@/components/ui/section";
 import { Inter_Tight } from "next/font/google";
 
@@ -41,12 +41,19 @@ export default function Home() {
       {/* Constrained content container */}
       <Container className="">
         {/* Hero */}
-        <div className="w-full border-t border-custom-separator px-4" style={{ borderColor: 'var(--border-separator)' }}></div>
         <Section className="pt-16">
           <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-6xl max-w-4xl">
             <span>Hi, I’m Guru. Developer with a taste for music.</span>
-            <span className="inline-block align-middle ml-3">
-              <PixelIcon className="w-10 h-10 sm:w-16 sm:h-16" />
+
+            <span className="relative inline-flex items-center justify-center ml-3 translate-y-3 sm:translate-y-4">
+              <MusicNotes />
+              <Image
+                src="/hero-character-removebg-preview.png"
+                alt="Guru Character"
+                width={64}
+                height={64}
+                className="w-10 h-10 sm:w-16 sm:h-16 object-contain"
+              />
             </span>
           </h1>
 
