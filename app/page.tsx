@@ -41,9 +41,9 @@ export default function Home() {
       {/* Constrained content container */}
       <Container className="">
         {/* Hero */}
-        <Section className="pt-16">
-          <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-6xl max-w-4xl">
-            <span>Hi, I’m Guru. Developer with a taste for music.</span>
+        <Section className="pt-24">
+          <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-[3.4rem] max-w-4xl">
+            <span>Hi, I'm Guru. Developer with a taste for music.</span>
 
             <HeroAnimation className="align-bottom">
               <Image
@@ -56,7 +56,7 @@ export default function Home() {
             </HeroAnimation>
           </h1>
 
-          <div className="mt-8 flex flex-wrap items-center gap-2 text-sm font-oxygen text-muted-foreground">
+          <div className="mt-8 flex flex-wrap items-center gap-2 text-base font-oxygen text-muted-foreground">
             <a href="https://github.com/wakeupguruu" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">GitHub</a>
             <span className="text-muted-foreground/40">/</span>
             <a href="https://www.linkedin.com/in/guru-vyas-16a0b82a7" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">LinkedIn</a>
@@ -67,7 +67,7 @@ export default function Home() {
           </div>
 
           <p
-            className="mt-10 max-w-2xl tracking-tight text-lg leading-relaxed font-oxygen"
+            className="mt-10 max-w-2xl tracking-tight text-[1.05rem] leading-relaxed font-oxygen"
             style={{ color: "var(--description-text)" }}
           >
             I build clear, well-structured TypeScript architectures. I'm focusing on Open Source Contribution and building tools for the web.
@@ -145,16 +145,16 @@ export default function Home() {
 
       {/* Say hello - Full Width */}
       <div className="w-full section-hello">
-        <Container className="mb-0 pt-24 pb-12"> {/* Increased top padding */}
-          <h3 className="mb-8 text-3xl font-semibold font-tasa">Say hello</h3>
+        <Container className="mb-0 pt-24 pb-10"> {/* Increased top padding */}
+          <h3 className="mb-8 text-3xl font-bold! font-tasa">Say hello</h3>
 
           {/* List Container - No top border on title, Borders handled by items */}
           <ul className="flex flex-col">
 
             {/* E-Mail */}
-            <li className="relative grid grid-cols-[200px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
-              <span className="text-base font-bold text-[#1c1917] dark:text-[#ededed]">E-Mail</span>
-              <div className="text-base flex items-center gap-2 text-[#1c1917] dark:text-[#ededed] group-hover:underline decoration-1 underline-offset-4 transition-colors">
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
+              <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>E-Mail</span>
+              <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors" style={{ color: 'var(--hello-text)' }}>
                 <span className="font-source-code flex items-center">
                   vyasguruwork@gmail.com
                 </span>
@@ -166,9 +166,9 @@ export default function Home() {
             </li>
 
             {/* LinkedIn */}
-            <li className="relative grid grid-cols-[200px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
-              <span className="text-base font-bold text-[#1c1917] dark:text-[#ededed]">LinkedIn</span>
-              <div className="text-base flex items-center gap-2 text-[#1c1917] dark:text-[#ededed] group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code">
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
+              <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
+              <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 linkedin.com/in/johann-schopplich
               </div>
               <div className="flex justify-end">
@@ -178,20 +178,17 @@ export default function Home() {
             </li>
 
             {/* Everything else */}
-            <li className="relative grid grid-cols-[200px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
-              <span className="text-base font-bold text-[#1c1917] dark:text-[#ededed]">Everything else</span>
-              <div className="text-base flex items-center gap-2 text-[#1c1917] dark:text-[#ededed] group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code">
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
+              <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Everything else</span>
+              <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 byjohann.link
-              </div>
-              <div className="flex justify-end">
-                <PixelArrow className="w-6 h-6 transition-transform duration-500 ease-out -rotate-45 group-hover:rotate-0 text-[#1c1917] dark:text-white" />
               </div>
               <a href="#" className="absolute inset-0 z-10" aria-label="Everything else"></a>
             </li>
           </ul>
 
           {/* Lights On Toggle - Moved here, Aligned Right, Padded */}
-          <div className="flex justify-end py-12 mt-12">
+          <div className="flex justify-end mt-12">
             <ThemeToggle withText={true} />
           </div>
         </Container>

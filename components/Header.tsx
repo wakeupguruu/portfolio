@@ -25,7 +25,7 @@ export function Header() {
         }}
       />
       <div className="mx-auto flex h-full pt-2 max-w-screen-2xl items-center justify-between px-5 md:px-16">
-        <Link href="/" className="relative z-10 text-base font-medium tracking-tight text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110 font-oswald">
+        <Link href="/" className="relative z-10 text-lg font-medium tracking-wider text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110 font-oswald">
           Guru Vyas
         </Link>
 
