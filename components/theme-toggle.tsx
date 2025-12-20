@@ -14,10 +14,10 @@ export function ThemeToggle({ withText = false }: { withText?: boolean }) {
   if (!mounted) {
     return (
       <div className="flex items-center gap-3 font-robot text-lg leading-none opacity-0">
-         <div className="h-6 w-6" />
-         {withText && <span>Lights on</span>}
+        <div className="h-6 w-6" />
+        {withText && <span>Lights on</span>}
       </div>
-    ); 
+    );
   }
 
   const isDark = theme === "dark";
@@ -30,10 +30,10 @@ export function ThemeToggle({ withText = false }: { withText?: boolean }) {
     >
       <div className="relative h-6 w-6">
         {/* Pixel Moon Icon (shown in dark mode) */}
-        <div 
+        <div
           className="absolute inset-0 h-full w-full transition-all duration-500 ease-out"
-          style={{ 
-            opacity: isDark ? 1 : 0, 
+          style={{
+            opacity: isDark ? 1 : 0,
             transform: isDark ? 'rotate(0deg) scale(1)' : 'rotate(-15deg) scale(0.9)'
           }}
         >
@@ -44,16 +44,16 @@ export function ThemeToggle({ withText = false }: { withText?: boolean }) {
             className="h-full w-full"
           >
             {/* CORRECTED Pixel Moon Body: Smoother Crescent */}
-            
+
             {/* Top row */}
             <rect x="10" y="6" width="4" height="2" fill="#FACC15" />
-            
+
             {/* Upper curve step */}
             <rect x="8" y="8" width="2" height="2" fill="#FACC15" />
 
             {/* Back vertical */}
             <rect x="6" y="10" width="2" height="4" fill="#FACC15" />
-            
+
             {/* Lower curve step */}
             <rect x="8" y="14" width="2" height="2" fill="#FACC15" />
 
@@ -63,27 +63,27 @@ export function ThemeToggle({ withText = false }: { withText?: boolean }) {
             {/* Sparkle 1 (Top Right Plus) - Moved slightly to fit new shape */}
             <rect x="16" y="6" width="2" height="6" fill="#FACC15" />
             <rect x="14" y="8" width="6" height="2" fill="#FACC15" />
-            
-             {/* Sparkle 2 (Bottom Right Plus) */}
-             <rect x="20" y="15" width="2" height="6" fill="#FACC15" />
-             <rect x="18" y="17" width="6" height="2" fill="#FACC15" />
+
+            {/* Sparkle 2 (Bottom Right Plus) */}
+            <rect x="20" y="15" width="2" height="6" fill="#FACC15" />
+            <rect x="18" y="17" width="6" height="2" fill="#FACC15" />
           </svg>
         </div>
 
         {/* Pixel Sun Icon (shown in light mode) */}
-        <div 
+        <div
           className="absolute inset-0 h-full w-full transition-all duration-500 ease-out"
-          style={{ 
-            opacity: isDark ? 0 : 1, 
+          style={{
+            opacity: isDark ? 0 : 1,
             transform: isDark ? 'rotate(15deg) scale(0.9)' : 'rotate(0deg) scale(1)'
           }}
         >
-            <svg
+          <svg
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="h-full w-full"
-            >
+          >
             {/* Orange Sun Core */}
             <rect x="8" y="8" width="8" height="8" fill="#F97316" />
             {/* Top Ray */}
@@ -99,11 +99,11 @@ export function ThemeToggle({ withText = false }: { withText?: boolean }) {
             <rect x="16" y="6" width="2" height="2" fill="#F97316" />
             <rect x="6" y="16" width="2" height="2" fill="#F97316" />
             <rect x="16" y="16" width="2" height="2" fill="#F97316" />
-            </svg>
+          </svg>
         </div>
       </div>
       {withText && (
-        <span className="uppercase tracking-widest text-xs font-bold font-oxygen">
+        <span className="tracking-widest text-sm font-bold font-oxygen">
           {isDark ? "Lights on" : "Lights off"}
         </span>
       )}
