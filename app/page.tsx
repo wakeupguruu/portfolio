@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PixelIcon } from "@/components/pixel-icon";
-import { MusicNotes } from "@/components/music-notes";
+import { HeroAnimation } from "@/components/hero-animation";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -45,8 +45,7 @@ export default function Home() {
           <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-6xl max-w-4xl">
             <span>Hi, I’m Guru. Developer with a taste for music.</span>
 
-            <span className="relative inline-flex items-center justify-center ml-3 translate-y-3 sm:translate-y-4">
-              <MusicNotes />
+            <HeroAnimation className="align-bottom">
               <Image
                 src="/hero-character-removebg-preview.png"
                 alt="Guru Character"
@@ -54,7 +53,7 @@ export default function Home() {
                 height={64}
                 className="w-10 h-10 sm:w-16 sm:h-16 object-contain"
               />
-            </span>
+            </HeroAnimation>
           </h1>
 
           <div className="mt-8 flex flex-wrap items-center gap-2 text-sm font-oxygen text-muted-foreground">

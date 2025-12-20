@@ -37,7 +37,7 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
             transition={{ delay: i * 0.1 }}
             onClick={() => setSelectedPhoto(photo)}
           >
-            <div className="relative w-full aspect-[4/3] overflow-hidden bg-white/5">
+            <div className="relative w-full aspect-4/3 overflow-hidden bg-white/5">
               <Image
                 src={photo.src}
                 alt={photo.alt}
@@ -57,7 +57,7 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
       {/* Lightbox Overlay */}
       {selectedPhoto && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-100 flex items-center justify-center bg-background/95 backdrop-blur-sm p-4"
           onClick={() => setSelectedPhoto(null)}
         >
           <div className="absolute top-4 right-4 text-muted cursor-pointer hover:text-foreground">
