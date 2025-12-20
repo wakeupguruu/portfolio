@@ -10,6 +10,7 @@
   --heading: #1c1917;
   --accent: #5c5f56;
   --description-text: #79716b;
+  --hello-text: #1c1917;
 }
 
 .dark {
@@ -21,6 +22,7 @@
   --heading: #ffffff; /* headings slightly brighter */
   --accent: #9da591; /* olive-green section title */
   --description-text: #a6a09b;
+  --hello-text: #ededed;
 }
 
 @theme inline {
