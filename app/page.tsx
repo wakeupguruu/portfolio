@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PixelArrow } from "@/components/pixel-arrow";
 import { Container, Section } from "@/components/ui/section";
+import { AnimatedArrow } from "@/components/animated-arrow";
 import { Inter_Tight } from "next/font/google";
 
 const interTight = Inter_Tight({
@@ -163,6 +164,9 @@ export default function Home() {
                   vyasguruwork@gmail.com
                 </span>
               </div>
+              <div className="flex justify-end pr-4">
+                <AnimatedArrow className="text-[#1c1917] dark:text-[#ededed]" />
+              </div>
               <a href="mailto:vyasguruwork@gmail.com" className="absolute inset-0 z-10" aria-label="Send email"></a>
             </li>
 
@@ -172,6 +176,9 @@ export default function Home() {
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 linkedin.com/in/johann-schopplich
               </div>
+              <div className="flex justify-end pr-4">
+                <AnimatedArrow className="text-[#1c1917] dark:text-[#ededed]" />
+              </div>
               <a href="https://linkedin.com/in/johann-schopplich" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label="Visit LinkedIn"></a>
             </li>
 
@@ -180,6 +187,9 @@ export default function Home() {
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Everything else</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 byjohann.link
+              </div>
+              <div className="flex justify-end pr-4">
+                <AnimatedArrow className="text-[#1c1917] dark:text-[#ededed]" />
               </div>
               <a href="#" className="absolute inset-0 z-10" aria-label="Everything else"></a>
             </li>
