@@ -38,10 +38,9 @@ export default function Home() {
 
 
 
-      {/* Constrained content container */}
-      <Container className="">
-        {/* Hero */}
-        <Section className="pt-24">
+      {/* Hero */}
+      <Section className="pt-24">
+        <Container>
           <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-[3.4rem] max-w-4xl">
             <span>Hi, I'm Guru. Developer with a taste for music.</span>
 
@@ -71,19 +70,23 @@ export default function Home() {
             style={{ color: "var(--description-text)" }}
           >
             I build clear, well-structured TypeScript architectures. I'm focusing on Open Source Contribution and building tools for the web.
-          </p>
-        </Section>
 
-        {/* Writing */}
-        <Section>
+          </p>
+        </Container>
+      </Section>
+
+      {/* Writing */}
+      <Section>
+        <Container>
           <div className="mb-4 flex items-center justify-between w-full md:w-[75%]">
             <h2 className="font-tasa text-[2.1rem] font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Writing</h2>
             <Link href="#" className="text-sm font-robot">ALL ARTICLES →</Link>
           </div>
+        </Container>
 
-          <div className="max-w-full border-t border-custom-separator px-4" style={{ borderColor: 'var(--border-separator)' }}></div>
+        <div className="w-full border-t border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}></div>
 
-
+        <Container>
           {/* Two-column grid with center divider and row separators */}
           <div className="grid grid-cols-1 sm:grid-cols-2">
             {posts.slice(0, 4).map((post, i) => {
@@ -114,10 +117,12 @@ export default function Home() {
               );
             })}
           </div>
-        </Section>
+        </Container>
+      </Section>
 
-        {/* Photographs */}
-        <Section>
+      {/* Photographs */}
+      <Section>
+        <Container>
           <div className="mb-5 grid grid-cols-[1fr_auto] items-center w-full md:w-[75%]">
             <h2 className="font-tasa text-3xl font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Photographs</h2>
             <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
@@ -138,8 +143,8 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </Section>
-      </Container>
+        </Container>
+      </Section>
 
       <div className="w-full border-t border-custom-separator px-4" style={{ borderColor: 'var(--border-separator)' }}></div>
 
@@ -188,6 +193,6 @@ export default function Home() {
       </div>
 
       <Footer />
-    </div>
+    </div >
   );
 }
