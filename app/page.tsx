@@ -84,38 +84,60 @@ export default function Home() {
           </div>
         </Container>
 
-        <div className="w-full mb-6 border-t border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}></div>
+
 
         <Container>
           {/* Two-column grid with center divider and row separators */}
-          <div className="grid grid-cols-1 sm:grid-cols-2">
-            {posts.slice(0, 4).map((post, i) => {
-              const isRight = i % 2 === 1;
-              const isSecondRow = i >= 2;
-              const cellBorders = [
-                isRight ? "sm:border-l sm:pl-10" : "sm:pr-10",
-                isSecondRow ? "border-t pt-8 mt-8" : "",
-              ].join(" ");
-              return (
-                <article
-                  key={post.title}
-                  className={`border-border ${cellBorders}`}
-                  style={{ borderColor: "var(--border)" }}
-                >
-                  <p
-                    className="text-sm tracking-widest font-oxygen"
-                    style={{ color: "var(--description-text)" }}
-                  >{post.date}</p>
-                  <Link href={post.href} className="mt-2 block text-2xl font-extrabold leading-tight text-[#1c1917] dark:text-[#ededed]">
-                    {post.title}
-                  </Link>
-                  <p
-                    className="mt-4 text-lg font-oxygen"
-                    style={{ color: "var(--description-text)" }}
-                  >{post.excerpt}</p>
-                </article>
-              );
-            })}
+          {/* Full-Bleed Wrapper for Borders */}
+          <div className="w-screen relative left-[calc(-50vw+50%)] border-t border-b border-custom-separator">
+            {/* Inner Content Wrapper matching Container max-width */}
+            <div className="mx-auto w-full max-w-screen-2xl px-5 md:px-16">
+              {/* Grid Layout constrained to 79% */}
+              <div className="w-full md:w-[79%]">
+                <div className="grid grid-cols-1 sm:grid-cols-2">
+                  {posts.slice(0, 4).map((post, i) => {
+                    const isLeft = i % 2 === 0;
+                    const isFirstRow = i < 2;
+
+                    // Base classes
+                    let classes = "relative px-8 py-8 border-custom-separator";
+
+                    // Vertical Divider (Left Column Only) - Stops short of top/bottom
+                    if (isLeft) {
+                      classes += " after:content-[''] after:absolute after:right-0 after:top-6 after:bottom-6 after:w-px after:bg-[var(--border-separator)]";
+                    }
+
+                    // Middle Horizontal Divider (First Row Only) - Text Aligned (left-8)
+                    if (isFirstRow) {
+                      // Left item: Starts at text (left-8), Stops before center (right-6)
+                      if (isLeft) classes += " before:content-[''] before:absolute before:bottom-0 before:left-8 before:right-6 before:h-px before:bg-[var(--border-separator)]";
+                      // Right item: Starts at text (left-8), Goes to end (right-0)
+                      else classes += " before:content-[''] before:absolute before:bottom-0 before:right-0 before:left-8 before:h-px before:bg-[var(--border-separator)]";
+                    }
+
+                    return (
+                      <article
+                        key={post.title}
+                        className={classes}
+                        style={{ borderColor: "var(--border-separator)" }}
+                      >
+                        <p
+                          className="text-sm tracking-widest font-oxygen"
+                          style={{ color: "var(--description-text)" }}
+                        >{post.date}</p>
+                        <Link href={post.href} className="mt-2 block text-2xl font-extrabold leading-tight text-[#1c1917] dark:text-[#ededed]">
+                          {post.title}
+                        </Link>
+                        <p
+                          className="mt-4 text-lg font-oxygen"
+                          style={{ color: "var(--description-text)" }}
+                        >{post.excerpt}</p>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
         </Container>
       </Section>
