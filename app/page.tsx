@@ -76,10 +76,13 @@ export default function Home() {
 
         {/* Writing */}
         <Section>
-          <div className="mb-8 flex items-center justify-between">
-            <h2 className="font-tasa text-3xl font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Writing</h2>
+          <div className="mb-4 flex items-center justify-between w-full md:w-[75%]">
+            <h2 className="font-tasa text-[2.1rem] font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Writing</h2>
             <Link href="#" className="text-sm font-robot">ALL ARTICLES →</Link>
           </div>
+
+          <div className="max-w-full border-t border-custom-separator px-4" style={{ borderColor: 'var(--border-separator)' }}></div>
+
 
           {/* Two-column grid with center divider and row separators */}
           <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -115,13 +118,13 @@ export default function Home() {
 
         {/* Photographs */}
         <Section>
-          <div className="mb-5 flex items-center justify-between">
+          <div className="mb-5 grid grid-cols-[1fr_auto] items-center w-full md:w-[75%]">
             <h2 className="font-tasa text-3xl font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Photographs</h2>
             <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
           </div>
 
           {/* Horizontal scroll container with hidden scrollbar for sleek look */}
-          <div className="flex gap-6 overflow-x-auto pb-8 pt-8 no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div className="flex gap-6 overflow-x-auto pb-8 pt-8 no-scrollbar w-full min-w-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {[...Array(5)].map((_, i) => (
               /* Fixed height container, width adjusts automatically based on image aspect ratio */
               <div key={i} className="relative h-[400px] shrink-0">
@@ -135,9 +138,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="flex justify-end mt-8">
-            <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
-          </div>
         </Section>
       </Container>
 
@@ -150,35 +150,28 @@ export default function Home() {
 
           {/* List Container - No top border on title, Borders handled by items */}
           <ul className="flex flex-col">
-
             {/* E-Mail */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] md:pr-[25%]" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>E-Mail</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors" style={{ color: 'var(--hello-text)' }}>
                 <span className="font-source-code flex items-center">
                   vyasguruwork@gmail.com
                 </span>
               </div>
-              <div className="flex justify-end">
-                <PixelArrow className="w-6 h-6 transition-transform duration-500 ease-out -rotate-45 group-hover:rotate-0 text-[#1c1917] dark:text-white" />
-              </div>
               <a href="mailto:vyasguruwork@gmail.com" className="absolute inset-0 z-10" aria-label="Send email"></a>
             </li>
 
             {/* LinkedIn */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] md:pr-[25%]" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 linkedin.com/in/johann-schopplich
-              </div>
-              <div className="flex justify-end">
-                <PixelArrow className="w-6 h-6 transition-transform duration-500 ease-out -rotate-45 group-hover:rotate-0 text-[#1c1917] dark:text-white" />
               </div>
               <a href="https://linkedin.com/in/johann-schopplich" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label="Visit LinkedIn"></a>
             </li>
 
             {/* Everything else */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4]" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] md:pr-[25%]" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Everything else</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 byjohann.link
@@ -188,7 +181,7 @@ export default function Home() {
           </ul>
 
           {/* Lights On Toggle - Moved here, Aligned Right, Padded */}
-          <div className="flex justify-end mt-12">
+          <div className="flex justify-end mt-12 md:pr-[25%]">
             <ThemeToggle withText={true} />
           </div>
         </Container>
