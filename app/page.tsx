@@ -156,7 +156,7 @@ export default function Home() {
           {/* List Container - No top border on title, Borders handled by items  */}
           <ul className="flex flex-col">
             {/* E-Mail */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] w-full md:w-[75%]" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917]! dark:hover:border-[#e7e5e4]! w-full md:w-[75%]">
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>E-Mail</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors" style={{ color: 'var(--hello-text)' }}>
                 <span className="font-source-code flex items-center">
@@ -170,7 +170,7 @@ export default function Home() {
             </li>
 
             {/* LinkedIn */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] w-full md:w-[75%]" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917]! dark:hover:border-[#e7e5e4]! w-full md:w-[75%]">
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 linkedin.com/in/johann-schopplich
@@ -182,7 +182,7 @@ export default function Home() {
             </li>
 
             {/* Everything else */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] w-full md:w-[75%]" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917]! dark:hover:border-[#e7e5e4]! w-full md:w-[75%]">
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Everything else</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 byjohann.link
