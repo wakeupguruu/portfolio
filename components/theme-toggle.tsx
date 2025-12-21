@@ -45,28 +45,28 @@ export function ThemeToggle({ withText = false }: { withText?: boolean }) {
           >
             {/* CORRECTED Pixel Moon Body: Smoother Crescent */}
 
-            {/* Top row */}
-            <rect x="10" y="6" width="4" height="2" fill="#FACC15" />
+            {/* Top row - thickened from left */}
+            <rect x="8" y="6" width="6" height="2" fill="#FACC15" />
 
-            {/* Upper curve step */}
-            <rect x="8" y="8" width="2" height="2" fill="#FACC15" />
+            {/* Upper curve step - thickened from left */}
+            <rect x="6" y="8" width="4" height="2" fill="#FACC15" />
 
-            {/* Back vertical */}
-            <rect x="6" y="10" width="2" height="4" fill="#FACC15" />
+            {/* Middle body - thickened from left */}
+            <rect x="4" y="10" width="4" height="4" fill="#FACC15" />
 
-            {/* Lower curve step */}
-            <rect x="8" y="14" width="2" height="2" fill="#FACC15" />
+            {/* Lower curve step - thickened from left */}
+            <rect x="6" y="14" width="4" height="2" fill="#FACC15" />
 
-            {/* Bottom row */}
-            <rect x="10" y="16" width="4" height="2" fill="#FACC15" />
+            {/* Bottom row - thickened from left */}
+            <rect x="8" y="16" width="6" height="2" fill="#FACC15" />
 
-            {/* Sparkle 1 (Top Right Plus) - Moved slightly to fit new shape */}
-            <rect x="16" y="6" width="2" height="6" fill="#FACC15" />
-            <rect x="14" y="8" width="6" height="2" fill="#FACC15" />
+            {/* Sparkle 1 (Top Right Plus) - Moved right by 2 units (1px) */}
+            <rect x="18" y="6" width="2" height="6" fill="#FACC15" />
+            <rect x="16" y="8" width="6" height="2" fill="#FACC15" />
 
-            {/* Sparkle 2 (Bottom Right Plus) */}
-            <rect x="20" y="15" width="2" height="6" fill="#FACC15" />
-            <rect x="18" y="17" width="6" height="2" fill="#FACC15" />
+            {/* Sparkle 2 (Bottom Right Plus) - Lifted up by 2 units (1px) */}
+            <rect x="20" y="13" width="2" height="6" fill="#FACC15" />
+            <rect x="18" y="15" width="6" height="2" fill="#FACC15" />
           </svg>
         </div>
 
