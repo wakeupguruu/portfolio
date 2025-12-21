@@ -11,7 +11,6 @@
   --accent: #89937a;
   --description-text: #79716b;
   --hello-text: #1c1917;
-  --border-hover: #000000;
 }
 
 .dark {
@@ -24,7 +23,6 @@
   --accent: #9da591; /* olive-green section title */
   --description-text: #a6a09b;
   --hello-text: #ededed;
-  --border-hover: #ffffff;
 }
 
 @theme inline {

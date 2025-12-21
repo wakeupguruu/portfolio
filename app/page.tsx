@@ -91,7 +91,7 @@ export default function Home() {
           {/* Full-Bleed Wrapper for Borders */}
           <div className="w-screen relative left-[calc(-50vw+50%)] border-t border-b border-custom-separator">
             {/* Inner Content Wrapper matching Container max-width */}
-            <div className="mx-auto w-full max-w-screen-2xl px-5 md:px-16">
+            <div className="mx-auto w-full max-w-screen-2xl px-5 md:px-12">
               {/* Grid Layout constrained to 79% */}
               <div className="w-full md:w-[79%]">
                 <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -99,20 +99,20 @@ export default function Home() {
                     const isLeft = i % 2 === 0;
                     const isFirstRow = i < 2;
 
-                    // Base classes: Reduced padding for compactness
-                    let classes = "relative px-6 py-6 border-custom-separator";
+                    // Base classes: Reduced padding (px-5)
+                    let classes = "relative px-5 py-6 border-custom-separator";
 
-                    // Vertical Divider (Left Column Only) - Stops short of top/bottom (tighter gap)
+                    // Vertical Divider (Left Column Only) - Stops short of top/bottom
                     if (isLeft) {
-                      classes += " after:content-[''] after:absolute after:right-0 after:top-4 after:bottom-4 after:w-px after:bg-[var(--border-separator)]";
+                      classes += " after:content-[''] after:absolute after:right-0 after:top-5 after:bottom-5 after:w-px after:bg-[var(--border-separator)]";
                     }
 
-                    // Middle Horizontal Divider (First Row Only) - Text Aligned (left-6)
+                    // Middle Horizontal Divider (First Row Only) - Text Aligned (left-5)
                     if (isFirstRow) {
-                      // Left item: Starts at text (left-6), Stops before center (right-6)
-                      if (isLeft) classes += " before:content-[''] before:absolute before:bottom-0 before:left-6 before:right-6 before:h-px before:bg-[var(--border-separator)]";
-                      // Right item: Starts at text (left-6), Goes to end (right-0)
-                      else classes += " before:content-[''] before:absolute before:bottom-0 before:right-0 before:left-6 before:h-px before:bg-[var(--border-separator)]";
+                      // Left item: Starts at text (left-5), Stops before center (right-5)
+                      if (isLeft) classes += " before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-5 before:h-px before:bg-[var(--border-separator)]";
+                      // Right item: Starts at text (left-5), Goes to end (right-0)
+                      else classes += " before:content-[''] before:absolute before:bottom-0 before:right-0 before:left-5 before:h-px before:bg-[var(--border-separator)]";
                     }
 
                     return (
@@ -122,14 +122,14 @@ export default function Home() {
                         style={{ borderColor: "var(--border-separator)" }}
                       >
                         <p
-                          className="text-xs tracking-widest font-oxygen uppercase opacity-60"
+                          className="text-sm tracking-wide font-oxygen uppercase scale-y-110"
                           style={{ color: "var(--description-text)" }}
                         >{post.date}</p>
-                        <Link href={post.href} className="mt-1 block text-xl font-bold leading-tight text-[#1c1917] dark:text-[#ededed]">
+                        <Link href={post.href} className="mt-1 block text-[1.4rem] font-black leading-tight tracking-wide font-sans scale-y-[1.25] text-[#1c1917] dark:text-[#ededed]">
                           {post.title}
                         </Link>
                         <p
-                          className="mt-2 text-sm leading-relaxed font-oxygen"
+                          className="mt-4 text-sm scale-y-[1.05] leading-relaxed font-oxygen tracking-tight"
                           style={{ color: "var(--description-text)" }}
                         >{post.excerpt}</p>
                       </article>
