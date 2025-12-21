@@ -99,20 +99,20 @@ export default function Home() {
                     const isLeft = i % 2 === 0;
                     const isFirstRow = i < 2;
 
-                    // Base classes
-                    let classes = "relative px-8 py-8 border-custom-separator";
+                    // Base classes: Reduced padding for compactness
+                    let classes = "relative px-6 py-6 border-custom-separator";
 
-                    // Vertical Divider (Left Column Only) - Stops short of top/bottom
+                    // Vertical Divider (Left Column Only) - Stops short of top/bottom (tighter gap)
                     if (isLeft) {
-                      classes += " after:content-[''] after:absolute after:right-0 after:top-6 after:bottom-6 after:w-px after:bg-[var(--border-separator)]";
+                      classes += " after:content-[''] after:absolute after:right-0 after:top-4 after:bottom-4 after:w-px after:bg-[var(--border-separator)]";
                     }
 
-                    // Middle Horizontal Divider (First Row Only) - Text Aligned (left-8)
+                    // Middle Horizontal Divider (First Row Only) - Text Aligned (left-6)
                     if (isFirstRow) {
-                      // Left item: Starts at text (left-8), Stops before center (right-6)
-                      if (isLeft) classes += " before:content-[''] before:absolute before:bottom-0 before:left-8 before:right-6 before:h-px before:bg-[var(--border-separator)]";
-                      // Right item: Starts at text (left-8), Goes to end (right-0)
-                      else classes += " before:content-[''] before:absolute before:bottom-0 before:right-0 before:left-8 before:h-px before:bg-[var(--border-separator)]";
+                      // Left item: Starts at text (left-6), Stops before center (right-6)
+                      if (isLeft) classes += " before:content-[''] before:absolute before:bottom-0 before:left-6 before:right-6 before:h-px before:bg-[var(--border-separator)]";
+                      // Right item: Starts at text (left-6), Goes to end (right-0)
+                      else classes += " before:content-[''] before:absolute before:bottom-0 before:right-0 before:left-6 before:h-px before:bg-[var(--border-separator)]";
                     }
 
                     return (
@@ -122,14 +122,14 @@ export default function Home() {
                         style={{ borderColor: "var(--border-separator)" }}
                       >
                         <p
-                          className="text-sm tracking-widest font-oxygen"
+                          className="text-xs tracking-widest font-oxygen uppercase opacity-60"
                           style={{ color: "var(--description-text)" }}
                         >{post.date}</p>
-                        <Link href={post.href} className="mt-2 block text-2xl font-extrabold leading-tight text-[#1c1917] dark:text-[#ededed]">
+                        <Link href={post.href} className="mt-1 block text-xl font-bold leading-tight text-[#1c1917] dark:text-[#ededed]">
                           {post.title}
                         </Link>
                         <p
-                          className="mt-4 text-lg font-oxygen"
+                          className="mt-2 text-sm leading-relaxed font-oxygen"
                           style={{ color: "var(--description-text)" }}
                         >{post.excerpt}</p>
                       </article>
