@@ -78,9 +78,9 @@ export default function Home() {
       {/* Writing */}
       <Section>
         <Container>
-          <div className="mb-3 flex items-center justify-between w-full md:w-[75%]">
+          <div className="mb-3 flex items-center justify-between w-full md:w-[79%]">
             <h2 className="font-tasa scale-y-[1.075] text-[2.1rem] font-semibold" style={{ color: 'var(--accent)' }}>Writing</h2>
-            <Link href="#" className="text-sm scale-y-[1.075] font-robot">ALL ARTICLES →</Link>
+            <Link href="#" className="text-sm scale-y-[1.075] font-monos">ALL ARTICLES →</Link>
           </div>
         </Container>
 
@@ -121,15 +121,15 @@ export default function Home() {
       </Section>
 
       {/* Photographs */}
-      <Section>
+      <Section className="mb-12 md:mb-16">
         <Container>
-          <div className="mb-5 grid grid-cols-[1fr_auto] items-center w-full md:w-[75%]">
+          <div className="mb-5 grid grid-cols-[1fr_auto] items-center w-full md:w-[79%]">
             <h2 className="font-tasa text-3xl font-semibold" style={{ color: 'var(--accent)' }}>Photographs</h2>
             <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
           </div>
 
           {/* Horizontal scroll container with hidden scrollbar for sleek look */}
-          <div className="flex gap-6 overflow-x-auto pb-8 pt-8 no-scrollbar w-full min-w-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div className="flex gap-6 overflow-x-auto py-2 no-scrollbar w-full min-w-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {[...Array(5)].map((_, i) => (
               /* Fixed height container, width adjusts automatically based on image aspect ratio */
               <div key={i} className="relative h-[400px] shrink-0">
@@ -150,14 +150,14 @@ export default function Home() {
 
       {/* Say hello - Full Width */}
       <div className="w-full section-hello">
-        <Container className="mb-0 pt-24 pb-10"> {/* Increased top padding */}
-          <h3 className="mb-8 text-3xl font-bold! font-tasa">Say hello</h3>
+        <Container className="mb-0 pt-25 pb-10"> {/* Increased top padding again */}
+          <h3 className="mb-10 text-3xl font-bold!  font-tasa">Say hello</h3>
 
           {/* List Container - No top border on title, Borders handled by items  */}
           <ul className="flex flex-col">
             {/* E-Mail */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917]! dark:hover:border-[#e7e5e4]! w-full md:w-[75%]">
-              <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>E-Mail</span>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
+              <span className="text-base font-bold font-mono scale-y-[1.075]" style={{ color: 'var(--hello-text)' }}>E-Mail</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors" style={{ color: 'var(--hello-text)' }}>
                 <span className="font-source-code flex items-center">
                   vyasguruwork@gmail.com
@@ -170,8 +170,8 @@ export default function Home() {
             </li>
 
             {/* LinkedIn */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917]! dark:hover:border-[#e7e5e4]! w-full md:w-[75%]">
-              <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
+              <span className="text-base font-bold font-tasa" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 linkedin.com/in/johann-schopplich
               </div>
@@ -182,7 +182,7 @@ export default function Home() {
             </li>
 
             {/* Everything else */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917]! dark:hover:border-[#e7e5e4]! w-full md:w-[75%]">
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Everything else</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 byjohann.link
@@ -195,7 +195,7 @@ export default function Home() {
           </ul>
 
           {/* Lights On Toggle - Moved here, Aligned Right, Padded */}
-          <div className="flex justify-end mt-12 w-full md:w-[75%]">
+          <div className="flex justify-end mt-27 w-full md:w-[79%]">
             <ThemeToggle withText={true} />
           </div>
         </Container>
