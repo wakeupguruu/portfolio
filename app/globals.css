@@ -8,7 +8,7 @@
   --muted: #57534e;
   --border: #e7e5e4;
   --heading: #1c1917;
-  --accent: #5c5f56;
+  --accent: #89937a;
   --description-text: #79716b;
   --hello-text: #1c1917;
 }
@@ -149,7 +149,7 @@ a:hover {
   --text-footer: #525252; /* neutral-600 */
   /* User requested specific separator colors */
   --border-separator: #d6d3d1;
-  --color-underline: #89937a;
+  --color-underline: var(--accent);
 }
 
 .dark {

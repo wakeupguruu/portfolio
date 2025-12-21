@@ -40,8 +40,8 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "Guru Vyas — Developer with an aesthetic sense",
-  description: "Portfolio of Guru Vyas. Developer with an aesthetic sense. Writing, work, photos, and contact.",
+  title: "Guru Vyas",
+  description: "Portfolio of Guru Vyas",
 };
 
 const sourceCodePro = Source_Code_Pro({

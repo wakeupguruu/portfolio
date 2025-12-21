@@ -78,13 +78,13 @@ export default function Home() {
       {/* Writing */}
       <Section>
         <Container>
-          <div className="mb-4 flex items-center justify-between w-full md:w-[75%]">
-            <h2 className="font-tasa text-[2.1rem] font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Writing</h2>
-            <Link href="#" className="text-sm font-robot">ALL ARTICLES →</Link>
+          <div className="mb-3 flex items-center justify-between w-full md:w-[75%]">
+            <h2 className="font-tasa scale-y-[1.075] text-[2.1rem] font-semibold" style={{ color: 'var(--accent)' }}>Writing</h2>
+            <Link href="#" className="text-sm scale-y-[1.075] font-robot">ALL ARTICLES →</Link>
           </div>
         </Container>
 
-        <div className="w-full border-t border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}></div>
+        <div className="w-full mb-6 border-t border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}></div>
 
         <Container>
           {/* Two-column grid with center divider and row separators */}
@@ -124,7 +124,7 @@ export default function Home() {
       <Section>
         <Container>
           <div className="mb-5 grid grid-cols-[1fr_auto] items-center w-full md:w-[75%]">
-            <h2 className="font-tasa text-3xl font-semibold text-[#89937a]!" style={{ color: '#89937a' }}>Photographs</h2>
+            <h2 className="font-tasa text-3xl font-semibold" style={{ color: 'var(--accent)' }}>Photographs</h2>
             <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
           </div>
 

@@ -38,12 +38,12 @@ export function Header() {
             >
               {/* Circle: Light gray by default, Olive on group hover */}
               <div
-                className="h-2 w-2 rounded-full bg-[#e5e5e5] transition-colors duration-200 group-hover:bg-[#89937a]"
+                className="h-2 w-2 rounded-full bg-[#e5e5e5] transition-colors duration-200 group-hover:bg-accent"
                 aria-hidden="true"
               />
 
               {/* Text: Tall and slim (text-lg + tracking-tight), theme-aware default, Olive on group hover */}
-              <span className="inline-block transform scale-y-110 text-sm tracking-widest uppercase text-muted-foreground transition-colors duration-200 group-hover:text-[#89937a] font-oswald">
+              <span className="inline-block transform scale-y-110 text-sm tracking-widest uppercase text-muted-foreground transition-colors duration-200 group-hover:text-accent font-oswald">
                 {link.label}
               </span>
             </Link>
