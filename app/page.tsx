@@ -5,9 +5,8 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { PixelArrow } from "@/components/pixel-arrow";
+import { MinimalArrow } from "@/components/minimal-arrow";
 import { Container, Section } from "@/components/ui/section";
-import { AnimatedArrow } from "@/components/animated-arrow";
 import { Inter_Tight } from "next/font/google";
 
 const interTight = Inter_Tight({
@@ -154,10 +153,10 @@ export default function Home() {
         <Container className="mb-0 pt-24 pb-10"> {/* Increased top padding */}
           <h3 className="mb-8 text-3xl font-bold! font-tasa">Say hello</h3>
 
-          {/* List Container - No top border on title, Borders handled by items */}
+          {/* List Container - No top border on title, Borders handled by items  */}
           <ul className="flex flex-col">
             {/* E-Mail */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] md:pr-[25%]" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] w-full md:w-[75%]" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>E-Mail</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors" style={{ color: 'var(--hello-text)' }}>
                 <span className="font-source-code flex items-center">
@@ -165,38 +164,38 @@ export default function Home() {
                 </span>
               </div>
               <div className="flex justify-end pr-4">
-                <AnimatedArrow className="text-[#1c1917] dark:text-[#ededed]" />
+                <MinimalArrow className="w-6 h-6 text-[#1c1917] dark:text-[#ededed]" />
               </div>
               <a href="mailto:vyasguruwork@gmail.com" className="absolute inset-0 z-10" aria-label="Send email"></a>
             </li>
 
             {/* LinkedIn */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] md:pr-[25%]" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] w-full md:w-[75%]" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 linkedin.com/in/johann-schopplich
               </div>
               <div className="flex justify-end pr-4">
-                <AnimatedArrow className="text-[#1c1917] dark:text-[#ededed]" />
+                <MinimalArrow className="w-6 h-6 text-[#1c1917] dark:text-[#ededed]" />
               </div>
               <a href="https://linkedin.com/in/johann-schopplich" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label="Visit LinkedIn"></a>
             </li>
 
             {/* Everything else */}
-            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] md:pr-[25%]" style={{ borderColor: 'var(--border-separator)' }}>
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-6 group cursor-pointer transition-colors border-b border-custom-separator hover:border-[#1c1917] dark:hover:border-[#e7e5e4] w-full md:w-[75%]" style={{ borderColor: 'var(--border-separator)' }}>
               <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Everything else</span>
               <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                 byjohann.link
               </div>
               <div className="flex justify-end pr-4">
-                <AnimatedArrow className="text-[#1c1917] dark:text-[#ededed]" />
+                <MinimalArrow className="w-6 h-6 text-[#1c1917] dark:text-[#ededed]" />
               </div>
               <a href="#" className="absolute inset-0 z-10" aria-label="Everything else"></a>
             </li>
           </ul>
 
           {/* Lights On Toggle - Moved here, Aligned Right, Padded */}
-          <div className="flex justify-end mt-12 md:pr-[25%]">
+          <div className="flex justify-end mt-12 w-full md:w-[75%]">
             <ThemeToggle withText={true} />
           </div>
         </Container>
