@@ -81,7 +81,7 @@ export default function Home() {
         <Container>
           <div className="mb-3 flex items-center justify-between w-full md:w-[79%]">
             <h2 className="font-tasa scale-y-[1.075] text-[2.1rem] font-semibold" style={{ color: 'var(--accent)' }}>Writing</h2>
-            <Link href="#" className="text-sm scale-y-[1.075] font-monos">ALL ARTICLES →</Link>
+            <Link href="#" className="text-sm scale-y-[1.075] font-mono">ALL ARTICLES →</Link>
           </div>
         </Container>
 
