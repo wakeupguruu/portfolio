@@ -8,6 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { MinimalArrow } from "@/components/minimal-arrow";
 import { Container, Section } from "@/components/ui/section";
 import { Inter_Tight } from "next/font/google";
+import { PhotographsScroll } from "@/components/photographs-scroll";
 
 const interTight = Inter_Tight({
   weight: "200",
@@ -153,7 +154,7 @@ export default function Home() {
 
         {/* Horizontal Scroll Layout - One Row, Big Images (600px height) */}
         {/* Removed Container wrapper to allow full-bleed left edge (no padding) */}
-        <div className="flex gap-2 overflow-x-auto pb-8 w-full snap-x snap-mandatory no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <PhotographsScroll>
           {/* Photo 1 */}
           <div className="relative h-[600px] w-auto aspect-4/5 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
@@ -213,7 +214,7 @@ export default function Home() {
               <MinimalArrow className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500 text-(--text-more-arrow)" />
             </div>
           </Link>
-        </div>
+        </PhotographsScroll>
       </Section>
 
       <div className="w-full border-t border-custom-separator px-4" style={{ borderColor: 'var(--border-separator)' }}></div>
