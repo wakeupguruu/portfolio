@@ -1,59 +1,65 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
-import { PhotoGrid, Photo } from "@/components/photo-grid";
+import { MasonryGrid, Photo } from "@/components/masonry-grid";
 
-const PHOTOS_2024: Photo[] = [
-  { id: "1", src: "/window.svg", alt: "Park Babelsberg", caption: "Park Babelsberg" },
-  { id: "2", src: "/globe.svg", alt: "Church of Peace, Potsdam", caption: "Church of Peace, Potsdam" },
-  { id: "3", src: "/file.svg", alt: "Comics", caption: "Comics" },
-  { id: "4", src: "/window.svg", alt: "Julia and Me", caption: "Julia and Me" },
+// Helper to duplicate for masonry effect demo
+const PHOTOS_SHARED = [
+  "/images/350514016_3533205423624581_2039509680486506123_n.jpg",
+  "/images/350724561_226691696809998_839108071282653401_n.jpg",
+  "/images/462945158_18464070868048432_556264097090320053_n.jpg",
+  "/images/IMG_20221230_183221.jpg",
+  "/images/332167581_211941278025914_7079700952227328861_n.jpg"
 ];
 
-const PHOTOS_2023: Photo[] = [
-  { id: "5", src: "/globe.svg", alt: "Vík í Mýrdal, Iceland", caption: "Vík í Mýrdal, Iceland" },
-  { id: "6", src: "/window.svg", alt: "Jula in Arles, France", caption: "Jula in Arles, France" },
-  { id: "7", src: "/file.svg", alt: "Städel Museum", caption: "Städel Museum" },
+const PHOTOS_2024: Photo[] = [
+  { id: "1", src: PHOTOS_SHARED[0], alt: "Portrait 1", caption: "Deep Thought" },
+  { id: "2", src: PHOTOS_SHARED[1], alt: "Landscape 1", caption: "Urban Vibe" },
+  { id: "3", src: PHOTOS_SHARED[2], alt: "Portrait 2", caption: "Reflection" },
+  { id: "4", src: PHOTOS_SHARED[3], alt: "Landscape 2", caption: "Nature" },
+  { id: "5", src: PHOTOS_SHARED[4], alt: "Portrait 3", caption: "Style" },
+  { id: "6", src: PHOTOS_SHARED[0], alt: "Portrait 1 Rep", caption: "Echoes" },
+];
+
+const PHOTOS_ARCHIVE: Photo[] = [
+  { id: "11", src: PHOTOS_SHARED[3], alt: "Archive 1", caption: "Summer 2022" },
+  { id: "12", src: PHOTOS_SHARED[1], alt: "Archive 2", caption: "City Lights" },
+  { id: "13", src: PHOTOS_SHARED[4], alt: "Archive 3", caption: "Friends" },
+  { id: "14", src: PHOTOS_SHARED[2], alt: "Archive 4", caption: "Moments" },
 ];
 
 export default function PhotographyPage() {
   return (
-    <div className="min-h-screen font-interTight bg-background text-foreground">
+    <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
       <Header />
-      
-      <Container className="pt-12 pb-24">
+
+      <Container className="pt-24 pb-24">
         {/* Intro Section */}
         <Section className="mb-24">
-          <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            My photography has become more personal in recent years. Especially since I try less to capture aesthetically pleasing scenes (compared to <a href="#" className="underline">2021 and before</a>), but instead look for and capture the beauty of the everyday life. This also brings experience and serenity in spontaneous shooting, which frees me creatively and gives me a joy that I haven't felt for years. In other words: I have rediscovered photography for myself.
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 scale-y-110 origin-left">PHOTOGRAPHY</h1>
+          <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground font-oxygen">
+            My photography has become more personal in recent years. Instead of chasing perfectly composed scenes, I capture the raw, unfiltered beauty of everyday life. This spontaneous approach frees me creatively and brings a joy I haven't felt in years.
           </p>
         </Section>
 
         {/* 2024 Section */}
         <Section className="mb-32">
-          <h2 className="text-4xl font-bold tracking-tight mb-8">2024</h2>
-          <div className="max-w-2xl text-muted-foreground mb-16 space-y-6">
-            <p>
-              This year has produced more photos than the last few years put together. I’ve also finally found my editing look. While I’ve been using film emulation profiles for the last few years that didn’t really suit me, <a href="#" className="underline">Magicadabra Color</a> was the basis for my preset that I’m finally happy with. It was a great pleasure to apply it to all of this year’s photos and older.
-            </p>
-            <p>
-              The abundance of photos and satisfaction with the new look resulted in enough material to fill my first photo album. Most of the photos in it are of people close to me that I don't want to show in public without being asked. I am allowed to show <a href="#" className="underline">Julia</a>, the person closest to my heart.
-            </p>
+          <div className="flex items-baseline justify-between mb-12 border-b border-border pb-4">
+            <h2 className="text-2xl font-bold tracking-tight">Recent Work</h2>
+            <span className="font-mono text-sm text-muted-foreground">2024–2025</span>
           </div>
-          <PhotoGrid photos={PHOTOS_2024} />
+          <MasonryGrid photos={PHOTOS_2024} />
         </Section>
 
-        {/* 2022-2023 Section */}
+        {/* Archive Section */}
         <Section>
-          <h2 className="text-4xl font-bold tracking-tight mb-8">2022–2023</h2>
-          <div className="max-w-2xl text-muted-foreground mb-16">
-            <p>
-              I hardly took any photos this year. It was kind of my big photo break. Somehow I lacked the inspiration and the desire. Most of the photos were taken in Iceland.
-            </p>
+          <div className="flex items-baseline justify-between mb-12 border-b border-border pb-4">
+            <h2 className="text-2xl font-bold tracking-tight">Archive</h2>
+            <span className="font-mono text-sm text-muted-foreground">Selects</span>
           </div>
-          <PhotoGrid photos={PHOTOS_2023} />
+          <MasonryGrid photos={PHOTOS_ARCHIVE} />
         </Section>
-        
+
         <Footer />
       </Container>
     </div>
