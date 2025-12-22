@@ -150,6 +150,13 @@ a:hover {
   /* User requested specific separator colors */
   --border-separator: #d6d3d1;
   --color-underline: var(--accent);
+
+  /* More Photographs Card */
+  --bg-more-card: #f5f5f4;
+  --border-more-card-hover: #1c1917; /* High contrast black for light mode */
+  --text-more-card: #1c1917;
+  --text-more-card-sub: #79716b;
+  --text-more-arrow: #1c1917;
 }
 
 .dark {
@@ -158,6 +165,13 @@ a:hover {
   --bg-footer: #44403b;
   --text-footer: #ededed; /* Using opacity in usage or explicit color */
   --border-separator: #57534d;
+
+  /* More Photographs Card */
+  --bg-more-card: #292524;
+  --border-more-card-hover: #ededed; /* High contrast white for dark mode */
+  --text-more-card: #ededed;
+  --text-more-card-sub: #a8a29e;
+  --text-more-arrow: #ededed;
 }
 
 /* Semantic Classes (as requested to clean up inline styles) */
@@ -185,9 +199,4 @@ a:hover {
   transition-property: color, text-decoration-color;
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;
-}
-
-.link-custom-underline:hover {
-  /* Using specific colors for hover based on context implies inheriting or utilizing current color */
-  /* For now, keeping text color transition logic simple or handling in component if specific hover needed */
 }

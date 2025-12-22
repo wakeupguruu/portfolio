@@ -143,29 +143,77 @@ export default function Home() {
       </Section>
 
       {/* Photographs */}
-      <Section className="mb-12 md:mb-16">
+      <Section className="mb-24 md:mb-32">
         <Container>
-          <div className="mb-5 grid grid-cols-[1fr_auto] items-center w-full md:w-[79%]">
+          <div className="mb-8 flex items-center justify-between w-full md:w-[79%]">
             <h2 className="font-tasa text-3xl font-semibold" style={{ color: 'var(--accent)' }}>Photographs</h2>
-            <Link href="#" className="text-sm font-robot">MORE PHOTOGRAPHS →</Link>
-          </div>
-
-          {/* Horizontal scroll container with hidden scrollbar for sleek look */}
-          <div className="flex gap-6 overflow-x-auto py-2 no-scrollbar w-full min-w-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {[...Array(5)].map((_, i) => (
-              /* Fixed height container, width adjusts automatically based on image aspect ratio */
-              <div key={i} className="relative h-[400px] shrink-0">
-                <Image
-                  src="/window.svg"
-                  alt="Placeholder"
-                  width={600}
-                  height={800}
-                  className="h-full w-auto object-cover grayscale transition-all duration-500 hover:grayscale-0"
-                />
-              </div>
-            ))}
+            <Link href="/photography" className="text-sm font-robot hover:underline underline-offset-4 decoration-1">MORE PHOTOGRAPHS →</Link>
           </div>
         </Container>
+
+        {/* Horizontal Scroll Layout - One Row, Big Images (600px height) */}
+        {/* Removed Container wrapper to allow full-bleed left edge (no padding) */}
+        <div className="flex gap-2 overflow-x-auto pb-8 w-full snap-x snap-mandatory no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          {/* Photo 1 */}
+          <div className="relative h-[600px] w-auto aspect-4/5 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/350514016_3533205423624581_2039509680486506123_n.jpg"
+              alt="Photograph 1"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+          {/* Photo 2 */}
+          <div className="relative h-[600px] w-auto aspect-4/5 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/350724561_226691696809998_839108071282653401_n.jpg"
+              alt="Photograph 2"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+          {/* Photo 3 */}
+          <div className="relative h-[600px] w-auto aspect-4/5 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/462945158_18464070868048432_556264097090320053_n.jpg"
+              alt="Photograph 3"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+          {/* Photo 4 */}
+          <div className="relative h-[600px] w-auto aspect-4/5 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/IMG_20221230_183221.jpg"
+              alt="Photograph 4"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+          {/* Photo 5 */}
+          <div className="relative h-[600px] w-auto aspect-4/5 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/332167581_211941278025914_7079700952227328861_n.jpg"
+              alt="Photograph 5"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+
+          {/* More Link Card */}
+          <Link href="/photography" className="group relative h-[600px] w-[400px] shrink-0 snap-center flex flex-col items-center justify-center text-center p-6 transition-colors duration-300 bg-(--bg-more-card) border border-transparent hover:border-(--border-more-card-hover)">
+            <span className="font-oxygen text-xs tracking-widest uppercase mb-4 text-(--text-more-card-sub)">View All</span>
+            <div className="flex items-center gap-2 text-base font-sans font-bold text-(--text-more-card)">
+              <span>MORE PHOTOGRAPHS</span>
+              <MinimalArrow className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500 text-(--text-more-arrow)" />
+            </div>
+          </Link>
+        </div>
       </Section>
 
       <div className="w-full border-t border-custom-separator px-4" style={{ borderColor: 'var(--border-separator)' }}></div>
