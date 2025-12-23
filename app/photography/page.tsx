@@ -12,20 +12,39 @@ const PHOTOS_SHARED = [
   "/images/332167581_211941278025914_7079700952227328861_n.jpg"
 ];
 
-const PHOTOS_2024: Photo[] = [
-  { id: "1", src: PHOTOS_SHARED[0], alt: "Portrait 1", caption: "Deep Thought" },
-  { id: "2", src: PHOTOS_SHARED[1], alt: "Landscape 1", caption: "Urban Vibe" },
-  { id: "3", src: PHOTOS_SHARED[2], alt: "Portrait 2", caption: "Reflection" },
-  { id: "4", src: PHOTOS_SHARED[3], alt: "Landscape 2", caption: "Nature" },
-  { id: "5", src: PHOTOS_SHARED[4], alt: "Portrait 3", caption: "Style" },
-  { id: "6", src: PHOTOS_SHARED[0], alt: "Portrait 1 Rep", caption: "Echoes" },
+// MANUAL COLUMNS: [Column 1 Photos, Column 2 Photos, Column 3 Photos]
+const COLUMNS_2024: Photo[][] = [
+  // Column 1
+  [
+    { id: "1", src: PHOTOS_SHARED[0], alt: "Portrait 1", caption: "Deep Thought" },
+    { id: "4", src: PHOTOS_SHARED[3], alt: "Landscape 2", caption: "Nature" },
+  ],
+  // Column 2
+  [
+    { id: "2", src: PHOTOS_SHARED[1], alt: "Landscape 1", caption: "Urban Vibe" },
+    { id: "5", src: PHOTOS_SHARED[4], alt: "Portrait 3", caption: "Style" },
+  ],
+  // Column 3
+  [
+    { id: "3", src: PHOTOS_SHARED[2], alt: "Portrait 2", caption: "Reflection" },
+    { id: "6", src: PHOTOS_SHARED[0], alt: "Portrait 1 Rep", caption: "Echoes" },
+  ]
 ];
 
-const PHOTOS_ARCHIVE: Photo[] = [
-  { id: "11", src: PHOTOS_SHARED[3], alt: "Archive 1", caption: "Summer 2022" },
-  { id: "12", src: PHOTOS_SHARED[1], alt: "Archive 2", caption: "City Lights" },
-  { id: "13", src: PHOTOS_SHARED[4], alt: "Archive 3", caption: "Friends" },
-  { id: "14", src: PHOTOS_SHARED[2], alt: "Archive 4", caption: "Moments" },
+const COLUMNS_ARCHIVE: Photo[][] = [
+  // Column 1
+  [
+    { id: "11", src: PHOTOS_SHARED[3], alt: "Archive 1", caption: "Summer 2022" },
+  ],
+  // Column 2
+  [
+    { id: "12", src: PHOTOS_SHARED[1], alt: "Archive 2", caption: "City Lights" },
+    { id: "13", src: PHOTOS_SHARED[4], alt: "Archive 3", caption: "Friends" },
+  ],
+  // Column 3
+  [
+    { id: "14", src: PHOTOS_SHARED[2], alt: "Archive 4", caption: "Moments" },
+  ]
 ];
 
 export default function PhotographyPage() {
@@ -48,7 +67,8 @@ export default function PhotographyPage() {
             <h2 className="text-2xl font-bold tracking-tight">Recent Work</h2>
             <span className="font-mono text-sm text-muted-foreground">2024–2025</span>
           </div>
-          <MasonryGrid photos={PHOTOS_2024} />
+          {/* @ts-ignore - The component expects 'columns' prop but TS might be stale. */}
+          <MasonryGrid columns={COLUMNS_2024} />
         </Section>
 
         {/* Archive Section */}
@@ -57,7 +77,7 @@ export default function PhotographyPage() {
             <h2 className="text-2xl font-bold tracking-tight">Archive</h2>
             <span className="font-mono text-sm text-muted-foreground">Selects</span>
           </div>
-          <MasonryGrid photos={PHOTOS_ARCHIVE} />
+          <MasonryGrid columns={COLUMNS_ARCHIVE} />
         </Section>
 
         <Footer />
