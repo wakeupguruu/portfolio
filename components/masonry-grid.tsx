@@ -28,7 +28,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
     return (
         <>
             {/* Container: Stack on mobile, 3 columns side-by-side on desktop */}
-            <div className="flex flex-col md:flex-row gap-8 w-full">
+            <div className="flex flex-col md:flex-row gap-8 w-full min-w-full">
                 {columns.map((columnPhotos, colIndex) => (
                     <div key={colIndex} className="flex flex-col gap-16 flex-1">
                         {columnPhotos.map((photo, i) => (
