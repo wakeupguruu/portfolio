@@ -47,7 +47,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                         width={800}
                                         height={600}
                                         className={cn(
-                                            "w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105",
+                                            "w-full h-auto max-h-[600px] object-cover transition-transform duration-700 group-hover:scale-105",
                                             photo.className
                                         )}
                                         sizes="(max-width: 768px) 100vw, 33vw"

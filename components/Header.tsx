@@ -1,7 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // 20px matches the -top-5 (1.25rem) offset
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const links = [
     { href: "/blog", label: "BLOG" },
     { href: "/about", label: "WHO?" },
@@ -10,7 +27,12 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky -top-5 z-50 w-full h-[78px] border-b border-transparent transition-colors duration-500 ease-in-out">
+    <header
+      className={cn(
+        "sticky -top-5 z-50 w-full h-[78px] transition-colors duration-500 ease-in-out border-b border-transparent",
+        isScrolled && "border-[var(--border-separator)]"
+      )}
+    >
       {/* Layer 1: The Blur (Visible through the holes) */}
       <div className="absolute inset-0 -z-20 h-full w-full backdrop-blur-md bg-transparent" />
 

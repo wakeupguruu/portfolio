@@ -17,37 +17,32 @@ const PHOTOS_SHARED = [
   "/images/61.jpg", "/images/62.jpg", "/images/63.jpg", "/images/64.jpg", "/images/65.png"
 ];
 
-// MANUAL COLUMNS: [Column 1 Photos, Column 2 Photos, Column 3 Photos]
-export const COLUMNS_2024: Photo[][] = [
-  // Column 1
-  [
-    { id: "1", src: PHOTOS_SHARED[20], alt: "Portrait 1", caption: "Deep Thought" }, // 21.jpg
-    { id: "4", src: PHOTOS_SHARED[41], alt: "Landscape 2", caption: "Nature" }, // 42.jpg
-  ],
-  // Column 2
-  [
-    { id: "2", src: PHOTOS_SHARED[21], alt: "Landscape 1", caption: "Urban Vibe" }, // 22.jpg
-    { id: "5", src: PHOTOS_SHARED[17], alt: "Portrait 3", caption: "Style" }, // 18.jpg
-  ],
-  // Column 3
-  [
-    { id: "3", src: PHOTOS_SHARED[27], alt: "Portrait 2", caption: "Reflection" }, // 28.jpg
-    { id: "6", src: PHOTOS_SHARED[20], alt: "Portrait 1 Rep", caption: "Echoes" },
-  ]
-];
+// Helper to distribute photos into columns
+const createColumns = (photos: string[], prefix: string): Photo[][] => {
+  const col1: Photo[] = [];
+  const col2: Photo[] = [];
+  const col3: Photo[] = [];
 
-export const COLUMNS_ARCHIVE: Photo[][] = [
-  // Column 1
-  [
-    { id: "11", src: PHOTOS_SHARED[41], alt: "Archive 1", caption: "Summer 2022" },
-  ],
-  // Column 2
-  [
-    { id: "12", src: PHOTOS_SHARED[21], alt: "Archive 2", caption: "City Lights" },
-    { id: "13", src: PHOTOS_SHARED[17], alt: "Archive 3", caption: "Friends" },
-  ],
-  // Column 3
-  [
-    { id: "14", src: PHOTOS_SHARED[27], alt: "Archive 4", caption: "Moments" },
-  ]
-];
+  photos.forEach((src, i) => {
+    const photo: Photo = {
+      id: `${prefix}-${i}`,
+      src,
+      alt: "Photograph",
+      // Add diversity in captions if desired, or leave empty
+      caption: i % 7 === 0 ? "Moment" : undefined 
+    };
+    if (i % 3 === 0) col1.push(photo);
+    else if (i % 3 === 1) col2.push(photo);
+    else col3.push(photo);
+  });
+
+  return [col1, col2, col3];
+};
+
+// Split recent and archive explicitly to ensure diversity if needed, 
+// or just split the array in half.
+const recentPhotos = PHOTOS_SHARED.slice(0, 30);
+const archivePhotos = PHOTOS_SHARED.slice(30);
+
+export const COLUMNS_2024: Photo[][] = createColumns(recentPhotos, "recent");
+export const COLUMNS_ARCHIVE: Photo[][] = createColumns(archivePhotos, "archive");
