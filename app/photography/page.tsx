@@ -23,7 +23,7 @@ export default function PhotographyPage() {
         {/* 2024 Section */}
         <Section className="mb-32">
           <Container>
-            <div className="flex items-baseline justify-between mb-12 border-b border-border pb-4">
+            <div className="flex items-baseline justify-between mb-12 pb-4">
               <h2 className="text-2xl font-bold tracking-tight">Recent Work</h2>
               <span className="font-mono text-sm text-muted-foreground">2024–2025</span>
             </div>

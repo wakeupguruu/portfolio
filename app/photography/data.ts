@@ -42,6 +42,11 @@ const createColumns = (photos: string[], prefix: string): Photo[][] => {
 // Split recent and archive explicitly to ensure diversity if needed, 
 // or just split the array in half.
 const recentPhotos = PHOTOS_SHARED.slice(0, 30);
+// Swap index 1 (Portrait) with index 21 (Landscape - 22.jpg) to start Middle Column with Landscape
+[recentPhotos[1], recentPhotos[21]] = [recentPhotos[21], recentPhotos[1]];
+// Swap index 1 (now 22.jpg) with index 13 (14.jpg - 5th in col) to put 14.jpg at top of Middle Column
+[recentPhotos[1], recentPhotos[13]] = [recentPhotos[13], recentPhotos[1]];
+
 const archivePhotos = PHOTOS_SHARED.slice(30);
 
 export const COLUMNS_2024: Photo[][] = createColumns(recentPhotos, "recent");
