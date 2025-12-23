@@ -1,0 +1,45 @@
+import { Photo } from "@/components/masonry-grid";
+
+// Helper to duplicate for masonry effect demo
+const PHOTOS_SHARED = [
+  "/images/350514016_3533205423624581_2039509680486506123_n.jpg",
+  "/images/350724561_226691696809998_839108071282653401_n.jpg",
+  "/images/462945158_18464070868048432_556264097090320053_n.jpg",
+  "/images/IMG_20221230_183221.jpg",
+  "/images/332167581_211941278025914_7079700952227328861_n.jpg"
+];
+
+// MANUAL COLUMNS: [Column 1 Photos, Column 2 Photos, Column 3 Photos]
+export const COLUMNS_2024: Photo[][] = [
+  // Column 1
+  [
+    { id: "1", src: PHOTOS_SHARED[0], alt: "Portrait 1", caption: "Deep Thought" },
+    { id: "4", src: PHOTOS_SHARED[3], alt: "Landscape 2", caption: "Nature" },
+  ],
+  // Column 2
+  [
+    { id: "2", src: PHOTOS_SHARED[1], alt: "Landscape 1", caption: "Urban Vibe" },
+    { id: "5", src: PHOTOS_SHARED[4], alt: "Portrait 3", caption: "Style" },
+  ],
+  // Column 3
+  [
+    { id: "3", src: PHOTOS_SHARED[2], alt: "Portrait 2", caption: "Reflection" },
+    { id: "6", src: PHOTOS_SHARED[0], alt: "Portrait 1 Rep", caption: "Echoes" },
+  ]
+];
+
+export const COLUMNS_ARCHIVE: Photo[][] = [
+  // Column 1
+  [
+    { id: "11", src: PHOTOS_SHARED[3], alt: "Archive 1", caption: "Summer 2022" },
+  ],
+  // Column 2
+  [
+    { id: "12", src: PHOTOS_SHARED[1], alt: "Archive 2", caption: "City Lights" },
+    { id: "13", src: PHOTOS_SHARED[4], alt: "Archive 3", caption: "Friends" },
+  ],
+  // Column 3
+  [
+    { id: "14", src: PHOTOS_SHARED[2], alt: "Archive 4", caption: "Moments" },
+  ]
+];

@@ -3,12 +3,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export interface Photo {
     id: string;
     src: string;
     alt: string;
     caption?: string;
+    className?: string; // Allow custom classes per photo
 }
 
 interface MasonryGridProps {
@@ -44,7 +46,10 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                         alt={photo.alt}
                                         width={800}
                                         height={600}
-                                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                                        className={cn(
+                                            "w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105",
+                                            photo.className
+                                        )}
                                         sizes="(max-width: 768px) 100vw, 33vw"
                                     />
                                 </div>
