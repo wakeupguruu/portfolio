@@ -22,8 +22,8 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
     const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
     // Helper to ensure we render the right number of columns on mobile vs desktop.
-    // For simplicity and per user request, we'll keep the "3 column" logic but on mobile it'll just stack.
-    // We'll use Flexbox or Grid. Flex row of Flex cols is best for manual control.
+    // For simplicity and per my preference, I'll keep the "3 column" logic but on mobile it'll just stack.
+    // I'll use Flexbox or Grid. Flex row of Flex cols is best for manual control.
 
     return (
         <>

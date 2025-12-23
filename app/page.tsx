@@ -158,7 +158,7 @@ export default function Home() {
           {/* Photo 1 */}
           <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
-              src="/images/350514016_3533205423624581_2039509680486506123_n.jpg"
+              src="/images/21.jpg"
               alt="Photograph 1"
               fill
               className="object-cover transition-transform duration-700"
@@ -168,7 +168,7 @@ export default function Home() {
           {/* Photo 2 */}
           <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
-              src="/images/350724561_226691696809998_839108071282653401_n.jpg"
+              src="/images/22.jpg"
               alt="Photograph 2"
               fill
               className="object-cover transition-transform duration-700"
@@ -178,7 +178,7 @@ export default function Home() {
           {/* Photo 3 */}
           <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
-              src="/images/462945158_18464070868048432_556264097090320053_n.jpg"
+              src="/images/28.jpg"
               alt="Photograph 3"
               fill
               className="object-cover transition-transform duration-700"
@@ -188,7 +188,7 @@ export default function Home() {
           {/* Photo 4 */}
           <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
-              src="/images/IMG_20221230_183221.jpg"
+              src="/images/42.jpg"
               alt="Photograph 4"
               fill
               className="object-cover transition-transform duration-700"
@@ -198,7 +198,7 @@ export default function Home() {
           {/* Photo 5 */}
           <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
-              src="/images/332167581_211941278025914_7079700952227328861_n.jpg"
+              src="/images/18.jpg"
               alt="Photograph 5"
               fill
               className="object-cover transition-transform duration-700"

@@ -1,12 +1,12 @@
 import { Photo } from "@/components/masonry-grid";
 
-// Helper to duplicate for masonry effect demo
+// Helper I use to duplicate for my masonry effect demo
 const PHOTOS_SHARED = [
-  "/images/350514016_3533205423624581_2039509680486506123_n.jpg",
-  "/images/350724561_226691696809998_839108071282653401_n.jpg",
-  "/images/462945158_18464070868048432_556264097090320053_n.jpg",
-  "/images/IMG_20221230_183221.jpg",
-  "/images/332167581_211941278025914_7079700952227328861_n.jpg"
+  "/images/21.jpg",
+  "/images/22.jpg",
+  "/images/28.jpg",
+  "/images/42.jpg",
+  "/images/18.jpg"
 ];
 
 // MANUAL COLUMNS: [Column 1 Photos, Column 2 Photos, Column 3 Photos]
