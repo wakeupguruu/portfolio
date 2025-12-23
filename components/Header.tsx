@@ -30,7 +30,7 @@ export function Header() {
     <header
       className={cn(
         "sticky -top-5 z-50 w-full h-[78px] transition-colors duration-500 ease-in-out border-b border-transparent",
-        isScrolled && "border-[var(--border-separator)]"
+        isScrolled && "border-border"
       )}
     >
       {/* Layer 1: The Blur (Visible through the holes) */}
@@ -56,7 +56,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="group  flex items-center gap-2 no-underline hover:no-underline"
+              className="group flex items-center gap-2 no-underline hover:no-underline bg-background px-1"
             >
               {/* Circle: Light gray by default, Olive on group hover */}
               <div
@@ -70,8 +70,12 @@ export function Header() {
               </span>
             </Link>
           ))}
-          <div className="ml-2 border-l border-border pl-5">
-            <ThemeToggle />
+          <div className="pl-5">
+            <div className="ml-2 border-l border-border">
+              <div className="bg-background ml-2">
+                <ThemeToggle />
+              </div>
+            </div>
           </div>
         </nav>
       </div>
