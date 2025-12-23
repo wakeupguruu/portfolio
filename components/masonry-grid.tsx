@@ -42,29 +42,27 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 onClick={() => setSelectedPhoto(photo)}
                             >
                                 {/* Wrapper to handle the "Ghost Slot" effect */}
-                                {/* If selected, this content is hidden (opacity 0) but takes up space */}
-                                <div className={cn("transition-opacity duration-200", selectedPhoto?.id === photo.id ? "opacity-0" : "opacity-100")}>
-                                    <div className="relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800">
-                                        <motion.div layoutId={`photo-${photo.id}`} className="w-full h-full">
-                                            <Image
-                                                src={photo.src}
-                                                alt={photo.alt}
-                                                width={800}
-                                                height={600}
-                                                className={cn(
-                                                    "w-full h-auto max-h-[600px] object-cover transition-transform duration-700 group-hover:scale-105",
-                                                    photo.className
-                                                )}
-                                                sizes="(max-width: 768px) 100vw, 33vw"
-                                            />
-                                        </motion.div>
-                                    </div>
-                                    {photo.caption && (
-                                        <p className="mt-4 text-xs font-oxygen tracking-widest uppercase text-muted-foreground text-center transition-colors duration-300 group-hover:text-foreground">
-                                            {photo.caption}
-                                        </p>
-                                    )}
+                                {/* We keep the slot taking up space, but the visual "moves" to the modal via layoutId */}
+                                <div className="relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800">
+                                    <motion.div layoutId={`photo-${photo.id}`} className="w-full h-full">
+                                        <Image
+                                            src={photo.src}
+                                            alt={photo.alt}
+                                            width={800}
+                                            height={600}
+                                            className={cn(
+                                                "w-full h-auto max-h-[600px] object-cover transition-transform duration-700 group-hover:scale-105",
+                                                photo.className
+                                            )}
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                        />
+                                    </motion.div>
                                 </div>
+                                {photo.caption && (
+                                    <p className="mt-4 text-xs font-oxygen tracking-widest uppercase text-muted-foreground text-center transition-colors duration-300 group-hover:text-foreground">
+                                        {photo.caption}
+                                    </p>
+                                )}
                             </motion.div>
                         ))}
                     </div>
@@ -74,38 +72,48 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
             {/* Lightbox Overlay */}
             {selectedPhoto && (
                 <div
-                    className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-sm p-4"
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-transparent backdrop-blur-xl p-4 cursor-zoom-out"
                     onClick={() => setSelectedPhoto(null)}
                 >
                     <motion.div
                         layoutId={`photo-${selectedPhoto.id}`}
-                        className="relative w-full max-w-7xl h-[85vh] flex flex-col items-center justify-center cursor-zoom-out"
-                        onClick={(e) => e.stopPropagation()} // Let background click close it, or image click if needed
+                        className="relative w-full max-w-7xl h-[85vh] flex flex-col items-center justify-center"
+                        onClick={(e) => e.stopPropagation()} // Allow clicking image to do nothing, or zoom out if desired (propagation logic)
                     >
+                        {/* Use object-contain to never crop. The layoutId will morph width/height/position. */}
                         <Image
                             src={selectedPhoto.src}
                             alt={selectedPhoto.alt}
                             fill
-                            className="object-contain" // Will refine in Part 2, but this supports no-crop
+                            className="object-contain cursor-zoom-out"
                             onClick={() => setSelectedPhoto(null)}
+                            priority // Avoid flash of missing image
                         />
                     </motion.div>
 
-                    {/* Close button - separate from layoutId to fade in */}
-                    <div
+                    {/* Close button - fade in separately so it doesn't pop */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         className="absolute top-6 right-6 text-foreground cursor-pointer p-2 hover:opacity-70 transition-opacity z-[101]"
                         onClick={() => setSelectedPhoto(null)}
                     >
                         <span className="text-2xl">✕</span>
-                    </div>
+                    </motion.div>
 
                     {selectedPhoto.caption && (
-                        <div className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80 z-[101]">
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80 z-[101]"
+                        >
                             {selectedPhoto.caption}
-                        </div>
+                        </motion.div>
                     )}
                 </div>
             )}
         </>
     );
 }
+

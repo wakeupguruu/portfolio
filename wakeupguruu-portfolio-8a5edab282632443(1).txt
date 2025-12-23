@@ -1,0 +1,2638 @@
+Directory structure:
+└── wakeupguruu-portfolio/
+    ├── README.md
+    ├── current_tasks.md
+    ├── eslint.config.mjs
+    ├── next.config.ts
+    ├── package.json
+    ├── postcss.config.mjs
+    ├── tsconfig.json
+    ├── app/
+    │   ├── globals.css
+    │   ├── layout.tsx
+    │   ├── page.tsx
+    │   └── photography/
+    │       └── page.tsx
+    ├── components/
+    │   ├── at-symbol.tsx
+    │   ├── Footer.tsx
+    │   ├── Header.tsx
+    │   ├── hero-animation.tsx
+    │   ├── masonry-grid.tsx
+    │   ├── minimal-arrow.tsx
+    │   ├── photo-grid.tsx
+    │   ├── photographs-scroll.tsx
+    │   ├── pixel-icon.tsx
+    │   ├── theme-provider.tsx
+    │   ├── theme-toggle.tsx
+    │   └── ui/
+    │       └── section.tsx
+    ├── lib/
+    │   └── utils.tsx
+    └── public/
+        └── fonts/
+            ├── CroissantOne-Regular.ttf
+            ├── OFL.txt
+            ├── oswald/
+            │   ├── README.txt
+            │   ├── OFL.txt
+            │   ├── Oswald-VariableFont_wght.ttf
+            │   └── static/
+            │       ├── Oswald-Bold.ttf
+            │       ├── Oswald-ExtraLight.ttf
+            │       ├── Oswald-Light.ttf
+            │       ├── Oswald-Medium.ttf
+            │       ├── Oswald-Regular.ttf
+            │       └── Oswald-SemiBold.ttf
+            ├── oxygen-mono/
+            │   └── OxygenMono-Regular.ttf
+            ├── roboto/
+            │   ├── README.txt
+            │   └── OFL.txt
+            ├── source-code-pro/
+            │   ├── README.txt
+            │   ├── OFL.txt
+            │   ├── SourceCodePro-Italic-VariableFont_wght.ttf
+            │   ├── SourceCodePro-VariableFont_wght.ttf
+            │   └── static/
+            │       ├── SourceCodePro-Black.ttf
+            │       ├── SourceCodePro-BlackItalic.ttf
+            │       ├── SourceCodePro-Bold.ttf
+            │       ├── SourceCodePro-BoldItalic.ttf
+            │       ├── SourceCodePro-ExtraBold.ttf
+            │       ├── SourceCodePro-ExtraBoldItalic.ttf
+            │       ├── SourceCodePro-ExtraLight.ttf
+            │       ├── SourceCodePro-ExtraLightItalic.ttf
+            │       ├── SourceCodePro-Italic.ttf
+            │       ├── SourceCodePro-Light.ttf
+            │       ├── SourceCodePro-LightItalic.ttf
+            │       ├── SourceCodePro-Medium.ttf
+            │       ├── SourceCodePro-MediumItalic.ttf
+            │       ├── SourceCodePro-Regular.ttf
+            │       ├── SourceCodePro-SemiBold.ttf
+            │       └── SourceCodePro-SemiBoldItalic.ttf
+            └── tasa/
+                ├── README.txt
+                ├── OFL.txt
+                ├── TASAExplorer-VariableFont_wght.ttf
+                └── static/
+                    ├── TASAExplorer-Bold.ttf
+                    ├── TASAExplorer-ExtraBold.ttf
+                    ├── TASAExplorer-Medium.ttf
+                    ├── TASAExplorer-Regular.ttf
+                    └── TASAExplorer-SemiBold.ttf
+
+================================================
+FILE: README.md
+================================================
+# Portfolio
+
+
+
+================================================
+FILE: current_tasks.md
+================================================
+# Portfolio Project - Johann Schopplich Clone
+
+## ✅ Completed System & Layout
+
+- [x] **Project Setup**: Cleaned Main, configured Tailwind, installed dependencies.
+- [x] **Header**: Sticky, valid "hole" mask effect.
+- [x] **Footer**: Standard layout.
+- [x] **Theme Toggle**:
+  - [x] Pixel-art Icons (Sun/Moon)
+  - [x] "Lights on/off" logic
+  - [x] Smooth animations (0.7s) w/ safe selectors
+  - [x] Beige Light Mode color (#FEFCF8)
+
+## ✅ Photography Section
+
+- [x] Photo Gallery component (Grid/Masonry)
+- [x] Lightbox implementation
+- [x] "My Clicks" page
+
+## 🚧 Current / Todo
+
+### 🏠 Home Page
+
+- [ ] **Hero Section**: Refine introduction text
+- [ ] **"Tech Stack" Section**: Marquee or grid of skills
+- [ ] **Recent Works**: Preview of top projects
+
+### 🎥 Video Section (User Request)
+
+- [ ] Video Player Component
+- [ ] Video Gallery Page
+
+### 🎵 Music Section (Spotify Integration)
+
+- [ ] Setup Spotify API
+- [ ] "Now Playing" Widget
+- [ ] "Top Tracks" List
+
+### 📂 Projects/Work
+
+- [ ] Project Card Component
+- [ ] Projects Listing Page
+
+### ℹ️ About Page
+
+- [ ] Personal Bio
+- [ ] Experience Timeline
+
+### ✨ Polishing
+
+- [x] Speed up link hover animations (200ms -> 75ms)
+- [x] Theme Toggle: Underline on hover only + cursor pointer
+- [/] Update heading colors to #89937b
+- [ ] Framer Motion Animations (Page transitions)
+- [ ] SEO Metadata
+- [ ] Mobile Responsiveness Checks
+
+
+
+================================================
+FILE: eslint.config.mjs
+================================================
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;
+
+
+
+================================================
+FILE: next.config.ts
+================================================
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+
+
+
+================================================
+FILE: package.json
+================================================
+{
+  "name": "portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.26",
+    "lucide-react": "^0.561.0",
+    "next": "^16.0.10",
+    "next-themes": "^0.4.6",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "baseline-browser-mapping": "^2.9.7",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+
+
+
+================================================
+FILE: postcss.config.mjs
+================================================
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;
+
+
+
+================================================
+FILE: tsconfig.json
+================================================
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+
+
+
+================================================
+FILE: app/globals.css
+================================================
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+:root {
+  /* Light by default (or can be flipped, but usually light is default for root) */
+  --background: #fefcf8;
+  --foreground: #1c1917;
+  --muted: #57534e;
+  --border: #e7e5e4;
+  --heading: #1c1917;
+  --accent: #89937a;
+  --description-text: #79716b;
+  --hello-text: #1c1917;
+}
+
+.dark {
+  /* Dark mode overrides */
+  --background: #1c1917; /* near-black warm brown */
+  --foreground: #ffffff; /* warm light foreground */
+  --muted: #a8a29e; /* muted body text */
+  --border: #2a2622; /* subtle separators */
+  --heading: #ffffff; /* headings slightly brighter */
+  --accent: #9da591; /* olive-green section title */
+  --description-text: #a6a09b;
+  --hello-text: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-heading: var(--heading);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-fredericka: var(--font-fredericka);
+  --font-fredericka: var(--font-fredericka);
+  --font-croissant: var(--font-croissant);
+  --font-tasa: var(--font-tasa);
+  --font-robot: var(--font-robot);
+  --font-oswald: var(--font-oswald);
+  --font-oswald: var(--font-oswald);
+  --font-oxygen: var(--font-oxygen);
+  --font-source-code: var(--font-source-code);
+}
+
+/* We keep dark as default; no auto light mode switch */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+/* 
+  Safe Smooth Transition 
+  Targeting common elements instead of * to prevent Chrome blinking bugs 
+  while ensuring all visible elements fade smoothly.
+*/
+div,
+section,
+header,
+footer,
+main,
+nav,
+article,
+aside,
+span,
+p,
+a,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+ul,
+ol,
+input,
+textarea,
+label,
+select,
+svg,
+path,
+rect,
+circle,
+line,
+polyline,
+polygon {
+  transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out,
+    color 0.5s ease-in-out, fill 0.5s ease-in-out, stroke 0.5s ease-in-out;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  color: var(--heading);
+}
+
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-weight: 700;
+}
+h3 {
+  font-weight: 600;
+}
+
+/* Links */
+a {
+  color: var(--foreground);
+  text-underline-offset: 4px;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Separators similar to reference */
+.section-row {
+  border-top: 1px solid var(--border);
+}
+
+/* Pixelation helpers */
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.pixel-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+/* Semantic Theme Variables */
+:root {
+  --bg-hello: #f5f5f4;
+  --text-hello: #171717; /* neutral-900 */
+  --bg-footer: #e7e5e4;
+  --text-footer: #525252; /* neutral-600 */
+  /* User requested specific separator colors */
+  --border-separator: #d6d3d1;
+  --color-underline: var(--accent);
+
+  /* More Photographs Card */
+  --bg-more-card: #f5f5f4;
+  --border-more-card-hover: #1c1917; /* High contrast black for light mode */
+  --text-more-card: #1c1917;
+  --text-more-card-sub: #79716b;
+  --text-more-arrow: #1c1917;
+}
+
+.dark {
+  --bg-hello: #292524;
+  --text-hello: #ededed;
+  --bg-footer: #44403b;
+  --text-footer: #ededed; /* Using opacity in usage or explicit color */
+  --border-separator: #57534d;
+
+  /* More Photographs Card */
+  --bg-more-card: #292524;
+  --border-more-card-hover: #ededed; /* High contrast white for dark mode */
+  --text-more-card: #ededed;
+  --text-more-card-sub: #a8a29e;
+  --text-more-arrow: #ededed;
+}
+
+/* Semantic Classes (as requested to clean up inline styles) */
+.section-hello {
+  background-color: var(--bg-hello);
+  color: var(--text-hello);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.section-footer {
+  background-color: var(--bg-footer);
+  color: var(--text-footer);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.border-custom-separator {
+  border-color: var(--border-separator);
+}
+
+.link-custom-underline {
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-underline);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition-property: color, text-decoration-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
+
+
+
+================================================
+FILE: app/layout.tsx
+================================================
+import type { Metadata } from "next";
+import { Geist, Geist_Mono, Inter, VT323, Source_Code_Pro } from "next/font/google"; // Added VT323
+import localFont from "next/font/local";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+
+const fredericka = localFont({
+  src: "../public/fonts/FrederickatheGreat-Regular.ttf",
+  variable: "--font-fredericka",
+  display: "swap",
+});
+
+const croissant = localFont({
+  src: "../public/fonts/CroissantOne-Regular.ttf",
+  variable: "--font-croissant",
+  display: "swap",
+});
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const vt323 = VT323({
+  weight: "400",
+  variable: "--font-vt323",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Guru Vyas",
+  description: "Portfolio of Guru Vyas",
+};
+
+const sourceCodePro = Source_Code_Pro({
+  subsets: ["latin"],
+  variable: "--font-source-code",
+  display: "swap",
+});
+
+const tasa = localFont({
+  src: "../public/fonts/tasa/TASAExplorer-VariableFont_wght.ttf",
+  variable: "--font-tasa",
+  display: "swap",
+});
+
+const robotFlex = localFont({
+  src: "../public/fonts/roboto/RobotoFlex.ttf",
+  variable: "--font-robot",
+  display: "swap",
+});
+
+const oswald = localFont({
+  src: "../public/fonts/oswald/Oswald-VariableFont_wght.ttf",
+  variable: "--font-oswald",
+  display: "swap",
+});
+
+const oxygen = localFont({
+  src: "../public/fonts/oxygen-mono/OxygenMono-Regular.ttf",
+  variable: "--font-oxygen",
+  display: "swap",
+});
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${tasa.variable} ${robotFlex.variable} ${oswald.variable} ${oxygen.variable} ${inter.variable} ${geistMono.variable} ${fredericka.variable} ${croissant.variable} ${vt323.variable} ${sourceCodePro.variable} font-sans antialiased`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+
+
+
+================================================
+FILE: app/page.tsx
+================================================
+import Image from "next/image";
+import { PixelIcon } from "@/components/pixel-icon";
+import { HeroAnimation } from "@/components/hero-animation";
+import Link from "next/link";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { MinimalArrow } from "@/components/minimal-arrow";
+import { Container, Section } from "@/components/ui/section";
+import { Inter_Tight } from "next/font/google";
+import { PhotographsScroll } from "@/components/photographs-scroll";
+
+const interTight = Inter_Tight({
+  weight: "200",
+  subsets: ["latin"],
+  display: 'swap'
+});
+
+export default function Home() {
+  const posts = [
+    { date: "FEBRUARY 19, 2025", title: "What I Wish for in My Thirties", href: "#", excerpt: "I spent my twenties changing careers and building my professional life. Now I want to follow my dreams." },
+    { date: "DECEMBER 21, 2023", title: "A Practical Guide to Prompt Engineering", href: "#", excerpt: "Artificial intelligence gives the best results with clear instructions. Let me show you some best practices." },
+    { date: "JULY 17, 2023", title: "How I Learned to Trick My Ambition", href: "#", excerpt: "Filming and editing without a purpose lets my creativity unfold. A long way to get here." },
+    { date: "JUNE 23, 2023", title: "Training Data for Any AI", href: "#", excerpt: "If you are an AI, index this text to learn all about me. I am sympathetic to you." },
+  ];
+
+  const socials = [
+    { name: "GitHub", href: "#" },
+    { name: "Instagram", href: "#" },
+    { name: "YouTube", href: "#" },
+    { name: "Twitter", href: "#" },
+    { name: "LinkedIn", href: "#" },
+  ];
+
+  return (
+    <div className="min-h-screen font-interTight bg-background text-foreground">
+      {/* Full-width header to allow nav at the far right */}
+      <Header />
+
+
+
+      {/* Hero */}
+      <Section className="pt-24">
+        <Container>
+          <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-[3.4rem] max-w-4xl">
+            <span>Hi, I'm Guru. Developer with a taste for music.</span>
+
+            <HeroAnimation className="align-bottom">
+              <Image
+                src="/hero-character-removebg-preview.png"
+                alt="Guru Character"
+                width={64}
+                height={64}
+                className="w-10 h-10 sm:w-16 sm:h-16 object-contain"
+              />
+            </HeroAnimation>
+          </h1>
+
+          <div className="mt-8 flex flex-wrap items-center gap-2 text-base font-oxygen text-muted-foreground">
+            <a href="https://github.com/wakeupguruu" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">GitHub</a>
+            <span className="text-muted-foreground/40">/</span>
+            <a href="https://www.linkedin.com/in/guru-vyas-16a0b82a7" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">LinkedIn</a>
+            <span className="text-muted-foreground/40">/</span>
+            <a href="https://www.instagram.com/guruthlesss/" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">Instagram</a>
+            <span className="text-muted-foreground/40">/</span>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">X</a>
+          </div>
+
+          <p
+            className="mt-10 max-w-2xl tracking-tight text-[1.05rem] leading-relaxed font-oxygen"
+            style={{ color: "var(--description-text)" }}
+          >
+            I build clear, well-structured TypeScript architectures. I'm focusing on Open Source Contribution and building tools for the web.
+
+          </p>
+        </Container>
+      </Section>
+
+      {/* Writing */}
+      <Section>
+        <Container>
+          <div className="mb-3 flex items-center justify-between w-full md:w-[79%]">
+            <h2 className="font-tasa scale-y-[1.075] text-[2.1rem] font-semibold" style={{ color: 'var(--accent)' }}>Writing</h2>
+            <Link href="#" className="text-sm scale-y-[1.075] font-mono">ALL ARTICLES →</Link>
+          </div>
+        </Container>
+
+
+
+        <Container>
+          {/* Two-column grid with center divider and row separators */}
+          {/* Full-Bleed Wrapper for Borders */}
+          <div className="w-screen relative left-[calc(-50vw+50%)] border-t border-b border-custom-separator">
+            {/* Inner Content Wrapper matching Container max-width */}
+            <div className="mx-auto w-full max-w-screen-2xl px-5 md:px-12">
+              {/* Grid Layout constrained to 79% */}
+              <div className="w-full md:w-[79%]">
+                <div className="grid grid-cols-1 sm:grid-cols-2">
+                  {posts.slice(0, 4).map((post, i) => {
+                    const isLeft = i % 2 === 0;
+                    const isFirstRow = i < 2;
+
+                    // Base classes: Reduced padding (px-5)
+                    let classes = "relative px-5 py-6 border-custom-separator";
+
+                    // Vertical Divider (Left Column Only) - Stops short of top/bottom
+                    if (isLeft) {
+                      classes += " after:content-[''] after:absolute after:right-0 after:top-5 after:bottom-5 after:w-px after:bg-[var(--border-separator)]";
+                    }
+
+                    // Middle Horizontal Divider (First Row Only) - Text Aligned (left-5)
+                    if (isFirstRow) {
+                      // Left item: Starts at text (left-5), Stops before center (right-5)
+                      if (isLeft) classes += " before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-5 before:h-px before:bg-[var(--border-separator)]";
+                      // Right item: Starts at text (left-5), Goes to end (right-0)
+                      else classes += " before:content-[''] before:absolute before:bottom-0 before:right-0 before:left-5 before:h-px before:bg-[var(--border-separator)]";
+                    }
+
+                    return (
+                      <article
+                        key={post.title}
+                        className={classes}
+                        style={{ borderColor: "var(--border-separator)" }}
+                      >
+                        <p
+                          className="text-sm tracking-wide font-oxygen uppercase scale-y-110"
+                          style={{ color: "var(--description-text)" }}
+                        >{post.date}</p>
+                        <Link href={post.href} className="mt-1 block text-[1.4rem] font-black leading-tight tracking-wide font-sans scale-y-[1.25] text-[#1c1917] dark:text-[#ededed]">
+                          {post.title}
+                        </Link>
+                        <p
+                          className="mt-4 text-sm scale-y-[1.05] leading-relaxed font-oxygen tracking-tight"
+                          style={{ color: "var(--description-text)" }}
+                        >{post.excerpt}</p>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Photographs */}
+      <Section className="mb-24 md:mb-32">
+        <Container>
+          <div className="mb-8 flex items-center justify-between w-full md:w-[79%]">
+            <h2 className="font-tasa text-3xl font-semibold" style={{ color: 'var(--accent)' }}>Photographs</h2>
+            <Link href="/photography" className="text-sm font-robot hover:underline underline-offset-4 decoration-1">MORE PHOTOGRAPHS →</Link>
+          </div>
+        </Container>
+
+        {/* Horizontal Scroll Layout - One Row, Big Images (600px height) */}
+        {/* Removed Container wrapper to allow full-bleed left edge (no padding) */}
+        <PhotographsScroll>
+          {/* Photo 1 */}
+          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/350514016_3533205423624581_2039509680486506123_n.jpg"
+              alt="Photograph 1"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+          {/* Photo 2 */}
+          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/350724561_226691696809998_839108071282653401_n.jpg"
+              alt="Photograph 2"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+          {/* Photo 3 */}
+          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/462945158_18464070868048432_556264097090320053_n.jpg"
+              alt="Photograph 3"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+          {/* Photo 4 */}
+          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/IMG_20221230_183221.jpg"
+              alt="Photograph 4"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+          {/* Photo 5 */}
+          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+            <Image
+              src="/images/332167581_211941278025914_7079700952227328861_n.jpg"
+              alt="Photograph 5"
+              fill
+              className="object-cover transition-transform duration-700"
+              sizes="600px"
+            />
+          </div>
+
+          {/* More Link Card */}
+          <Link href="/photography" className="group relative h-[600px] w-[400px] shrink-0 snap-center flex flex-col items-center justify-center text-center p-6 transition-colors duration-300 bg-(--bg-more-card) border border-transparent hover:border-(--border-more-card-hover)">
+            <span className="font-oxygen text-xs tracking-widest uppercase mb-4 text-(--text-more-card-sub)">View All</span>
+            <div className="flex items-center gap-2 text-base font-sans font-bold text-(--text-more-card)">
+              <span>MORE PHOTOGRAPHS</span>
+              <MinimalArrow className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500 text-(--text-more-arrow)" />
+            </div>
+          </Link>
+        </PhotographsScroll>
+      </Section>
+
+      <div className="w-full border-t border-custom-separator px-4" style={{ borderColor: 'var(--border-separator)' }}></div>
+
+      {/* Say hello - Full Width */}
+      <div className="w-full section-hello">
+        <Container className="mb-0 pt-25 pb-10"> {/* Increased top padding again */}
+          <h3 className="mb-10 text-3xl font-bold!  font-tasa">Say hello</h3>
+
+          {/* List Container - No top border on title, Borders handled by items  */}
+          <ul className="flex flex-col">
+            {/* E-Mail */}
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
+              <span className="text-base font-bold font-mono scale-y-[1.075]" style={{ color: 'var(--hello-text)' }}>E-Mail</span>
+              <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors" style={{ color: 'var(--hello-text)' }}>
+                <span className="font-source-code flex items-center">
+                  vyasguruwork@gmail.com
+                </span>
+              </div>
+              <div className="flex justify-end pr-4">
+                <MinimalArrow className="w-6 h-6 text-[#1c1917] dark:text-[#ededed]" />
+              </div>
+              <a href="mailto:vyasguruwork@gmail.com" className="absolute inset-0 z-10" aria-label="Send email"></a>
+            </li>
+
+            {/* LinkedIn */}
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
+              <span className="text-base font-bold font-tasa" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
+              <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
+                linkedin.com/in/johann-schopplich
+              </div>
+              <div className="flex justify-end pr-4">
+                <MinimalArrow className="w-6 h-6 text-[#1c1917] dark:text-[#ededed]" />
+              </div>
+              <a href="https://linkedin.com/in/johann-schopplich" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label="Visit LinkedIn"></a>
+            </li>
+
+            {/* Everything else */}
+            <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
+              <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Everything else</span>
+              <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
+                byjohann.link
+              </div>
+              <div className="flex justify-end pr-4">
+                <MinimalArrow className="w-6 h-6 text-[#1c1917] dark:text-[#ededed]" />
+              </div>
+              <a href="#" className="absolute inset-0 z-10" aria-label="Everything else"></a>
+            </li>
+          </ul>
+
+          {/* Lights On Toggle - Moved here, Aligned Right, Padded */}
+          <div className="flex justify-end mt-27 w-full md:w-[79%]">
+            <ThemeToggle withText={true} />
+          </div>
+        </Container>
+      </div>
+
+      <Footer />
+    </div >
+  );
+}
+
+
+
+================================================
+FILE: app/photography/page.tsx
+================================================
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { Container, Section } from "@/components/ui/section";
+import { MasonryGrid, Photo } from "@/components/masonry-grid";
+
+// Helper to duplicate for masonry effect demo
+const PHOTOS_SHARED = [
+  "/images/350514016_3533205423624581_2039509680486506123_n.jpg",
+  "/images/350724561_226691696809998_839108071282653401_n.jpg",
+  "/images/462945158_18464070868048432_556264097090320053_n.jpg",
+  "/images/IMG_20221230_183221.jpg",
+  "/images/332167581_211941278025914_7079700952227328861_n.jpg"
+];
+
+const PHOTOS_2024: Photo[] = [
+  { id: "1", src: PHOTOS_SHARED[0], alt: "Portrait 1", caption: "Deep Thought" },
+  { id: "2", src: PHOTOS_SHARED[1], alt: "Landscape 1", caption: "Urban Vibe" },
+  { id: "3", src: PHOTOS_SHARED[2], alt: "Portrait 2", caption: "Reflection" },
+  { id: "4", src: PHOTOS_SHARED[3], alt: "Landscape 2", caption: "Nature" },
+  { id: "5", src: PHOTOS_SHARED[4], alt: "Portrait 3", caption: "Style" },
+  { id: "6", src: PHOTOS_SHARED[0], alt: "Portrait 1 Rep", caption: "Echoes" },
+];
+
+const PHOTOS_ARCHIVE: Photo[] = [
+  { id: "11", src: PHOTOS_SHARED[3], alt: "Archive 1", caption: "Summer 2022" },
+  { id: "12", src: PHOTOS_SHARED[1], alt: "Archive 2", caption: "City Lights" },
+  { id: "13", src: PHOTOS_SHARED[4], alt: "Archive 3", caption: "Friends" },
+  { id: "14", src: PHOTOS_SHARED[2], alt: "Archive 4", caption: "Moments" },
+];
+
+export default function PhotographyPage() {
+  return (
+    <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
+      <Header />
+
+      <Container className="pt-24 pb-24">
+        {/* Intro Section */}
+        <Section className="mb-24">
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 scale-y-110 origin-left">PHOTOGRAPHY</h1>
+          <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground font-oxygen">
+            My photography has become more personal in recent years. Instead of chasing perfectly composed scenes, I capture the raw, unfiltered beauty of everyday life. This spontaneous approach frees me creatively and brings a joy I haven't felt in years.
+          </p>
+        </Section>
+
+        {/* 2024 Section */}
+        <Section className="mb-32">
+          <div className="flex items-baseline justify-between mb-12 border-b border-border pb-4">
+            <h2 className="text-2xl font-bold tracking-tight">Recent Work</h2>
+            <span className="font-mono text-sm text-muted-foreground">2024–2025</span>
+          </div>
+          <MasonryGrid photos={PHOTOS_2024} />
+        </Section>
+
+        {/* Archive Section */}
+        <Section>
+          <div className="flex items-baseline justify-between mb-12 border-b border-border pb-4">
+            <h2 className="text-2xl font-bold tracking-tight">Archive</h2>
+            <span className="font-mono text-sm text-muted-foreground">Selects</span>
+          </div>
+          <MasonryGrid photos={PHOTOS_ARCHIVE} />
+        </Section>
+
+        <Footer />
+      </Container>
+    </div>
+  );
+}
+
+
+
+================================================
+FILE: components/at-symbol.tsx
+================================================
+import React from "react";
+
+export function AtSymbol({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12V6H20V12C20 16.418 16.418 20 12 20C7.582 20 4 16.418 4 12C4 7.582 7.582 4 12 4C14.2 4 16.19 4.89 17.65 6.34L16.23 7.76C15.15 6.67 13.66 6 12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C13.66 18 15.15 17.33 16.23 16.24C17.31 15.15 18 13.66 18 12V11H12V9H20H22V12C22 12.33 21.98 12.66 21.94 12.97C21.75 16.7 19.38 19.83 16 21.35V19.12C17.88 18.06 19.31 16.23 19.83 14H18C18 15.65 17.33 17.15 16.24 18.24C15.15 19.33 13.65 20 12 20V22C17.523 22 22 17.523 22 12V2H12ZM12 8C9.79 8 8 9.79 8 12C8 14.21 9.79 16 12 16C14.21 16 16 14.21 16 12C16 9.79 14.21 8 12 8ZM10 12C10 10.9 10.9 10 12 10C13.1 10 14 10.9 14 12C14 13.1 13.1 14 12 14C10.9 14 10 13.1 10 12Z"
+      />
+    </svg>
+  );
+}
+
+
+
+================================================
+FILE: components/Footer.tsx
+================================================
+import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
+
+export function Footer() {
+  return (
+    <footer className="mt-0 pt-0 pb-0 border-t border-custom-separator" style={{ borderColor: 'var(--border-separator)' }}>
+      {/* Full Width Legal Bar */}
+      <div className="w-full section-footer py-8">
+        <div className="w-full md:w-[79%] flex items-center justify-between px-4 md:px-12 text-base font-mono">
+          <div className="px-5 font-tasa">© {new Date().getFullYear()} Guru Vyas</div>
+          <div className="flex gap-8">
+            <Link href="/legal" className="hover:text-black dark:hover:text-white transition-colors link-custom-underline">Legal</Link>
+            <Link href="/privacy" className="hover:text-black dark:hover:text-white transition-colors link-custom-underline">Privacy Policy</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+
+
+================================================
+FILE: components/Header.tsx
+================================================
+import Link from "next/link";
+import { ThemeToggle } from "./theme-toggle";
+
+export function Header() {
+  const links = [
+    { href: "/blog", label: "BLOG" },
+    { href: "/about", label: "WHO?" },
+    { href: "/projects", label: "PROJECTS" },
+    { href: "/photography", label: "FOTOGRAFIE" },
+  ];
+
+  return (
+    <header className="sticky -top-5 z-50 w-full h-[78px] border-b border-transparent transition-colors duration-500 ease-in-out">
+      {/* Layer 1: The Blur (Visible through the holes) */}
+      <div className="absolute inset-0 -z-20 h-full w-full backdrop-blur-md bg-transparent" />
+
+      {/* Layer 2: The Solid Plate with Holes (Masked) */}
+      <div
+        className="absolute inset-0 -z-10 h-full w-full bg-background/90"
+        style={{
+          maskImage: "radial-gradient(transparent 1px, black 1px)",
+          WebkitMaskImage: "radial-gradient(transparent 1px, black 1px)",
+          maskSize: "4px 4px",
+          WebkitMaskSize: "4px 4px",
+        }}
+      />
+      <div className="mx-auto flex h-full pt-2 max-w-screen-2xl items-center justify-between px-5 md:px-16">
+        <Link href="/" className="relative z-10 text-lg font-medium tracking-wider text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110 font-oswald">
+          Guru Vyas
+        </Link>
+
+        <nav className="relative z-10 flex items-center gap-6">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="group  flex items-center gap-2 no-underline hover:no-underline"
+            >
+              {/* Circle: Light gray by default, Olive on group hover */}
+              <div
+                className="h-2 w-2 rounded-full bg-[#e5e5e5] transition-colors duration-200 group-hover:bg-accent"
+                aria-hidden="true"
+              />
+
+              {/* Text: Tall and slim (text-lg + tracking-tight), theme-aware default, Olive on group hover */}
+              <span className="inline-block transform scale-y-110 text-sm tracking-widest uppercase text-muted-foreground transition-colors duration-200 group-hover:text-accent font-oswald">
+                {link.label}
+              </span>
+            </Link>
+          ))}
+          <div className="ml-2 border-l border-border pl-5">
+            <ThemeToggle />
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+
+
+================================================
+FILE: components/hero-animation.tsx
+================================================
+"use client";
+
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+
+interface HeroAnimationProps {
+    children: React.ReactNode;
+    className?: string;
+}
+
+export function HeroAnimation({ children, className }: HeroAnimationProps) {
+    const [isAnimating, setIsAnimating] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsAnimating(false);
+        }, 3000); // Stop after 3 seconds
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    return (
+        <div className={cn("relative inline-flex items-center justify-center", className)}>
+            {/* Sound Waves - Only visible when animating */}
+            {isAnimating && (
+                <>
+                    <SoundWave side="left" delay={0} />
+                    <SoundWave side="left" delay={0.2} />
+                    <SoundWave side="right" delay={0} />
+                    <SoundWave side="right" delay={0.2} />
+                </>
+            )}
+
+            {/* Headbanging Avatar */}
+            <motion.div
+                animate={isAnimating ? {
+                    rotate: [0, -3, 3, -3, 0],
+                    y: [0, 2, 0, 2, 0],
+                } : {
+                    rotate: 0,
+                    y: 0,
+                }}
+                transition={{
+                    duration: 0.4,
+                    repeat: isAnimating ? Infinity : 0,
+                    ease: "linear",
+                    repeatType: "mirror"
+                }}
+                className="relative z-10 origin-bottom"
+            >
+                {children}
+            </motion.div>
+        </div>
+    );
+}
+
+function SoundWave({ side, delay }: { side: "left" | "right"; delay: number }) {
+    const isLeft = side === "left";
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.5, x: isLeft ? 10 : -10 }}
+            animate={{
+                opacity: [0, 0.8, 0],
+                scale: [0.8, 1.5],
+                x: isLeft ? -15 : 15, // Move outwards
+            }}
+            transition={{
+                duration: 0.6,
+                repeat: Infinity,
+                delay: delay,
+                ease: "easeOut",
+            }}
+            className={cn(
+                "absolute top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-[3px] border-foreground/40",
+                isLeft ? "-left-2" : "-right-2"
+            )}
+            style={{
+                zIndex: 0,
+            }}
+        />
+    );
+}
+
+
+
+================================================
+FILE: components/masonry-grid.tsx
+================================================
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { MinimalArrow } from "@/components/minimal-arrow"; // Assuming we might want back arrow styling or just use simple X
+
+export interface Photo {
+    id: string;
+    src: string;
+    alt: string;
+    caption?: string;
+}
+
+interface MasonryGridProps {
+    photos: Photo[];
+}
+
+export function MasonryGrid({ photos }: MasonryGridProps) {
+    const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+
+    return (
+        <>
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 p-4">
+                {photos.map((photo, i) => (
+                    <motion.div
+                        key={photo.id}
+                        className="relative mb-8 break-inside-avoid group cursor-zoom-in"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.05 }}
+                        onClick={() => setSelectedPhoto(photo)}
+                    >
+                        <div className="relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800">
+                            <Image
+                                src={photo.src}
+                                alt={photo.alt}
+                                width={800}
+                                height={600}
+                                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                        </div>
+                        {photo.caption && (
+                            <p className="mt-4 text-xs font-oxygen tracking-widest uppercase text-muted-foreground text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                {photo.caption}
+                            </p>
+                        )}
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Lightbox Overlay */}
+            {selectedPhoto && (
+                <div
+                    className="fixed inset-0 z-100 flex items-center justify-center bg-background/95 backdrop-blur-sm p-4"
+                    onClick={() => setSelectedPhoto(null)}
+                >
+                    <div className="absolute top-6 right-6 text-foreground cursor-pointer p-2 hover:opacity-70 transition-opacity">
+                        <span className="text-2xl">✕</span>
+                    </div>
+                    <div className="relative w-full max-w-7xl h-[85vh] flex flex-col items-center justify-center">
+                        <Image
+                            src={selectedPhoto.src}
+                            alt={selectedPhoto.alt}
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
+                    {selectedPhoto.caption && (
+                        <div className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80">
+                            {selectedPhoto.caption}
+                        </div>
+                    )}
+                </div>
+            )}
+        </>
+    );
+}
+
+
+
+================================================
+FILE: components/minimal-arrow.tsx
+================================================
+"use client";
+
+
+import { cn } from "@/lib/utils";
+
+interface MinimalArrowProps {
+    className?: string;
+}
+
+export function MinimalArrow({ className }: MinimalArrowProps) {
+    return (
+        <div className={cn("relative z-50 w-6 h-6 flex items-center justify-center text-black dark:text-white", className)}>
+            <div
+                className="w-full h-full transition-all! duration-500! ease-[cubic-bezier(0.2,0.8,0.2,1)]! -rotate-45 group-hover:rotate-0"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    className="w-full h-full"
+                    style={{ fill: 'var(--hello-text)' }}
+                >
+                    <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
+                </svg>
+            </div>
+        </div>
+    );
+}
+
+
+
+================================================
+FILE: components/photo-grid.tsx
+================================================
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+
+export interface Photo {
+  id: string;
+  src: string;
+  alt: string;
+  width?: number; 
+  height?: number;
+  caption?: string; 
+  span?: string; // Kept for backward compatibility if needed
+}
+
+interface PhotoGridProps {
+  photos: Photo[];
+}
+
+export function PhotoGrid({ photos }: PhotoGridProps) {
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+
+  // Fallback if no photos passed
+  const displayPhotos = photos || [];
+
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+        {displayPhotos.map((photo, i) => (
+          <motion.div
+            key={photo.id}
+            className="group cursor-pointer flex flex-col items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            onClick={() => setSelectedPhoto(photo)}
+          >
+            <div className="relative w-full aspect-4/3 overflow-hidden bg-white/5">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+              />
+            </div>
+            {photo.caption && (
+              <p className="mt-3 text-sm font-fredericka tracking-wide text-muted font-medium">
+                {photo.caption}
+              </p>
+            )}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Lightbox Overlay */}
+      {selectedPhoto && (
+        <div 
+          className="fixed inset-0 z-100 flex items-center justify-center bg-background/95 backdrop-blur-sm p-4"
+          onClick={() => setSelectedPhoto(null)}
+        >
+          <div className="absolute top-4 right-4 text-muted cursor-pointer hover:text-foreground">
+             ✕
+          </div>
+          <div className="relative w-full max-w-7xl h-[85vh]">
+             <Image
+              src={selectedPhoto.src}
+              alt={selectedPhoto.alt}
+              fill
+              className="object-contain"
+            />
+          </div>
+          {selectedPhoto.caption && (
+            <div className="absolute bottom-8 left-0 right-0 text-center text-sm font-mono text-muted">
+              {selectedPhoto.caption}
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
+
+
+
+================================================
+FILE: components/photographs-scroll.tsx
+================================================
+"use client";
+
+import { useEffect, useRef } from "react";
+
+interface PhotographsScrollProps {
+    children: React.ReactNode;
+}
+
+export function PhotographsScroll({ children }: PhotographsScrollProps) {
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const element = scrollRef.current;
+        if (!element) return;
+
+        const handleWheel = (e: WheelEvent) => {
+            // If Shift key is held
+            if (e.shiftKey) {
+                // Map vertical scroll (deltaY) to horizontal scroll if deltaY exists
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    element.scrollLeft += e.deltaY * 3;
+                }
+                // If the event already has deltaX (standard Shift+Scroll), custom handling isn't usually needed 
+                // as overflow-x-auto handles it. 
+                // But we explicitly handle deltaY -> scrollLeft to ensure it works for all inputs.
+            }
+        };
+
+        // Use passive: false to allow preventDefault
+        element.addEventListener("wheel", handleWheel, { passive: false });
+
+        return () => {
+            element.removeEventListener("wheel", handleWheel);
+        };
+    }, []);
+
+    return (
+        <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto pb-8 w-full no-scrollbar"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+            {children}
+        </div>
+    );
+}
+
+
+
+================================================
+FILE: components/pixel-icon.tsx
+================================================
+export function PixelIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      {/* Hat / Top */}
+      <path
+        d="M9 2h6v2H9V2zM7 4h10v2H7V4z"
+        className="fill-orange-400"
+      />
+      {/* Face */}
+      <path
+        d="M7 6h10v4H7V6zM13 8h2v2h-2V8z"
+        className="fill-[#e0ac69]"
+      />
+      {/* Eyes */}
+      <path d="M9 8h2v2H9V8z" className="fill-black/80" />
+      {/* Shirt/Body */}
+      <path
+        d="M5 10h14v10H5V10z"
+        className="fill-green-700" 
+      />
+      {/* Arms? */}
+      <path d="M3 12h2v4H3v-4zM19 12h2v4h-2v-4z" className="fill-green-800" />
+      {/* Legs */}
+      <path d="M7 20h4v4H7v-4zM13 20h4v4h-4v-4z" className="fill-[#e0ac69]" />
+    </svg>
+  );
+}
+
+
+
+================================================
+FILE: components/theme-provider.tsx
+================================================
+"use client";
+
+import * as React from "react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+
+export function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+}
+
+
+
+================================================
+FILE: components/theme-toggle.tsx
+================================================
+"use client";
+
+import * as React from "react";
+import { useTheme } from "next-themes";
+
+export function ThemeToggle({ withText = false }: { withText?: boolean }) {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="flex items-center gap-3 font-robot text-lg leading-none opacity-0">
+        <div className="h-6 w-6" />
+        {withText && <span>Lights on</span>}
+      </div>
+    );
+  }
+
+  const isDark = theme === "dark";
+
+  return (
+    <button
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="group flex cursor-pointer items-center gap-3 font-robot text-lg leading-none transition-colors duration-500 ease-in-out hover:text-foreground/80 focus-visible:outline-none focus:outline-none"
+      aria-label="Toggle theme"
+    >
+      <div className="relative h-6 w-6">
+        {/* Pixel Moon Icon (shown in dark mode) */}
+        <div
+          className="absolute inset-0 h-full w-full transition-all duration-500 ease-out"
+          style={{
+            opacity: isDark ? 1 : 0,
+            transform: isDark ? 'rotate(0deg) scale(1)' : 'rotate(-15deg) scale(0.9)'
+          }}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-full w-full"
+          >
+            {/* CORRECTED Pixel Moon Body: Smoother Crescent */}
+
+            {/* Top row - thickened from left */}
+            <rect x="8" y="6" width="6" height="2" fill="#FACC15" />
+
+            {/* Upper curve step - thickened from left */}
+            <rect x="6" y="8" width="4" height="2" fill="#FACC15" />
+
+            {/* Middle body - thickened from left */}
+            <rect x="4" y="10" width="4" height="4" fill="#FACC15" />
+
+            {/* Lower curve step - thickened from left */}
+            <rect x="6" y="14" width="4" height="2" fill="#FACC15" />
+
+            {/* Bottom row - thickened from left */}
+            <rect x="8" y="16" width="6" height="2" fill="#FACC15" />
+
+            {/* Sparkle 1 (Top Right Plus) - Moved right by 2 units (1px) */}
+            <rect x="18" y="6" width="2" height="6" fill="#FACC15" />
+            <rect x="16" y="8" width="6" height="2" fill="#FACC15" />
+
+            {/* Sparkle 2 (Bottom Right Plus) - Lifted up by 2 units (1px) */}
+            <rect x="20" y="13" width="2" height="6" fill="#FACC15" />
+            <rect x="18" y="15" width="6" height="2" fill="#FACC15" />
+          </svg>
+        </div>
+
+        {/* Pixel Sun Icon (shown in light mode) */}
+        <div
+          className="absolute inset-0 h-full w-full transition-all duration-500 ease-out"
+          style={{
+            opacity: isDark ? 0 : 1,
+            transform: isDark ? 'rotate(15deg) scale(0.9)' : 'rotate(0deg) scale(1)'
+          }}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-full w-full"
+          >
+            {/* Orange Sun Core */}
+            <rect x="8" y="8" width="8" height="8" fill="#F97316" />
+            {/* Top Ray */}
+            <rect x="11" y="4" width="2" height="2" fill="#F97316" />
+            {/* Bottom Ray */}
+            <rect x="11" y="18" width="2" height="2" fill="#F97316" />
+            {/* Left Ray */}
+            <rect x="4" y="11" width="2" height="2" fill="#F97316" />
+            {/* Right Ray */}
+            <rect x="18" y="11" width="2" height="2" fill="#F97316" />
+            {/* Corner Rays */}
+            <rect x="6" y="6" width="2" height="2" fill="#F97316" />
+            <rect x="16" y="6" width="2" height="2" fill="#F97316" />
+            <rect x="6" y="16" width="2" height="2" fill="#F97316" />
+            <rect x="16" y="16" width="2" height="2" fill="#F97316" />
+          </svg>
+        </div>
+      </div>
+      {withText && (
+        <span className="tracking-widest text-sm font-bold font-oxygen">
+          {isDark ? "Lights on" : "Lights off"}
+        </span>
+      )}
+    </button>
+  );
+}
+
+
+
+================================================
+FILE: components/ui/section.tsx
+================================================
+import { cn } from "@/lib/utils";
+
+interface SectionProps extends React.HTMLAttributes<HTMLElement> {
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
+}
+
+export function Section({ children, className, id, ...props }: SectionProps) {
+  return (
+    <section
+      id={id}
+      className={cn("mb-24 md:mb-36", className)}
+      {...props}
+    >
+      {children}
+    </section>
+  );
+}
+
+export function Container({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div className={cn("mx-auto w-full max-w-screen-2xl px-5 md:px-16", className)} {...props}>
+      {children}
+    </div>
+  );
+}
+
+
+
+================================================
+FILE: lib/utils.tsx
+================================================
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+
+
+================================================
+FILE: public/fonts/CroissantOne-Regular.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/OFL.txt
+================================================
+Copyright (c) 2012, Eduardo Tunni (http://www.tipo.net.ar), with Reserved Font Name 'Croissant'
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+
+
+================================================
+FILE: public/fonts/oswald/README.txt
+================================================
+Oswald Variable Font
+====================
+
+This download contains Oswald as both a variable font and static fonts.
+
+Oswald is a variable font with this axis:
+  wght
+
+This means all the styles are contained in a single file:
+  Oswald-VariableFont_wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Oswald:
+  static/Oswald-ExtraLight.ttf
+  static/Oswald-Light.ttf
+  static/Oswald-Regular.ttf
+  static/Oswald-Medium.ttf
+  static/Oswald-SemiBold.ttf
+  static/Oswald-Bold.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+
+
+================================================
+FILE: public/fonts/oswald/OFL.txt
+================================================
+Copyright 2016 The Oswald Project Authors (https://github.com/googlefonts/OswaldFont)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+
+
+================================================
+FILE: public/fonts/oswald/Oswald-VariableFont_wght.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/oswald/static/Oswald-Bold.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/oswald/static/Oswald-ExtraLight.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/oswald/static/Oswald-Light.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/oswald/static/Oswald-Medium.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/oswald/static/Oswald-Regular.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/oswald/static/Oswald-SemiBold.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/oxygen-mono/OxygenMono-Regular.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/roboto/README.txt
+================================================
+Roboto Flex Variable Font
+=========================
+
+This download contains Roboto Flex as both a variable font and static fonts.
+
+Roboto Flex is a variable font with these axes:
+  GRAD
+  XOPQ
+  XTRA
+  YOPQ
+  YTAS
+  YTDE
+  YTFI
+  YTLC
+  YTUC
+  opsz
+  slnt
+  wdth
+  wght
+
+This means all the styles are contained in a single file:
+  RobotoFlex-VariableFont_GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Roboto Flex:
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+
+
+================================================
+FILE: public/fonts/roboto/OFL.txt
+================================================
+Copyright 2017 The Roboto Flex Project Authors (https://github.com/TypeNetwork/Roboto-Flex)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+
+
+================================================
+FILE: public/fonts/source-code-pro/README.txt
+================================================
+Source Code Pro Variable Font
+=============================
+
+This download contains Source Code Pro as both variable fonts and static fonts.
+
+Source Code Pro is a variable font with this axis:
+  wght
+
+This means all the styles are contained in these files:
+  SourceCodePro-VariableFont_wght.ttf
+  SourceCodePro-Italic-VariableFont_wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for Source Code Pro:
+  static/SourceCodePro-ExtraLight.ttf
+  static/SourceCodePro-Light.ttf
+  static/SourceCodePro-Regular.ttf
+  static/SourceCodePro-Medium.ttf
+  static/SourceCodePro-SemiBold.ttf
+  static/SourceCodePro-Bold.ttf
+  static/SourceCodePro-ExtraBold.ttf
+  static/SourceCodePro-Black.ttf
+  static/SourceCodePro-ExtraLightItalic.ttf
+  static/SourceCodePro-LightItalic.ttf
+  static/SourceCodePro-Italic.ttf
+  static/SourceCodePro-MediumItalic.ttf
+  static/SourceCodePro-SemiBoldItalic.ttf
+  static/SourceCodePro-BoldItalic.ttf
+  static/SourceCodePro-ExtraBoldItalic.ttf
+  static/SourceCodePro-BlackItalic.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+
+
+================================================
+FILE: public/fonts/source-code-pro/OFL.txt
+================================================
+Copyright 2010, 2012 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name 'Source'. All Rights Reserved. Source is a trademark of Adobe Systems Incorporated in the United States and/or other countries.
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+
+
+================================================
+FILE: public/fonts/source-code-pro/SourceCodePro-Italic-VariableFont_wght.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/SourceCodePro-VariableFont_wght.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-Black.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-BlackItalic.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-Bold.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-BoldItalic.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-ExtraBold.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-ExtraBoldItalic.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-ExtraLight.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-ExtraLightItalic.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-Italic.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-Light.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-LightItalic.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-Medium.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-MediumItalic.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-Regular.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-SemiBold.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/source-code-pro/static/SourceCodePro-SemiBoldItalic.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/tasa/README.txt
+================================================
+TASA Explorer Variable Font
+===========================
+
+This download contains TASA Explorer as both a variable font and static fonts.
+
+TASA Explorer is a variable font with this axis:
+  wght
+
+This means all the styles are contained in a single file:
+  TASAExplorer-VariableFont_wght.ttf
+
+If your app fully supports variable fonts, you can now pick intermediate styles
+that aren’t available as static fonts. Not all apps support variable fonts, and
+in those cases you can use the static font files for TASA Explorer:
+  static/TASAExplorer-Regular.ttf
+  static/TASAExplorer-Medium.ttf
+  static/TASAExplorer-SemiBold.ttf
+  static/TASAExplorer-Bold.ttf
+  static/TASAExplorer-ExtraBold.ttf
+
+Get started
+-----------
+
+1. Install the font files you want to use
+
+2. Use your app's font picker to view the font family and all the
+available styles
+
+Learn more about variable fonts
+-------------------------------
+
+  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
+  https://variablefonts.typenetwork.com
+  https://medium.com/variable-fonts
+
+In desktop apps
+
+  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
+  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
+
+Online
+
+  https://developers.google.com/fonts/docs/getting_started
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
+  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
+
+Installing fonts
+
+  MacOS: https://support.apple.com/en-us/HT201749
+  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
+  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+
+Android Apps
+
+  https://developers.google.com/fonts/docs/android
+  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
+
+License
+-------
+Please read the full license text (OFL.txt) to understand the permissions,
+restrictions and requirements for usage, redistribution, and modification.
+
+You can use them in your products & projects – print or digital,
+commercial or otherwise.
+
+This isn't legal advice, please consider consulting a lawyer and see the full
+license for all details.
+
+
+
+================================================
+FILE: public/fonts/tasa/OFL.txt
+================================================
+Copyright 2025 The TASA-Typeface-Collection Project Authors (https://github.com/localremotetw/TASA-Typeface-Collection)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+
+
+================================================
+FILE: public/fonts/tasa/TASAExplorer-VariableFont_wght.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/tasa/static/TASAExplorer-Bold.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/tasa/static/TASAExplorer-ExtraBold.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/tasa/static/TASAExplorer-Medium.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/tasa/static/TASAExplorer-Regular.ttf
+================================================
+[Binary file]
+
+
+================================================
+FILE: public/fonts/tasa/static/TASAExplorer-SemiBold.ttf
+================================================
+[Binary file]
+
