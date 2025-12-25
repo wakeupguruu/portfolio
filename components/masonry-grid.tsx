@@ -160,6 +160,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 width: activeState.rect.width,
                                 height: activeState.rect.height,
                                 scale: 1.1,
+                                borderRadius: "0px", // Match grid item (usually square)
                                 boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
                                 transition: { duration: 0.4, ease: "easeOut" }
                             } : {
@@ -169,6 +170,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 width: activeState.targetRect.width,
                                 height: activeState.targetRect.height,
                                 scale: 1,
+                                borderRadius: "8px", // Slight roundness in full view
                                 boxShadow: "none",
                                 transition: { duration: 0.8, ease: "easeInOut" }
                             }}
@@ -179,10 +181,17 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 width: activeState.rect.width,
                                 height: activeState.rect.height,
                                 scale: 1,
-                                opacity: 1, // Keep opacity 1 so it doesn't vanish
-                                transition: { duration: 0.5, ease: "easeInOut" }
+                                borderRadius: "0px", // Animate back to square
+                                boxShadow: "none",
+                                opacity: 1,
+                                transition: {
+                                    duration: 0.6,
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 28
+                                }
                             }}
-                            className="block overflow-hidden rounded-md relative"
+                            className="block overflow-hidden relative" // Removed static rounded-md
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleClose();
