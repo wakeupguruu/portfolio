@@ -21,47 +21,79 @@ interface MasonryGridProps {
 interface ActivePhotoState {
     photo: Photo;
     rect: DOMRect;
+    targetRect: { top: number; left: number; width: number; height: number };
     phase: 'uplift' | 'centered';
+    isLoaded: boolean;
+    initialSrc: string; // The low-res/cached source from the grid
 }
 
 export function MasonryGrid({ columns }: MasonryGridProps) {
     const [activeState, setActiveState] = useState<ActivePhotoState | null>(null);
+    const [exitingPhotoId, setExitingPhotoId] = useState<string | null>(null);
 
-    // Lock body scroll when modal is open
+    // Close modal on scroll
     useEffect(() => {
         if (activeState) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
+            const handleScroll = () => {
+                setExitingPhotoId(activeState.photo.id);
+                setActiveState(null);
+            };
+            window.addEventListener("scroll", handleScroll, { passive: true });
+            return () => {
+                window.removeEventListener("scroll", handleScroll);
+            };
         }
-        return () => {
-            document.body.style.overflow = "";
-        };
     }, [activeState]);
+
+    // Transition Uplift -> Centered once loaded
+    useEffect(() => {
+        if (activeState && activeState.phase === 'uplift' && activeState.isLoaded) {
+            const timer = setTimeout(() => {
+                setActiveState(prev => prev ? { ...prev, phase: 'centered' } : null);
+            }, 1000); // 1s wait AFTER load
+            return () => clearTimeout(timer);
+        }
+    }, [activeState?.phase, activeState?.isLoaded]);
 
     const handlePhotoClick = (photo: Photo, e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
+        const imgElement = e.currentTarget.querySelector("img");
+        const initialSrc = imgElement?.currentSrc || photo.src; // Fallback to src if currentSrc fails
 
-        // 1. Set initial state with the captured rect
+        // Calculate target centered rect (90vw / 90vh)
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        const targetWidth = viewportWidth * 0.9;
+        const targetHeight = viewportHeight * 0.9;
+        const targetTop = (viewportHeight - targetHeight) / 2;
+        const targetLeft = (viewportWidth - targetWidth) / 2;
+
         setActiveState({
             photo,
             rect,
-            phase: 'uplift'
+            targetRect: {
+                top: targetTop,
+                left: targetLeft,
+                width: targetWidth,
+                height: targetHeight
+            },
+            phase: 'uplift',
+            isLoaded: false,
+            initialSrc
         });
-
-        // 2. Schedule the move to center after 1 second (as requested "after a sec or two")
-        setTimeout(() => {
-            setActiveState(prev => prev ? { ...prev, phase: 'centered' } : null);
-        }, 1200);
     };
 
     const handleClose = () => {
-        setActiveState(null);
+        if (activeState) {
+            setExitingPhotoId(activeState.photo.id);
+            setActiveState(null);
+        }
     };
 
     return (
         <>
-            {/* Container: Stack on mobile, 3 columns side-by-side on desktop */}
+            {/* ... Grid items ... */}
             <div className="flex flex-col md:flex-row gap-8 w-full min-w-full">
                 {columns.map((columnPhotos, colIndex) => (
                     <div key={colIndex} className="flex flex-col gap-16 flex-1">
@@ -74,11 +106,9 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 transition={{ delay: i * 0.1 }}
                                 onClick={(e) => handlePhotoClick(photo, e)}
                             >
-                                {/* Wrapper to handle the "Ghost Slot" effect */}
-                                {/* Content is invisible (opacity-0) if this specific photo is active, acting as a placeholder */}
                                 <div className={cn(
                                     "relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800 transition-opacity duration-300",
-                                    activeState?.photo.id === photo.id ? "opacity-0" : "opacity-100"
+                                    (activeState?.photo.id === photo.id || exitingPhotoId === photo.id) ? "opacity-0" : "opacity-100"
                                 )}>
                                     <div className="w-full h-full">
                                         <Image
@@ -87,7 +117,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                             width={800}
                                             height={600}
                                             className={cn(
-                                                "w-full h-auto max-h-[600px] object-cover transition-transform duration-700", // Removed group-hover:scale-105
+                                                "w-full h-auto max-h-[600px] object-cover transition-transform duration-700",
                                                 photo.className
                                             )}
                                             sizes="(max-width: 768px) 100vw, 33vw"
@@ -105,20 +135,15 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                 ))}
             </div>
 
-            {/* Lightbox Overlay */}
-            <AnimatePresence>
+            <AnimatePresence onExitComplete={() => setExitingPhotoId(null)}>
                 {activeState && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-100 bg-transparent backdrop-blur-xl cursor-zoom-out"
+                        className="fixed inset-0 z-100 bg-transparent backdrop-blur-md cursor-zoom-out"
                         onClick={handleClose}
                     >
-                        {/* 
-                            The Animated Image Container.
-                            We manually animate "top/left/width/height" to move from Grid Spot -> Center.
-                        */}
                         <motion.div
                             initial={{
                                 position: "fixed",
@@ -126,12 +151,10 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
                                 height: activeState.rect.height,
-                                x: 0,
-                                y: 0,
-                                zIndex: 101, // Ensure it's above the backdrop
+                                zIndex: 101,
                             }}
                             animate={activeState.phase === 'uplift' ? {
-                                // Phase 1: Uplift "a little"
+                                // Phase 1: Uplift
                                 top: activeState.rect.top,
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
@@ -140,17 +163,14 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
                                 transition: { duration: 0.4, ease: "easeOut" }
                             } : {
-                                // Phase 2: Travel to Center
-                                // We use fixed values that guarantee centering clearly
-                                top: "50%",
-                                left: "50%",
-                                width: "90vw",
-                                height: "90vh",
-                                x: "-50%",
-                                y: "-50%",
-                                scale: 1, // Reset scale as we are now growing the container itself
+                                // Phase 2: Center (Straight Line)
+                                top: activeState.targetRect.top,
+                                left: activeState.targetRect.left,
+                                width: activeState.targetRect.width,
+                                height: activeState.targetRect.height,
+                                scale: 1,
                                 boxShadow: "none",
-                                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+                                transition: { duration: 0.8, ease: "easeInOut" }
                             }}
                             exit={{
                                 // Return to origin
@@ -158,36 +178,43 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
                                 height: activeState.rect.height,
-                                x: 0,
-                                y: 0,
                                 scale: 1,
-                                opacity: 0,
-                                transition: { duration: 0.5 }
+                                opacity: 1, // Keep opacity 1 so it doesn't vanish
+                                transition: { duration: 0.5, ease: "easeInOut" }
                             }}
-                            className="block overflow-hidden rounded-md" // Optional rounding
-                            onClick={(e) => e.stopPropagation()}
+                            className="block overflow-hidden rounded-md relative"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleClose();
+                            }}
                         >
-                            <Image
-                                src={activeState.photo.src}
+                            {/* 1. Low-Res / Cached Preview (Immediate) */}
+                            {/* We use a standard img tag to ensure it uses the browser cache of the 'currentSrc' immediately */}
+                            <img
+                                src={activeState.initialSrc}
                                 alt={activeState.photo.alt}
-                                fill
-                                className="object-contain" // Ensures full image is visible, no crop
-                                priority
+                                className="absolute inset-0 w-full h-full object-contain"
                             />
-                        </motion.div>
 
-                        {/* Caption - Only show when centered */}
-                        {activeState.photo.caption && activeState.phase === 'centered' && (
+                            {/* 2. High-Res Image (Fades in) */}
                             <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ delay: 0.3 }}
-                                className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80 z-102"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: activeState.isLoaded ? 1 : 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="absolute inset-0 w-full h-full"
                             >
-                                {activeState.photo.caption}
+                                <Image
+                                    src={activeState.photo.src}
+                                    alt={activeState.photo.alt}
+                                    fill
+                                    className="object-contain"
+                                    priority
+                                    onLoad={() => {
+                                        setActiveState(prev => prev ? { ...prev, isLoaded: true } : null);
+                                    }}
+                                />
                             </motion.div>
-                        )}
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
