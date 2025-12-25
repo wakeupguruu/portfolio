@@ -30,6 +30,7 @@ interface ActivePhotoState {
 export function MasonryGrid({ columns }: MasonryGridProps) {
     const [activeState, setActiveState] = useState<ActivePhotoState | null>(null);
     const [exitingPhotoId, setExitingPhotoId] = useState<string | null>(null);
+    const [minUpliftElapsed, setMinUpliftElapsed] = useState(false);
 
     // Close modal on scroll
     useEffect(() => {
@@ -45,17 +46,33 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
         }
     }, [activeState]);
 
-    // Transition Uplift -> Centered (Purely time-based, Step 2: No load blocking)
+    // Timer: Enforce minimum uplift duration (250ms)
     useEffect(() => {
         if (activeState && activeState.phase === 'uplift') {
-            // Rule 3: Overlap phases to prevent velocity reset
-            // Uplift duration is 300ms, strictly switch at 250ms
             const timer = setTimeout(() => {
-                setActiveState(prev => prev ? { ...prev, phase: 'centered' } : null);
+                setMinUpliftElapsed(true);
             }, 250);
             return () => clearTimeout(timer);
+        } else {
+            // Reset when closed or changing phase
+            if (!activeState) {
+                setMinUpliftElapsed(false);
+            }
         }
     }, [activeState?.phase]);
+
+    // Transition Logic: Uplift -> Centered
+    // STRICT RULE: Only move when BOTH (Min Time Passed) AND (Image Loaded) are true.
+    useEffect(() => {
+        if (
+            activeState &&
+            activeState.phase === 'uplift' &&
+            activeState.isLoaded &&
+            minUpliftElapsed
+        ) {
+            setActiveState(prev => prev ? { ...prev, phase: 'centered' } : null);
+        }
+    }, [activeState?.phase, activeState?.isLoaded, minUpliftElapsed]);
 
     const handlePhotoClick = (photo: Photo, e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -71,6 +88,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
         const targetTop = (viewportHeight - targetHeight) / 2;
         const targetLeft = (viewportWidth - targetWidth) / 2;
 
+        setMinUpliftElapsed(false); // Reset timer state
         setActiveState({
             photo,
             rect,
@@ -144,7 +162,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                         animate={{
                             opacity: activeState.phase === 'centered' ? 1 : 0
                         }}
-                        exit={{ opacity: 0, transition: { duration: 0.4 } }}
+                        exit={{ opacity: 0, transition: { duration: 0.1 } }} // Rule: Remove blur immediately
                         transition={{
                             // Rule 5: Blur triggers after motion starts (0.2s delay)
                             delay: activeState.phase === 'centered' ? 0.2 : 0,
@@ -165,7 +183,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 zIndex: 48, // Rule 4: Start below header
                             }}
                             animate={activeState.phase === 'uplift' ? {
-                                // Phase 1: Uplift
+                                // Phase 1: Uplift (Selection Intent)
                                 top: activeState.rect.top,
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
@@ -176,7 +194,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 zIndex: 48,
                                 transition: { duration: 0.3, ease: "easeOut" }
                             } : {
-                                // Phase 2: Center
+                                // Phase 2: Center (Requires Load & Min Time)
                                 top: activeState.targetRect.top,
                                 left: activeState.targetRect.left,
                                 width: activeState.targetRect.width,
@@ -216,14 +234,15 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 handleClose();
                             }}
                         >
-                            {/* Step 2: Immediate Low-Res Preview */}
+                            {/* 1. Low-Res / Cached Preview (Immediate) */}
+                            {/* We use a standard img tag to ensure it uses the browser cache of the 'currentSrc' immediately */}
                             <img
                                 src={activeState.initialSrc}
                                 alt={activeState.photo.alt}
                                 className="absolute inset-0 w-full h-full object-contain"
                             />
 
-                            {/* Step 6: Silent High-Res Crossfade */}
+                            {/* 2. High-Res Image (Fades in) */}
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: activeState.isLoaded ? 1 : 0 }}
