@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -25,6 +25,20 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
     // For simplicity and per my preference, I'll keep the "3 column" logic but on mobile it'll just stack.
     // I'll use Flexbox or Grid. Flex row of Flex cols is best for manual control.
 
+    // Lock body scroll when modal is open
+    // (Optional: handle scrollbar shift if needed, but basic overflow-hidden is a good start)
+    useEffect(() => {
+        if (selectedPhoto) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        // Cleanup function to ensure scroll is re-enabled if component unmounts while modal is open
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [selectedPhoto]);
+
     return (
         <>
             {/* Container: Stack on mobile, 3 columns side-by-side on desktop */}
@@ -44,7 +58,11 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 {/* Wrapper to handle the "Ghost Slot" effect */}
                                 {/* We keep the slot taking up space, but the visual "moves" to the modal via layoutId */}
                                 <div className="relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800">
-                                    <motion.div layoutId={`photo-${photo.id}`} className="w-full h-full">
+                                    <motion.div
+                                        layoutId={`photo-${photo.id}`}
+                                        className="w-full h-full"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    >
                                         <Image
                                             src={photo.src}
                                             alt={photo.alt}
@@ -72,13 +90,14 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
             {/* Lightbox Overlay */}
             {selectedPhoto && (
                 <div
-                    className="fixed inset-0 z-[100] flex items-center justify-center bg-transparent backdrop-blur-xl p-4 cursor-zoom-out"
+                    className="fixed inset-0 z-100 flex items-center justify-center bg-transparent backdrop-blur-xl p-4 cursor-zoom-out"
                     onClick={() => setSelectedPhoto(null)}
                 >
                     <motion.div
                         layoutId={`photo-${selectedPhoto.id}`}
                         className="relative w-full max-w-7xl h-[85vh] flex flex-col items-center justify-center"
                         onClick={(e) => e.stopPropagation()} // Allow clicking image to do nothing, or zoom out if desired (propagation logic)
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     >
                         {/* Use object-contain to never crop. The layoutId will morph width/height/position. */}
                         <Image
@@ -95,7 +114,8 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="absolute top-6 right-6 text-foreground cursor-pointer p-2 hover:opacity-70 transition-opacity z-[101]"
+                        exit={{ opacity: 0 }}
+                        className="absolute top-6 right-6 text-foreground cursor-pointer p-2 hover:opacity-70 transition-opacity z-101"
                         onClick={() => setSelectedPhoto(null)}
                     >
                         <span className="text-2xl">✕</span>
@@ -105,8 +125,9 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
                             transition={{ delay: 0.2 }}
-                            className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80 z-[101]"
+                            className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80 z-101"
                         >
                             {selectedPhoto.caption}
                         </motion.div>
