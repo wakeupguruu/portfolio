@@ -22,7 +22,7 @@ interface ActivePhotoState {
     photo: Photo;
     rect: DOMRect;
     targetRect: { top: number; left: number; width: number; height: number };
-    phase: 'uplift' | 'centered';
+    phase: 'uplift' | 'centered' | 'returning'; // Explicit 3-Phase State
     isLoaded: boolean;
     initialSrc: string; // The low-res/cached source from the grid
 }
@@ -31,13 +31,14 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
     const [activeState, setActiveState] = useState<ActivePhotoState | null>(null);
     const [exitingPhotoId, setExitingPhotoId] = useState<string | null>(null);
     const [minUpliftElapsed, setMinUpliftElapsed] = useState(false);
+    const [isBelowHeader, setIsBelowHeader] = useState(false); // Controls z-index flip
 
     // Close on scroll
     useEffect(() => {
-        if (activeState) {
+        if (activeState && activeState.phase !== 'returning') {
             const handleScroll = () => {
-                setExitingPhotoId(activeState.photo.id);
-                setActiveState(null);
+                // If scrolling happens, force return immediately
+                handleClose();
             };
             window.addEventListener("scroll", handleScroll, { passive: true });
             return () => {
@@ -57,6 +58,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
             // Reset when closed or changing phase
             if (!activeState) {
                 setMinUpliftElapsed(false);
+                setIsBelowHeader(false); // Reset z-index state
             }
         }
     }, [activeState?.phase]);
@@ -104,6 +106,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
         const targetLeft = (viewportWidth - targetWidth) / 2;
 
         setMinUpliftElapsed(false);
+        setIsBelowHeader(false); // Ensure start ON TOP
         setActiveState({
             photo,
             rect,
@@ -120,9 +123,15 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
     };
 
     const handleClose = () => {
-        if (activeState) {
-            setExitingPhotoId(activeState.photo.id);
-            setActiveState(null);
+        if (activeState && activeState.phase !== 'returning') {
+            setActiveState(prev => prev ? { ...prev, phase: 'returning' } : null);
+
+            // TIMING LOGIC:
+            // Total Return Duration: 650ms.
+            // Flip Z-Index at "very end" (600ms) to avoid clipping header during flight.
+            setTimeout(() => {
+                setIsBelowHeader(true);
+            }, 600);
         }
     };
 
@@ -143,8 +152,9 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                             >
                                 <div className={cn(
                                     "relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800 transition-opacity duration-300",
-                                    // Rule 1: Immediate hide to prevent duplication
-                                    (activeState?.photo.id === photo.id || exitingPhotoId === photo.id) ? "opacity-0" : "opacity-100"
+                                    // Rule 1: Hide only if ActiveState ID matches.
+                                    // When activeState becomes null (after return), this opacity naturally reverts to 1.
+                                    (activeState?.photo.id === photo.id) ? "opacity-0" : "opacity-100"
                                 )}>
                                     <div className="w-full h-full">
                                         <Image
@@ -171,39 +181,45 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                 ))}
             </div>
 
-            {/* Fullscreen Overlay */}
             {/* 1. Backdrop Overlay */}
+            {/* Z-INDEX 55 to cover Header (50) */}
             <AnimatePresence>
                 {activeState && (
                     <motion.div
                         key="backdrop"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        animate={{
+                            opacity: activeState.phase === 'returning' ? 0 : 1
+                        }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="fixed inset-0 z-[45] bg-background/95 backdrop-blur-sm"
+                        transition={{
+                            duration: activeState.phase === 'returning' ? 0.2 : 0.4,
+                            ease: "easeOut"
+                        }}
+                        className="fixed inset-0 z-[55] bg-background/95 backdrop-blur-sm"
                         onClick={handleClose}
                     />
                 )}
             </AnimatePresence>
 
             {/* 2. Active Photo Object */}
-            <AnimatePresence onExitComplete={() => setExitingPhotoId(null)}>
-                {activeState && (
-                    <motion.div
-                        key="active-photo"
-                        initial={{
-                            position: "fixed",
-                            top: activeState.rect.top,
-                            left: activeState.rect.left,
-                            width: activeState.rect.width,
-                            height: activeState.rect.height,
-                            scale: 1,
-                            borderRadius: "0px",
-                            zIndex: 48,
-                        }}
-                        animate={activeState.phase === 'uplift' ? {
-                            // Phase 1: Uplift
+            {/* We render this OUTSIDE AnimatePresence to control unmount precisely after 'returning' completes */}
+            {activeState && (
+                <motion.div
+                    key="active-photo"
+                    initial={{
+                        position: "fixed",
+                        top: activeState.rect.top,
+                        left: activeState.rect.left,
+                        width: activeState.rect.width,
+                        height: activeState.rect.height,
+                        scale: 1,
+                        borderRadius: "0px",
+                        zIndex: 60, // INVARIANT: Open starts High
+                    }}
+                    animate={
+                        activeState.phase === 'uplift' ? {
+                            // PHASE 1: Uplift (Selection Intent)
                             top: activeState.rect.top,
                             left: activeState.rect.left,
                             width: activeState.rect.width,
@@ -211,76 +227,79 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                             scale: 1.05,
                             borderRadius: "0px",
                             boxShadow: "0 20px 40px -10px rgba(0,0,0,0.3)",
-                            zIndex: 48,
+                            zIndex: 60, // Keep High
                             transition: { duration: 0.25, ease: "easeOut" }
-                        } : {
-                            // Phase 2: Center
-                            top: activeState.targetRect.top,
-                            left: activeState.targetRect.left,
-                            width: activeState.targetRect.width,
-                            height: activeState.targetRect.height,
-                            scale: 1,
-                            boxShadow: "0 30px 60px -15px rgba(0,0,0,0.4)",
-                            borderRadius: "2px",
-                            zIndex: 48, // Flight
-                            transition: {
-                                boxShadow: { duration: 0.2 },
-                                default: { duration: 0.85, ease: [0.16, 1, 0.3, 1] }
-                            },
-                            transitionEnd: {
-                                zIndex: 100 // Land
+                        } :
+                            activeState.phase === 'centered' ? {
+                                // PHASE 2: Centered (Dominant)
+                                top: activeState.targetRect.top,
+                                left: activeState.targetRect.left,
+                                width: activeState.targetRect.width,
+                                height: activeState.targetRect.height,
+                                scale: 1,
+                                boxShadow: "0 30px 60px -15px rgba(0,0,0,0.4)",
+                                borderRadius: "2px",
+                                zIndex: 60, // Keep High
+                                transition: {
+                                    boxShadow: { duration: 0.2 },
+                                    default: { duration: 0.85, ease: [0.16, 1, 0.3, 1] }
+                                }
+                            } : {
+                                // PHASE 3: Returning (Yielding)
+                                top: activeState.rect.top,
+                                left: activeState.rect.left,
+                                width: activeState.rect.width,
+                                height: activeState.rect.height,
+                                scale: 1,
+                                borderRadius: "0px",
+                                boxShadow: "none",
+                                // Dynamic Z-Index based on 50% timing
+                                zIndex: isBelowHeader ? 48 : 60,
+                                transition: {
+                                    duration: 0.65,
+                                    ease: [0.33, 1, 0.68, 1]
+                                }
                             }
-                        }}
-                        exit={{
-                            // Return
-                            top: activeState.rect.top,
-                            left: activeState.rect.left,
-                            width: activeState.rect.width,
-                            height: activeState.rect.height,
-                            scale: 1,
-                            borderRadius: "0px",
-                            boxShadow: "none",
-                            zIndex: 48,
-                            transition: {
-                                duration: 0.65, // Match user request 600-700
-                                ease: [0.33, 1, 0.68, 1]
-                            }
-                        }}
-                        className="block overflow-hidden relative cursor-zoom-out"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            handleClose();
-                        }}
-                    >
-                        {/* Layer 1: Low-Res Cached Image (Immediate) */}
-                        <img
-                            src={activeState.initialSrc}
-                            alt={activeState.photo.alt}
-                            className="absolute inset-0 w-full h-full object-cover"
-                        />
+                    }
+                    onAnimationComplete={() => {
+                        if (activeState.phase === 'returning') {
+                            setActiveState(null); // Explicit unmount after return
+                        }
+                    }}
+                    className="block overflow-hidden relative cursor-zoom-out"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleClose();
+                    }}
+                >
+                    {/* Layer 1: Low-Res Cached Image (Immediate) */}
+                    <img
+                        src={activeState.initialSrc}
+                        alt={activeState.photo.alt}
+                        className="absolute inset-0 w-full h-full object-cover"
+                    />
 
-                        {/* Layer 2: High-Res Image (Progressive Enhancement) */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: activeState.isLoaded ? 1 : 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="absolute inset-0 w-full h-full"
-                        >
-                            <Image
-                                src={activeState.photo.src}
-                                alt={activeState.photo.alt}
-                                fill
-                                className="object-cover"
-                                priority
-                                quality={90}
-                                onLoad={() => {
-                                    setActiveState(prev => prev ? { ...prev, isLoaded: true } : null);
-                                }}
-                            />
-                        </motion.div>
+                    {/* Layer 2: High-Res Image (Progressive Enhancement) */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: activeState.isLoaded ? 1 : 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="absolute inset-0 w-full h-full"
+                    >
+                        <Image
+                            src={activeState.photo.src}
+                            alt={activeState.photo.alt}
+                            fill
+                            className="object-cover"
+                            priority
+                            quality={90}
+                            onLoad={() => {
+                                setActiveState(prev => prev ? { ...prev, isLoaded: true } : null);
+                            }}
+                        />
                     </motion.div>
-                )}
-            </AnimatePresence>
+                </motion.div>
+            )}
         </>
     );
 }
