@@ -32,7 +32,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
     const [exitingPhotoId, setExitingPhotoId] = useState<string | null>(null);
     const [minUpliftElapsed, setMinUpliftElapsed] = useState(false);
 
-    // Close modal on scroll
+    // Close on scroll
     useEffect(() => {
         if (activeState) {
             const handleScroll = () => {
@@ -46,12 +46,12 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
         }
     }, [activeState]);
 
-    // Timer: Enforce minimum uplift duration (250ms)
+    // Timer: Enforce minimum uplift duration (200ms)
     useEffect(() => {
         if (activeState && activeState.phase === 'uplift') {
             const timer = setTimeout(() => {
                 setMinUpliftElapsed(true);
-            }, 250);
+            }, 200);
             return () => clearTimeout(timer);
         } else {
             // Reset when closed or changing phase
@@ -79,16 +79,31 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
         const imgElement = e.currentTarget.querySelector("img");
         const initialSrc = imgElement?.currentSrc || photo.src;
 
-        // Calculate target centered rect (90vw / 90vh)
+        // Get natural dimensions to ensure target aspect ratio matches the image
+        // fallback to rect aspect ratio if natural dims missing (unlikely)
+        const naturalWidth = imgElement?.naturalWidth || rect.width;
+        const naturalHeight = imgElement?.naturalHeight || rect.height;
+        const imageAspectRatio = naturalWidth / naturalHeight;
+
+        // Calculate target rect (Fit within 95vw / 95vh, preserving aspect ratio)
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
+        const padding = 40; // minimal padding
+        const maxW = viewportWidth - (padding * 2);
+        const maxH = viewportHeight - (padding * 2);
 
-        const targetWidth = viewportWidth * 0.9;
-        const targetHeight = viewportHeight * 0.9;
+        let targetWidth = maxW;
+        let targetHeight = targetWidth / imageAspectRatio;
+
+        if (targetHeight > maxH) {
+            targetHeight = maxH;
+            targetWidth = targetHeight * imageAspectRatio;
+        }
+
         const targetTop = (viewportHeight - targetHeight) / 2;
         const targetLeft = (viewportWidth - targetWidth) / 2;
 
-        setMinUpliftElapsed(false); // Reset timer state
+        setMinUpliftElapsed(false);
         setActiveState({
             photo,
             rect,
@@ -113,7 +128,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
 
     return (
         <>
-            {/* ... Grid items ... */}
+            {/* Grid Items */}
             <div className="flex flex-col md:flex-row gap-8 w-full min-w-full">
                 {columns.map((columnPhotos, colIndex) => (
                     <div key={colIndex} className="flex flex-col gap-16 flex-1">
@@ -128,7 +143,8 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                             >
                                 <div className={cn(
                                     "relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800 transition-opacity duration-300",
-                                    (activeState?.photo.id === photo.id || exitingPhotoId === photo.id) ? "opacity-0" : "opacity-100" // Rule 1: Immediate hide
+                                    // Rule 1: Immediate hide to prevent duplication
+                                    (activeState?.photo.id === photo.id || exitingPhotoId === photo.id) ? "opacity-0" : "opacity-100"
                                 )}>
                                     <div className="w-full h-full">
                                         <Image
@@ -155,111 +171,112 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                 ))}
             </div>
 
+            {/* Fullscreen Overlay */}
+            {/* 1. Backdrop Overlay */}
+            <AnimatePresence>
+                {activeState && (
+                    <motion.div
+                        key="backdrop"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="fixed inset-0 z-[45] bg-background/95 backdrop-blur-sm"
+                        onClick={handleClose}
+                    />
+                )}
+            </AnimatePresence>
+
+            {/* 2. Active Photo Object */}
             <AnimatePresence onExitComplete={() => setExitingPhotoId(null)}>
                 {activeState && (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{
-                            opacity: activeState.phase === 'centered' ? 1 : 0
+                        key="active-photo"
+                        initial={{
+                            position: "fixed",
+                            top: activeState.rect.top,
+                            left: activeState.rect.left,
+                            width: activeState.rect.width,
+                            height: activeState.rect.height,
+                            scale: 1,
+                            borderRadius: "0px",
+                            zIndex: 48,
                         }}
-                        exit={{ opacity: 0, transition: { duration: 0.1 } }} // Rule: Remove blur immediately
-                        transition={{
-                            // Rule 5: Blur triggers after motion starts (0.2s delay)
-                            delay: activeState.phase === 'centered' ? 0.2 : 0,
-                            duration: 0.5
+                        animate={activeState.phase === 'uplift' ? {
+                            // Phase 1: Uplift
+                            top: activeState.rect.top,
+                            left: activeState.rect.left,
+                            width: activeState.rect.width,
+                            height: activeState.rect.height,
+                            scale: 1.05,
+                            borderRadius: "0px",
+                            boxShadow: "0 20px 40px -10px rgba(0,0,0,0.3)",
+                            zIndex: 48,
+                            transition: { duration: 0.25, ease: "easeOut" }
+                        } : {
+                            // Phase 2: Center
+                            top: activeState.targetRect.top,
+                            left: activeState.targetRect.left,
+                            width: activeState.targetRect.width,
+                            height: activeState.targetRect.height,
+                            scale: 1,
+                            boxShadow: "0 30px 60px -15px rgba(0,0,0,0.4)",
+                            borderRadius: "2px",
+                            zIndex: 48, // Flight
+                            transition: {
+                                boxShadow: { duration: 0.2 },
+                                default: { duration: 0.85, ease: [0.16, 1, 0.3, 1] }
+                            },
+                            transitionEnd: {
+                                zIndex: 100 // Land
+                            }
                         }}
-                        className="fixed inset-0 z-[45] bg-background/80 backdrop-blur-md cursor-zoom-out"
-                        onClick={handleClose}
+                        exit={{
+                            // Return
+                            top: activeState.rect.top,
+                            left: activeState.rect.left,
+                            width: activeState.rect.width,
+                            height: activeState.rect.height,
+                            scale: 1,
+                            borderRadius: "0px",
+                            boxShadow: "none",
+                            zIndex: 48,
+                            transition: {
+                                duration: 0.65, // Match user request 600-700
+                                ease: [0.33, 1, 0.68, 1]
+                            }
+                        }}
+                        className="block overflow-hidden relative cursor-zoom-out"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleClose();
+                        }}
                     >
-                        <motion.div
-                            initial={{
-                                position: "fixed", // Rule 2: Fixed from start
-                                top: activeState.rect.top,
-                                left: activeState.rect.left,
-                                width: activeState.rect.width,
-                                height: activeState.rect.height,
-                                scale: 1,
-                                borderRadius: "0px",
-                                zIndex: 48, // Rule 4: Start below header
-                            }}
-                            animate={activeState.phase === 'uplift' ? {
-                                // Phase 1: Uplift (Selection Intent)
-                                top: activeState.rect.top,
-                                left: activeState.rect.left,
-                                width: activeState.rect.width,
-                                height: activeState.rect.height,
-                                scale: 1.06,
-                                borderRadius: "0px",
-                                boxShadow: "0 10px 30px -10px rgba(0,0,0,0.3)",
-                                zIndex: 48,
-                                transition: { duration: 0.3, ease: "easeOut" }
-                            } : {
-                                // Phase 2: Center (Requires Load & Min Time)
-                                top: activeState.targetRect.top,
-                                left: activeState.targetRect.left,
-                                width: activeState.targetRect.width,
-                                height: activeState.targetRect.height,
-                                scale: 1,
-                                boxShadow: "none",
-                                borderRadius: "0px",
-                                zIndex: 48, // Maintain z-48 during flight
-                                transition: {
-                                    boxShadow: { duration: 0.2, ease: "linear" },
-                                    default: { duration: 0.85, ease: [0.22, 1, 0.36, 1] }
-                                },
-                                transitionEnd: {
-                                    borderRadius: "4px",
-                                    zIndex: 100 // Rule 4: Specific late promotion
-                                }
-                            }}
-                            exit={{
-                                // Rule 6: True Reversal
-                                top: activeState.rect.top,
-                                left: activeState.rect.left,
-                                width: activeState.rect.width,
-                                height: activeState.rect.height,
-                                scale: 1,
-                                borderRadius: "0px",
-                                boxShadow: "none",
-                                opacity: 1,
-                                zIndex: 48, // Demote immediately on exit
-                                transition: {
-                                    duration: 0.65,
-                                    ease: "easeInOut" // No spring
-                                }
-                            }}
-                            className="block overflow-hidden relative"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleClose();
-                            }}
-                        >
-                            {/* 1. Low-Res / Cached Preview (Immediate) */}
-                            {/* We use a standard img tag to ensure it uses the browser cache of the 'currentSrc' immediately */}
-                            <img
-                                src={activeState.initialSrc}
-                                alt={activeState.photo.alt}
-                                className="absolute inset-0 w-full h-full object-contain"
-                            />
+                        {/* Layer 1: Low-Res Cached Image (Immediate) */}
+                        <img
+                            src={activeState.initialSrc}
+                            alt={activeState.photo.alt}
+                            className="absolute inset-0 w-full h-full object-cover"
+                        />
 
-                            {/* 2. High-Res Image (Fades in) */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: activeState.isLoaded ? 1 : 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="absolute inset-0 w-full h-full"
-                            >
-                                <Image
-                                    src={activeState.photo.src}
-                                    alt={activeState.photo.alt}
-                                    fill
-                                    className="object-contain"
-                                    priority
-                                    onLoad={() => {
-                                        setActiveState(prev => prev ? { ...prev, isLoaded: true } : null);
-                                    }}
-                                />
-                            </motion.div>
+                        {/* Layer 2: High-Res Image (Progressive Enhancement) */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: activeState.isLoaded ? 1 : 0 }}
+                            transition={{ duration: 0.4 }}
+                            className="absolute inset-0 w-full h-full"
+                        >
+                            <Image
+                                src={activeState.photo.src}
+                                alt={activeState.photo.alt}
+                                fill
+                                className="object-cover"
+                                priority
+                                quality={90}
+                                onLoad={() => {
+                                    setActiveState(prev => prev ? { ...prev, isLoaded: true } : null);
+                                }}
+                            />
                         </motion.div>
                     </motion.div>
                 )}
