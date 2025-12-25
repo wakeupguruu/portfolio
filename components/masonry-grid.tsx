@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface Photo {
@@ -18,26 +18,46 @@ interface MasonryGridProps {
     columns: Photo[][];
 }
 
-export function MasonryGrid({ columns }: MasonryGridProps) {
-    const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+interface ActivePhotoState {
+    photo: Photo;
+    rect: DOMRect;
+    phase: 'uplift' | 'centered';
+}
 
-    // Helper to ensure we render the right number of columns on mobile vs desktop.
-    // For simplicity and per my preference, I'll keep the "3 column" logic but on mobile it'll just stack.
-    // I'll use Flexbox or Grid. Flex row of Flex cols is best for manual control.
+export function MasonryGrid({ columns }: MasonryGridProps) {
+    const [activeState, setActiveState] = useState<ActivePhotoState | null>(null);
 
     // Lock body scroll when modal is open
-    // (Optional: handle scrollbar shift if needed, but basic overflow-hidden is a good start)
     useEffect(() => {
-        if (selectedPhoto) {
+        if (activeState) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "";
         }
-        // Cleanup function to ensure scroll is re-enabled if component unmounts while modal is open
         return () => {
             document.body.style.overflow = "";
         };
-    }, [selectedPhoto]);
+    }, [activeState]);
+
+    const handlePhotoClick = (photo: Photo, e: React.MouseEvent<HTMLDivElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+
+        // 1. Set initial state with the captured rect
+        setActiveState({
+            photo,
+            rect,
+            phase: 'uplift'
+        });
+
+        // 2. Schedule the move to center after 1 second (as requested "after a sec or two")
+        setTimeout(() => {
+            setActiveState(prev => prev ? { ...prev, phase: 'centered' } : null);
+        }, 1200);
+    };
+
+    const handleClose = () => {
+        setActiveState(null);
+    };
 
     return (
         <>
@@ -49,32 +69,30 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                             <motion.div
                                 key={photo.id}
                                 className="group cursor-zoom-in"
-                                // Remove initial/animate for now to avoid conflict with layoutId or keep it simple
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: i * 0.1 }}
-                                onClick={() => setSelectedPhoto(photo)}
+                                onClick={(e) => handlePhotoClick(photo, e)}
                             >
                                 {/* Wrapper to handle the "Ghost Slot" effect */}
-                                {/* We keep the slot taking up space, but the visual "moves" to the modal via layoutId */}
-                                <div className="relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800">
-                                    <motion.div
-                                        layoutId={`photo-${photo.id}`}
-                                        className="w-full h-full"
-                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                    >
+                                {/* Content is invisible (opacity-0) if this specific photo is active, acting as a placeholder */}
+                                <div className={cn(
+                                    "relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800 transition-opacity duration-300",
+                                    activeState?.photo.id === photo.id ? "opacity-0" : "opacity-100"
+                                )}>
+                                    <div className="w-full h-full">
                                         <Image
                                             src={photo.src}
                                             alt={photo.alt}
                                             width={800}
                                             height={600}
                                             className={cn(
-                                                "w-full h-auto max-h-[600px] object-cover transition-transform duration-700 group-hover:scale-105",
+                                                "w-full h-auto max-h-[600px] object-cover transition-transform duration-700", // Removed group-hover:scale-105
                                                 photo.className
                                             )}
                                             sizes="(max-width: 768px) 100vw, 33vw"
                                         />
-                                    </motion.div>
+                                    </div>
                                 </div>
                                 {photo.caption && (
                                     <p className="mt-4 text-xs font-oxygen tracking-widest uppercase text-muted-foreground text-center transition-colors duration-300 group-hover:text-foreground">
@@ -88,52 +106,108 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
             </div>
 
             {/* Lightbox Overlay */}
-            {selectedPhoto && (
-                <div
-                    className="fixed inset-0 z-100 flex items-center justify-center bg-transparent backdrop-blur-xl p-4 cursor-zoom-out"
-                    onClick={() => setSelectedPhoto(null)}
-                >
-                    <motion.div
-                        layoutId={`photo-${selectedPhoto.id}`}
-                        className="relative w-full max-w-7xl h-[85vh] flex flex-col items-center justify-center"
-                        onClick={(e) => e.stopPropagation()} // Allow clicking image to do nothing, or zoom out if desired (propagation logic)
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    >
-                        {/* Use object-contain to never crop. The layoutId will morph width/height/position. */}
-                        <Image
-                            src={selectedPhoto.src}
-                            alt={selectedPhoto.alt}
-                            fill
-                            className="object-contain cursor-zoom-out"
-                            onClick={() => setSelectedPhoto(null)}
-                            priority // Avoid flash of missing image
-                        />
-                    </motion.div>
-
-                    {/* Close button - fade in separately so it doesn't pop */}
+            <AnimatePresence>
+                {activeState && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute top-6 right-6 text-foreground cursor-pointer p-2 hover:opacity-70 transition-opacity z-101"
-                        onClick={() => setSelectedPhoto(null)}
+                        className="fixed inset-0 z-100 bg-transparent backdrop-blur-xl cursor-zoom-out"
+                        onClick={handleClose}
                     >
-                        <span className="text-2xl">✕</span>
-                    </motion.div>
-
-                    {selectedPhoto.caption && (
+                        {/* 
+                            The Animated Image Container.
+                            We manually animate layout properties to control the exact "Uplift -> Pause -> Center" sequence.
+                        */}
                         <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ delay: 0.2 }}
-                            className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80 z-101"
+                            initial={{
+                                top: activeState.rect.top,
+                                left: activeState.rect.left,
+                                width: activeState.rect.width,
+                                height: activeState.rect.height,
+                                x: 0,
+                                y: 0,
+                                scale: 1, // Start exactly where grid item is
+                                boxShadow: "none"
+                            }}
+                            animate={activeState.phase === 'uplift' ? {
+                                // Phase 1: Uplift "a little"
+                                top: activeState.rect.top,
+                                left: activeState.rect.left,
+                                width: activeState.rect.width,
+                                height: activeState.rect.height, // Keep dimensions relative to grid to start
+                                scale: 1.05, // "Uplifted a little"
+                                boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)", // "Little shadow"
+                                transition: { duration: 0.4, ease: "easeOut" }
+                            } : {
+                                // Phase 2: Center (after delay)
+                                top: "50%",
+                                left: "50%",
+                                width: "auto", // Allow it to expand to natural aspect ratio (constrained by max-w/h)
+                                height: "85vh",
+                                x: "-50%",
+                                y: "-50%",
+                                scale: 1,
+                                boxShadow: "none", // Optional: keep shadow or remove
+                                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } // Smooth "travel"
+                            }}
+                            exit={{
+                                // Return to origin on close
+                                top: activeState.rect.top,
+                                left: activeState.rect.left,
+                                width: activeState.rect.width,
+                                height: activeState.rect.height,
+                                x: 0,
+                                y: 0,
+                                scale: 1,
+                                opacity: 0,
+                                transition: { duration: 0.5 }
+                            }}
+                            // Use absolute for initial positioning, fixed context
+                            className="absolute block"
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            {selectedPhoto.caption}
+                            {/* 
+                                Inner Image:
+                                We switch to object-contain to show the "real image without crops".
+                                To prevent jarring layout shifts, we can just use object-contain and have the container wrapper
+                                define the bounds. If the wrapper matches the aspect ratio of the Rect, contain works. 
+                            */}
+                            <Image
+                                src={activeState.photo.src}
+                                alt={activeState.photo.alt}
+                                fill
+                                className="object-contain"
+                                priority
+                            />
                         </motion.div>
-                    )}
-                </div>
-            )}
+
+                        {/* Controls (Close, Caption) - Only show when centered or after uplift */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="absolute top-6 right-6 text-foreground cursor-pointer p-2 hover:opacity-70 transition-opacity z-101"
+                            onClick={handleClose}
+                        >
+                            <span className="text-2xl">✕</span>
+                        </motion.div>
+
+                        {activeState.photo.caption && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80 z-101"
+                            >
+                                {activeState.photo.caption}
+                            </motion.div>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 }
