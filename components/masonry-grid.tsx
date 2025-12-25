@@ -48,10 +48,11 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
     // Transition Uplift -> Centered (Purely time-based, Step 2: No load blocking)
     useEffect(() => {
         if (activeState && activeState.phase === 'uplift') {
-            // Step 1 Duration: 300ms
+            // Rule 3: Overlap phases to prevent velocity reset
+            // Uplift duration is 300ms, strictly switch at 250ms
             const timer = setTimeout(() => {
                 setActiveState(prev => prev ? { ...prev, phase: 'centered' } : null);
-            }, 300);
+            }, 250);
             return () => clearTimeout(timer);
         }
     }, [activeState?.phase]);
@@ -59,7 +60,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
     const handlePhotoClick = (photo: Photo, e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const imgElement = e.currentTarget.querySelector("img");
-        const initialSrc = imgElement?.currentSrc || photo.src; // Fallback to src if currentSrc fails
+        const initialSrc = imgElement?.currentSrc || photo.src;
 
         // Calculate target centered rect (90vw / 90vh)
         const viewportWidth = window.innerWidth;
@@ -109,7 +110,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                             >
                                 <div className={cn(
                                     "relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800 transition-opacity duration-300",
-                                    (activeState?.photo.id === photo.id || exitingPhotoId === photo.id) ? "opacity-0" : "opacity-100"
+                                    (activeState?.photo.id === photo.id || exitingPhotoId === photo.id) ? "opacity-0" : "opacity-100" // Rule 1: Immediate hide
                                 )}>
                                     <div className="w-full h-full">
                                         <Image
@@ -145,26 +146,26 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                         }}
                         exit={{ opacity: 0, transition: { duration: 0.4 } }}
                         transition={{
-                            // Step 5: Delay backdrop blur to trailing edge
+                            // Rule 5: Blur triggers after motion starts (0.2s delay)
                             delay: activeState.phase === 'centered' ? 0.2 : 0,
                             duration: 0.5
                         }}
-                        className="fixed inset-0 z-[45] bg-background/80 backdrop-blur-md cursor-zoom-out" // Step 4: z-45 < Header z-50
+                        className="fixed inset-0 z-[45] bg-background/80 backdrop-blur-md cursor-zoom-out"
                         onClick={handleClose}
                     >
                         <motion.div
                             initial={{
-                                position: "fixed",
+                                position: "fixed", // Rule 2: Fixed from start
                                 top: activeState.rect.top,
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
                                 height: activeState.rect.height,
                                 scale: 1,
                                 borderRadius: "0px",
-                                zIndex: 48, // Step 4: Start below header
+                                zIndex: 48, // Rule 4: Start below header
                             }}
                             animate={activeState.phase === 'uplift' ? {
-                                // Step 1: Uplift
+                                // Phase 1: Uplift
                                 top: activeState.rect.top,
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
@@ -175,7 +176,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 zIndex: 48,
                                 transition: { duration: 0.3, ease: "easeOut" }
                             } : {
-                                // Step 3: Center Movement
+                                // Phase 2: Center
                                 top: activeState.targetRect.top,
                                 left: activeState.targetRect.left,
                                 width: activeState.targetRect.width,
@@ -183,17 +184,18 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 scale: 1,
                                 boxShadow: "none",
                                 borderRadius: "0px",
-                                zIndex: 48, // Stay below header during move
+                                zIndex: 48, // Maintain z-48 during flight
                                 transition: {
-                                    boxShadow: { duration: 0.2, ease: "linear" }, // Step 3: Shadow fades early
+                                    boxShadow: { duration: 0.2, ease: "linear" },
                                     default: { duration: 0.85, ease: [0.22, 1, 0.36, 1] }
                                 },
                                 transitionEnd: {
-                                    borderRadius: "4px", // Step 7: Soften after arrival
+                                    borderRadius: "4px",
+                                    zIndex: 100 // Rule 4: Specific late promotion
                                 }
                             }}
                             exit={{
-                                // Step 8: Return
+                                // Rule 6: True Reversal
                                 top: activeState.rect.top,
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
@@ -202,10 +204,10 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 borderRadius: "0px",
                                 boxShadow: "none",
                                 opacity: 1,
-                                zIndex: 48, // Step 8: Pass behind header again
+                                zIndex: 48, // Demote immediately on exit
                                 transition: {
                                     duration: 0.65,
-                                    ease: "easeInOut" // Strict no bounce
+                                    ease: "easeInOut" // No spring
                                 }
                             }}
                             className="block overflow-hidden relative"
