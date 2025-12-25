@@ -117,42 +117,43 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                     >
                         {/* 
                             The Animated Image Container.
-                            We manually animate layout properties to control the exact "Uplift -> Pause -> Center" sequence.
+                            We manually animate "top/left/width/height" to move from Grid Spot -> Center.
                         */}
                         <motion.div
                             initial={{
+                                position: "fixed",
                                 top: activeState.rect.top,
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
                                 height: activeState.rect.height,
                                 x: 0,
                                 y: 0,
-                                scale: 1, // Start exactly where grid item is
-                                boxShadow: "none"
+                                zIndex: 101, // Ensure it's above the backdrop
                             }}
                             animate={activeState.phase === 'uplift' ? {
                                 // Phase 1: Uplift "a little"
                                 top: activeState.rect.top,
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
-                                height: activeState.rect.height, // Keep dimensions relative to grid to start
-                                scale: 1.05, // "Uplifted a little"
-                                boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)", // "Little shadow"
+                                height: activeState.rect.height,
+                                scale: 1.1,
+                                boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
                                 transition: { duration: 0.4, ease: "easeOut" }
                             } : {
-                                // Phase 2: Center (after delay)
+                                // Phase 2: Travel to Center
+                                // We use fixed values that guarantee centering clearly
                                 top: "50%",
                                 left: "50%",
-                                width: "auto", // Allow it to expand to natural aspect ratio (constrained by max-w/h)
-                                height: "85vh",
+                                width: "90vw",
+                                height: "90vh",
                                 x: "-50%",
                                 y: "-50%",
-                                scale: 1,
-                                boxShadow: "none", // Optional: keep shadow or remove
-                                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } // Smooth "travel"
+                                scale: 1, // Reset scale as we are now growing the container itself
+                                boxShadow: "none",
+                                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
                             }}
                             exit={{
-                                // Return to origin on close
+                                // Return to origin
                                 top: activeState.rect.top,
                                 left: activeState.rect.left,
                                 width: activeState.rect.width,
@@ -163,44 +164,26 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 opacity: 0,
                                 transition: { duration: 0.5 }
                             }}
-                            // Use absolute for initial positioning, fixed context
-                            className="absolute block"
+                            className="block overflow-hidden rounded-md" // Optional rounding
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {/* 
-                                Inner Image:
-                                We switch to object-contain to show the "real image without crops".
-                                To prevent jarring layout shifts, we can just use object-contain and have the container wrapper
-                                define the bounds. If the wrapper matches the aspect ratio of the Rect, contain works. 
-                            */}
                             <Image
                                 src={activeState.photo.src}
                                 alt={activeState.photo.alt}
                                 fill
-                                className="object-contain"
+                                className="object-contain" // Ensures full image is visible, no crop
                                 priority
                             />
                         </motion.div>
 
-                        {/* Controls (Close, Caption) - Only show when centered or after uplift */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="absolute top-6 right-6 text-foreground cursor-pointer p-2 hover:opacity-70 transition-opacity z-101"
-                            onClick={handleClose}
-                        >
-                            <span className="text-2xl">✕</span>
-                        </motion.div>
-
-                        {activeState.photo.caption && (
+                        {/* Caption - Only show when centered */}
+                        {activeState.photo.caption && activeState.phase === 'centered' && (
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0 }}
-                                transition={{ delay: 0.5 }}
-                                className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80 z-101"
+                                transition={{ delay: 0.3 }}
+                                className="absolute bottom-8 left-0 right-0 text-center text-sm font-oxygen tracking-widest uppercase text-foreground/80 z-102"
                             >
                                 {activeState.photo.caption}
                             </motion.div>
@@ -211,4 +194,3 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
         </>
     );
 }
-
