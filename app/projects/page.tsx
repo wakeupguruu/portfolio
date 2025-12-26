@@ -14,9 +14,12 @@ export default function ProjectsPage() {
                 {/* Intro Section */}
                 <Container>
                     <Section className="mb-24">
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 scale-y-110 origin-left">PROJECTS</h1>
+                        <p className="text-4xl md:text-5xl font-black tracking-tighter mb-8 scale-y-110 origin-left text-(--hello-text)">
+                            Find my favorite projects on <a className="underline decoration-accent hover:decoration-(--hello-text) transition-colors duration-300 underline-offset-4" href="https://github.com/wakeupguruu" target="_blank" rel="noopener noreferrer">GitHub</a> and by<br />
+                            scrolling down.
+                        </p>
                         <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground font-oxygen">
-                            A selection of my recent work in web development and design. I focus on creating intuitive, performance-driven interfaces that solve real user problems.
+                            If you want to get an idea of my coding style, check out my <a href="https://github.com/wakeupguruu" target="_blank" rel="noopener noreferrer" className="text-(--hello-text) hover:underline underline-offset-4">open source projects on GitHub</a>. Or find a selection of my freelance projects here.
                         </p>
                     </Section>
                 </Container>
