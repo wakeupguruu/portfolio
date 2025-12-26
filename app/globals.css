@@ -196,7 +196,11 @@ a:hover {
   text-decoration-color: var(--color-underline);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
-  transition-property: color, text-decoration-color;
-  transition-duration: 300ms;
   transition-timing-function: ease-in-out;
+}
+
+/* Global Text Selection */
+::selection {
+  background: var(--accent);
+  color: var(--background);
 }
