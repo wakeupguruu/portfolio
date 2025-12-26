@@ -38,7 +38,7 @@ export function PhotographsScroll({ children }: PhotographsScrollProps) {
     return (
         <div
             ref={scrollRef}
-            className="flex gap-4 overflow-x-auto pb-8 w-full no-scrollbar"
+            className="flex gap-4 overflow-x-auto w-full no-scrollbar"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
             {children}

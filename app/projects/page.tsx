@@ -3,86 +3,70 @@ import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { PROJECTS } from "./data";
 import Link from "next/link";
+import Image from "next/image";
 import { MinimalArrow } from "@/components/minimal-arrow";
+import { PhotographsScroll } from "@/components/photographs-scroll";
 
 export default function ProjectsPage() {
     return (
         <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
             <Header />
 
-            <div className="pt-24 pb-24 w-full overflow-x-hidden">
+            <div className="pt-24  w-full overflow-x-hidden">
                 {/* Intro Section */}
                 <Container>
                     <Section className="mb-24">
-                        <p className="text-4xl md:text-5xl font-black tracking-tighter mb-8 scale-y-110 origin-left text-(--hello-text)">
-                            Find my favorite projects on <a className="underline decoration-accent hover:decoration-(--hello-text) transition-colors duration-300 underline-offset-4" href="https://github.com/wakeupguruu" target="_blank" rel="noopener noreferrer">GitHub</a> and by<br />
-                            scrolling down.
+                        <p className="font-tasa text-4xl pb-8 font-bold leading-none tracking-tight text-(--hello-text) sm:text-[3.4rem] max-w-5xl">
+                            Find my favorite projects on <a className="underline decoration-5 decoration-accent hover:decoration-(--hello-text) transition-colors duration-300 underline-offset-4" href="https://github.com/wakeupguruu" target="_blank" rel="noopener noreferrer">GitHub</a> and by scrolling down.
                         </p>
-                        <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground font-oxygen">
-                            If you want to get an idea of my coding style, check out my <a href="https://github.com/wakeupguruu" target="_blank" rel="noopener noreferrer" className="text-(--hello-text) hover:underline underline-offset-4">open source projects on GitHub</a>. Or find a selection of my freelance projects here.
+                        <p className="max-w-3xl text-[1.05rem] tracking-tight leading-relaxed font-oxygen text-(--description-text)">
+                            If you want to get an idea of my coding style, check out my <a href="https://github.com/wakeupguruu" target="_blank" rel="noopener noreferrer" className="text-(--hello-text) hover:underline underline-offset-4">open source projects on GitHub</a>.
                         </p>
                     </Section>
                 </Container>
 
                 {/* Projects List */}
-                <Section className="mb-32">
-                    <Container>
-                        <div className="flex flex-col">
-                            {PROJECTS.map((project, index) => (
-                                <div
-                                    key={project.title}
-                                    className="group relative border-t border-border py-12 transition-colors hover:bg-muted/50"
-                                >
-                                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-
-                                        {/* Year & Category - Left Column */}
-                                        <div className="md:col-span-3 flex flex-row md:flex-col justify-between md:justify-start gap-2">
-                                            <span className="font-mono text-sm text-muted-foreground">{project.year}</span>
-                                            <span className="font-oxygen text-sm text-foreground/80">{project.category}</span>
-                                        </div>
-
-                                        {/* Title & Description - Middle Column */}
-                                        <div className="md:col-span-6">
-                                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 group-hover:text-accent transition-colors">
-                                                <Link href={project.href} className="flex items-center gap-2">
-                                                    {project.title}
-                                                </Link>
-                                            </h2>
-                                            <p className="text-muted-foreground leading-relaxed font-oxygen max-w-xl">
-                                                {project.description}
-                                            </p>
-                                        </div>
-
-                                        {/* Links/Arrow - Right Column */}
-                                        <div className="md:col-span-3 flex md:justify-end items-start pt-2 md:pt-0">
-                                            <div className="flex gap-4">
-                                                {project.links.length > 0 ? (
-                                                    project.links.map(link => (
-                                                        <a
-                                                            key={link.label}
-                                                            href={link.url}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="text-sm font-bold uppercase tracking-wider hover:underline underline-offset-4"
-                                                        >
-                                                            {link.label}
-                                                        </a>
-                                                    ))
-                                                ) : (
-                                                    <Link href={project.href} className="inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
-                                                        <MinimalArrow className="w-8 h-8 -rotate-45" />
-                                                    </Link>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
+                <div className="flex flex-col gap-0 mb-10">
+                    {PROJECTS.map((project, index) => (
+                        <Section key={project.title} className="w-full border-t border-(--border-separator) pt-6 mb-12 md:mb-20">
+                            <Container>
+                                <div className="flex flex-col mb-8">
+                                    <span className="font-oxygen text-sm tracking-tight text-(--description-text) mb-2">
+                                        {project.category} ({project.year})
+                                    </span>
+                                    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight underline decoration-4 decoration-accent underline-offset-8">
+                                        {project.title}
+                                    </h2>
                                 </div>
-                            ))}
-                            {/* Bottom Border for the last item */}
-                            <div className="border-t border-border"></div>
-                        </div>
-                    </Container>
-                </Section>
+                            </Container>
+
+                            {/* Horizontal Scroll Gallery */}
+                            <div className="mb-5 pl-4 md:pl-0">
+                                <PhotographsScroll>
+                                    {project.images.map((imgSrc, i) => (
+                                        <div key={i} className="relative h-[400px] md:h-[500px] w-auto aspect-3/4 shrink-0 snap-center bg-muted overflow-hidden">
+                                            <Image
+                                                src={imgSrc}
+                                                alt={`${project.title} image ${i + 1}`}
+                                                fill
+                                                className="object-cover transition-transform duration-700"
+                                                sizes="(max-width: 768px) 300px, 500px"
+                                            />
+                                        </div>
+                                    ))}
+                                </PhotographsScroll>
+                            </div>
+
+                            <Container>
+                                <div>
+                                    <Link href={project.href} className="inline-flex items-center gap-2 text-sm scale-y-[1.1] font-light tracking-normal uppercase hover:underline underline-offset-4">
+                                        MORE ABOUT THE PROJECT <MinimalArrow className="w-4 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-500 text-(--text-more-arrow)" />
+                                    </Link>
+                                </div>
+                            </Container>
+                        </Section>
+                    ))}
+                </div>
 
                 <Footer />
             </div>
