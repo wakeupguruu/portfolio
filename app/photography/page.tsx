@@ -18,7 +18,9 @@ export default function PhotographyPage() {
           <Section className="mb-24">
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 scale-y-110 origin-left">PHOTOGRAPHY</h1>
             <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground font-oxygen">
-              My photography has become more personal in recent years. Instead of chasing perfectly composed scenes, I capture the raw, unfiltered beauty of everyday life. This spontaneous approach frees me creatively and brings a joy I haven't felt in years.
+              I don’t own a professional camera, and I’m not chasing titles.
+              I started clicking photos in my late teens, using the phone I had, driven by the urge to freeze moments before they disappear.
+              This is my way of seeing the world.
             </p>
           </Section>
         </Container>
