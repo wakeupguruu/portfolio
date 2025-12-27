@@ -29,7 +29,7 @@ export default function ProjectsPage() {
                 {/* Projects List */}
                 <div className="flex flex-col gap-0 mb-0">
                     {PROJECTS.map((project, index) => (
-                        <Section key={project.title} className={`w-full border-t border-(--border-separator) pt-6 ${index === PROJECTS.length - 1 ? 'mb-8' : 'mb-12 md:mb-20'}`}>
+                        <Section key={project.title} className={`w-full border-t border-(--border-separator) pt-6 ${index === PROJECTS.length - 1 ? 'mb-25 md:mb-25' : 'mb-12 md:mb-20'}`}>
                             <Container>
                                 <div className="flex flex-col mb-8">
                                     <span className="font-oxygen text-sm tracking-tight text-(--description-text) mb-2">
