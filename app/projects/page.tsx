@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MinimalArrow } from "@/components/minimal-arrow";
 import { PhotographsScroll } from "@/components/photographs-scroll";
+import { SayHello } from "@/components/say-hello";
 
 export default function ProjectsPage() {
     return (
@@ -26,9 +27,9 @@ export default function ProjectsPage() {
                 </Container>
 
                 {/* Projects List */}
-                <div className="flex flex-col gap-0 mb-10">
+                <div className="flex flex-col gap-0 mb-0">
                     {PROJECTS.map((project, index) => (
-                        <Section key={project.title} className="w-full border-t border-(--border-separator) pt-6 mb-12 md:mb-20">
+                        <Section key={project.title} className={`w-full border-t border-(--border-separator) pt-6 ${index === PROJECTS.length - 1 ? 'mb-8' : 'mb-12 md:mb-20'}`}>
                             <Container>
                                 <div className="flex flex-col mb-8">
                                     <span className="font-oxygen text-sm tracking-tight text-(--description-text) mb-2">
@@ -68,6 +69,7 @@ export default function ProjectsPage() {
                     ))}
                 </div>
 
+                <SayHello />
                 <Footer />
             </div>
         </div>
