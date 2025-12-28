@@ -88,19 +88,18 @@ export default function BlogPage() {
                 </Container>
 
                 {/* Pagination Footer */}
-                <Section className="mb-24 mt-12">
+                <Section className="mb-12 md:mb-24 mt-12">
                     <Container>
-                        <div className="w-full flex flex-col items-center justify-center gap-4">
+                        <div className="w-full md:w-[79%] flex flex-col items-center justify-center gap-4">
                             <div className="flex items-center gap-12 md:gap-24">
-                                <MinimalArrow className="w-6 h-6 rotate-[-135deg] text-muted-foreground" />
-                                <span className="font-tasa text-2xl font-bold tracking-widest">Guru</span>
-                                <MinimalArrow className="w-6 h-6 rotate-45 text-foreground" />
+                                <MinimalArrow className="w-6 h-6 rotate-[-135deg] text-muted-foreground z-0" />
+                                <span className="font-tasa text-2xl font-bold tracking-widest">
+                                    G<span className="text-accent">u</span>ru
+                                </span>
+                                <MinimalArrow className="w-6 h-6 rotate-45 text-foreground z-0" />
                             </div>
                             <div className="flex items-center gap-3 font-mono text-sm tracking-widest text-muted-foreground">
                                 <span className="text-foreground font-bold">1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
                             </div>
                         </div>
                     </Container>

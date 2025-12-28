@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, VT323, Source_Code_Pro } from "next/font/google"; // Added VT323
+import { Geist, Geist_Mono, Inter, VT323, Source_Code_Pro, Newsreader } from "next/font/google"; // Added VT323 and Newsreader
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -30,6 +30,12 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  style: ["normal", "italic"]
 });
 
 const vt323 = VT323({
@@ -83,7 +89,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${tasa.variable} ${robotFlex.variable} ${oswald.variable} ${oxygen.variable} ${inter.variable} ${geistMono.variable} ${fredericka.variable} ${croissant.variable} ${vt323.variable} ${sourceCodePro.variable} font-sans antialiased`}
+        className={`${tasa.variable} ${robotFlex.variable} ${oswald.variable} ${oxygen.variable} ${inter.variable} ${newsreader.variable} ${geistMono.variable} ${fredericka.variable} ${croissant.variable} ${vt323.variable} ${sourceCodePro.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
