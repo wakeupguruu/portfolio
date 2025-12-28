@@ -42,7 +42,7 @@ export default function Home() {
       <Section className="pt-24">
         <Container>
           <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-[3.4rem] max-w-4xl">
-            <span>Hi, I'm Guru. Developer with a taste for music.</span>
+            <span>Hi, I'm <Link href="/about" className="hover:underline underline-offset-4 decoration-2 decoration-accent transition-all">Guru</Link>. Developer with a taste for music.</span>
 
             <HeroAnimation className="align-bottom">
               <Image
