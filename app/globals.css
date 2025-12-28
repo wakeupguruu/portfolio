@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
 
 :root {
   /* Light by default (or can be flipped, but usually light is default for root) */
@@ -151,6 +152,7 @@ a:hover {
   --border-separator: #d6d3d1;
   --color-underline: var(--accent);
   --article-border: #5d674f; /* Dark olive for light mode */
+  --blog-text: #57534e; /* Darker than description-text for blog readability */
 
   /* More Photographs Card */
   --bg-more-card: #f5f5f4;
@@ -169,6 +171,7 @@ a:hover {
   --text-footer: #ededed; /* Using opacity in usage or explicit color */
   --border-separator: #57534d;
   --article-border: #d8d8c0; /* Pale olive for dark mode */
+  --blog-text: #d6d3d1; /* Lighter than description-text for blog readability */
 
   /* More Photographs Card */
   --bg-more-card: #292524;
