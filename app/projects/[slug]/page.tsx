@@ -71,19 +71,21 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                         <Section className="mb-32">
                             <div className="w-full border-t border-b border-(--border-separator) py-12 md:py-16">
                                 <h3 className="font-tasa text-2xl font-bold mb-8">Related Articles</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="flex flex-col gap-8 w-full md:w-2/3">
                                     {project.articleLinks.map((article, i) => (
-                                        <Link key={i} href={article.url} target="_blank" className="group block">
-                                            <article className="border border-(--border-separator) p-6 hover:border-(--border-hover) transition-colors h-full flex flex-col justify-between">
-                                                <div>
-                                                    <span className="text-xs font-mono uppercase text-muted-foreground mb-2 block">{article.label}</span>
-                                                    <h4 className="text-xl font-bold group-hover:underline underline-offset-4 decoration-1">{article.title}</h4>
-                                                </div>
-                                                <div className="mt-8 flex justify-end">
-                                                    <MinimalArrow className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
-                                                </div>
-                                            </article>
-                                        </Link>
+                                        <div key={i} className="border border-(--border-separator) p-6 md:p-8">
+                                            <p className="font-source-code text-sm md:text-base leading-relaxed text-(--description-text)">
+                                                {article.description || `Read more about this project on ${article.label}`}
+                                                <span className="mx-2 text-foreground">→</span>
+                                                <Link
+                                                    href={article.url}
+                                                    target="_blank"
+                                                    className="underline underline-offset-4 decoration-1 hover:decoration-2 text-foreground"
+                                                >
+                                                    {article.title}
+                                                </Link>
+                                            </p>
+                                        </div>
                                     ))}
                                 </div>
                             </div>

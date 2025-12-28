@@ -7,7 +7,7 @@ export interface Project {
   href: string;
   images: string[];
   links: { label: string; url: string }[];
-  articleLinks?: { title: string; url: string; label: string }[];
+  articleLinks?: { title: string; url: string; label: string; description?: string }[];
 }
 
 export const PROJECTS: Project[] = [
@@ -25,9 +25,24 @@ export const PROJECTS: Project[] = [
     ],
     links: [],
     articleLinks: [
-      { label: "Blog", title: "Building EdVid: The Journey", url: "#" },
-      { label: "LinkedIn", title: "EdVid Launch Post", url: "#" },
-      { label: "LinkedIn", title: "EdVid Technical Deep Dive", url: "#" }
+      { 
+        label: "Blog", 
+        title: "Building EdVid: The Journey", 
+        url: "#",
+        description: "I documented the entire process of building this tool, from the initial idea to the final product."
+      },
+      { 
+        label: "LinkedIn", 
+        title: "EdVid Launch Post", 
+        url: "#",
+        description: "When launching EdVid, I shared my thoughts on the future of AI in education."
+      },
+      { 
+        label: "LinkedIn", 
+        title: "EdVid Technical Deep Dive", 
+        url: "#",
+        description: "A technical breakdown of how I integrated Manim with a web interface."
+      }
     ]
   },
   {
