@@ -1,19 +1,49 @@
-import { Container, Section } from "@/components/ui/section";
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Container, Section } from "@/components/ui/section";
+import { SayHello } from "@/components/say-hello";
 import { POSTS } from "../data";
 import { notFound } from "next/navigation";
-import { MinimalArrow } from "@/components/minimal-arrow";
-import Link from "next/link";
-import { SayHello } from "@/components/say-hello";
-import Image from "next/image";
+import fs from "fs/promises";
+import path from "path";
+import ReactMarkdown from "react-markdown";
+import { SpecialBox } from "@/components/ui/special-box";
+import { Metadata } from "next";
 
-// This is a dynamic route component
-export default async function BlogPostPage({
-    params,
-}: {
+interface PageParams {
     params: Promise<{ slug: string }>;
-}) {
+}
+
+export async function generateStaticParams() {
+    return POSTS.map((post) => ({
+        slug: post.slug,
+    }));
+}
+
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
+    const { slug } = await params;
+    const post = POSTS.find((p) => p.slug === slug);
+
+    if (!post) {
+        return {
+            title: "Post Not Found",
+        };
+    }
+
+    return {
+        title: `${post.title} | Portfolio`,
+        description: post.excerpt,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            type: "article",
+            publishedTime: post.date, // Note: date format might need parsing if structured data requires ISO
+        },
+    };
+}
+
+export default async function BlogPostPage({ params }: PageParams) {
     const { slug } = await params;
     const post = POSTS.find((p) => p.slug === slug);
 
@@ -21,111 +51,62 @@ export default async function BlogPostPage({
         notFound();
     }
 
-    // Filter out current post for "My other articles"
-    const otherPosts = POSTS.filter((p) => p.slug !== slug);
+    const filePath = path.join(process.cwd(), "content", "blogs", `${slug}.md`);
+    let content = "";
 
-    // Group by year
-    const groupedPosts = otherPosts.reduce((acc, p) => {
-        const year = p.date.split(" ").pop() || "Other";
-        if (!acc[year]) acc[year] = [];
-        acc[year].push(p);
-        return acc;
-    }, {} as Record<string, typeof POSTS>);
-
-    // Sort years descending
-    const years = Object.keys(groupedPosts).sort((a, b) => Number(b) - Number(a));
+    try {
+        content = await fs.readFile(filePath, "utf-8");
+    } catch (error) {
+        console.error(`Error reading markdown file for slug ${slug}:`, error);
+        notFound();
+    }
 
     return (
-        <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: 'var(--font-newsreader)' }}>
+        <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
             <Header />
 
-            <article className="pt-32 md:pt-40 pb-0">
-                <Container className="max-w-2xl">
-
-                    {/* Header Section: Title Left Aligned */}
-                    <header className="mb-12">
-                        <h1 className="text-4xl md:text-6xl font-bold leading-[1.1] mb-6 tracking-tight text-[#1c1917] dark:text-[#ededed] text-left">
-                            {post.title}
-                        </h1>
-
-                        <div className="flex items-center gap-4 mb-10 text-sm text-muted-foreground font-mono tracking-wide">
-                            <span className="uppercase">{post.date}</span>
-                        </div>
-
-                        {/* Main Image with Caption */}
-                        {post.image && (
-                            <figure className="mb-14">
-                                <div className="relative w-full aspect-[16/9] overflow-hidden rounded-sm bg-muted/20">
-                                    <img
-                                        src={post.image}
-                                        alt={post.title}
-                                        className="object-cover w-full h-full"
-                                    />
+            <div className="pt-24 w-full overflow-x-hidden">
+                <Container>
+                    <Section className="mb-12 md:mb-20">
+                        <div>
+                            <div className="mb-8">
+                                <h1 className="max-w-3xl font-tasa text-4xl md:text-5xl font-extrabold leading-tight tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] mb-3">
+                                    {post.title}
+                                </h1>
+                                <div className="flex items-center w-full mb-6">
+                                    <span className="text-sm tracking-wide font-oxygen uppercase text-muted-foreground whitespace-nowrap">
+                                        {post.date}
+                                    </span>
+                                    <div className="h-px flex-1 bg-border ml-6"></div>
                                 </div>
-                                {post.caption && (
-                                    <figcaption className="mt-4 text-left text-sm text-muted-foreground font-mono italic">
-                                        {post.caption}
-                                    </figcaption>
-                                )}
-                            </figure>
-                        )}
-                    </header>
-
-                    {/* Content Section */}
-                    <Section className="mb-12">
-                        <div
-                            className="
-                    prose prose-lg dark:prose-invert 
-                    prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
-                    prose-p:text-[1.1rem] prose-p:leading-[1.8] prose-p:text-foreground/90 prose-p:font-serif
-                    prose-a:text-accent prose-a:no-underline hover:prose-a:underline
-                    prose-blockquote:border-l-accent prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-xl prose-blockquote:text-muted-foreground
-                    max-w-none
-                "
-                            dangerouslySetInnerHTML={{ __html: post.content || "" }}
-                        />
-                    </Section>
-
-                    {/* Dialogue Text (Reference Style) */}
-                    <p className="mb-12 text-lg text-foreground font-serif leading-relaxed">
-                        That concludes the article. If you spot any typo or would like to share your thoughts on this article, please feel free to get in touch. 🙆‍♂️
-                    </p>
-
-                </Container>
-            </article>
-
-            {/* Thick Border */}
-            <div className="w-full border-t-4 border-foreground mb-16"></div>
-
-            {/* "My other articles" Section */}
-            <Container className="max-w-2xl mb-24">
-                <h2 className="text-2xl font-bold tracking-tight mb-12 font-tasa">Articles Which Are Important to Me</h2>
-
-                <div className="flex flex-col gap-12">
-                    {years.map(year => (
-                        <div key={year}>
-                            <h3 className="text-xl font-bold mb-6 font-tasa">{year}</h3>
-                            <div className="flex flex-col gap-6">
-                                {groupedPosts[year].map(p => (
-                                    <Link key={p.slug} href={p.href!} className="group relative grid grid-cols-[1fr_auto] items-baseline gap-4 hover:opacity-70 transition-opacity">
-                                        <span className="text-lg font-serif font-medium border-b border-transparent group-hover:border-foreground transition-colors leading-tight">
-                                            {p.title}
-                                        </span>
-                                        <span className="text-sm text-muted-foreground font-mono uppercase tracking-wider shrink-0">
-                                            {/* Category placeholder or just a tag */}
-                                            Blog
-                                        </span>
-                                    </Link>
-                                ))}
+                                {/* Excerpt is usually not shown in detail view if it's redundant with content, but I'll keep it for now if needed, or maybe just remove it as the image didn't clearly show it. User said "header and date section". I will keep excerpt for now but maybe move it below date or remove if not needed. I'll keep it below date. */}
+                                <p className="max-w-3xl text-xl text-muted-foreground font-oxygen leading-relaxed">
+                                    {post.excerpt}
+                                </p>
                             </div>
+
+                            {/* Main Content */}
+                            <article className="prose prose-lg dark:prose-invert max-w-3xl font-oxygen leading-relaxed
+                prose-headings:font-tasa prose-headings:font-bold prose-headings:tracking-tight
+                prose-p:text-(--blog-text) prose-p:leading-8
+                prose-strong:text-foreground
+                prose-code:text-accent prose-code:bg-muted/50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+              ">
+                                <ReactMarkdown
+                                    components={{
+                                        blockquote: ({ node, ...props }) => <SpecialBox {...(props as any)} />,
+                                    }}
+                                >
+                                    {content}
+                                </ReactMarkdown>
+                            </article>
                         </div>
-                    ))}
-                </div>
-            </Container>
+                    </Section>
+                </Container>
 
-
-            <SayHello />
-            <Footer />
+                <SayHello />
+                <Footer />
+            </div>
         </div>
     );
 }
