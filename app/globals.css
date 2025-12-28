@@ -63,6 +63,7 @@ body {
   while ensuring all visible elements fade smoothly.
 */
 div,
+code,
 section,
 header,
 footer,
@@ -72,6 +73,8 @@ article,
 aside,
 span,
 p,
+b,
+strong,
 a,
 button,
 h1,
