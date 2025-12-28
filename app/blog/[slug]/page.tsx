@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { SayHello } from "@/components/say-hello";
-import { getPostBySlug, POSTS } from "../data";
+import { POSTS } from "../data";
 import { notFound } from "next/navigation";
 import fs from "fs/promises";
 import path from "path";
