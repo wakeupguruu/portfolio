@@ -96,11 +96,11 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                 <Container>
                     {/* Markdown Content Section (Replaces old 'Article Links') */}
                     <Section className="mb-16">
-                        <article className="prose prose-lg dark:prose-invert max-w-3xl mx-auto font-oxygen leading-relaxed
+                        <article className="prose prose-lg dark:prose-invert max-w-3xl font-oxygen leading-relaxed
                             prose-headings:font-tasa prose-headings:font-bold prose-headings:tracking-tight
                             prose-p:text-(--blog-text) prose-p:leading-8
                             prose-strong:text-foreground
-                            prose-code:text-accent prose-code:bg-muted/50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+                            prose-code:text-foreground prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-mono prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
                          ">
                             <ReactMarkdown
                                 components={{
