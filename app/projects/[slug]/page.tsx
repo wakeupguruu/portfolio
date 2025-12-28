@@ -23,7 +23,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
 
             <div className="pt-32 w-full overflow-x-hidden">
                 <Container>
-                    <Section className="mb-12">
+                    <Section className="mb-0">
                         {/* Title */}
                         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
                             {project.title} · <span className="text-muted-foreground font-light">{project.category}</span>
@@ -38,7 +38,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                         </div>
 
                         {/* Description */}
-                        <p className="max-w-3xl text-[1.1rem] leading-relaxed font-oxygen text-(--description-text) mb-20">
+                        <p className="max-w-3xl text-[1.1rem] leading-relaxed font-oxygen text-(--description-text) mb-0">
                             {project.description}
                         </p>
                     </Section>
@@ -68,23 +68,27 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                 <Container>
                     {/* Articles Section (Only if articles exist) */}
                     {project.articleLinks && project.articleLinks.length > 0 && (
-                        <Section className="mb-32">
-                            <div className="w-full border-t border-b border-(--border-separator) py-12 md:py-16">
-                                <h3 className="font-tasa text-2xl font-bold mb-8">Related Articles</h3>
-                                <div className="flex flex-col gap-8 w-full md:w-2/3">
+                        <Section className="mb-16">
+                            <div className="w-full py-4">
+                                <h3 className="font-tasa text-lg md:text-xl font-bold mb-6 text-muted-foreground/80">Related Articles</h3>
+                                <div className="flex flex-col gap-4 w-full">
                                     {project.articleLinks.map((article, i) => (
-                                        <div key={i} className="border border-(--border-separator) p-6 md:p-8">
-                                            <p className="font-source-code text-sm md:text-base leading-relaxed text-(--description-text)">
-                                                {article.description || `Read more about this project on ${article.label}`}
-                                                <span className="mx-2 text-foreground">→</span>
-                                                <Link
-                                                    href={article.url}
-                                                    target="_blank"
-                                                    className="underline underline-offset-4 decoration-1 hover:decoration-2 text-foreground"
-                                                >
-                                                    {article.title}
-                                                </Link>
-                                            </p>
+                                        <div key={i} className="relative mb-2 w-full md:w-2/3">
+                                            <div className="relative z-10 border border-accent/20 p-4 md:p-5 w-full flex items-center bg-background">
+                                                <p className="font-source-code text-sm leading-relaxed text-neutral-400">
+                                                    {article.description || `Read more about this project on ${article.label}`}
+                                                    <span className="mx-3 text-foreground/20">→</span>
+                                                    <Link
+                                                        href={article.url}
+                                                        target="_blank"
+                                                        className="text-foreground underline underline-offset-4 decoration-1 hover:decoration-2"
+                                                    >
+                                                        {article.title}
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                            {/* Decorative Corner Frame */}
+                                            <div className="absolute -right-1.5 -bottom-1.5 w-1/6 h-1/2 border-r border-b border-accent/30 z-0"></div>
                                         </div>
                                     ))}
                                 </div>
