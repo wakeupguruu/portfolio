@@ -1,13 +1,39 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
-import { getProjectBySlug } from "../data";
+import { getProjectBySlug, PROJECTS } from "../data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { MinimalArrow } from "@/components/minimal-arrow";
 import { PhotographsScroll } from "@/components/photographs-scroll";
 import { SayHello } from "@/components/say-hello";
+import { getProjectContent } from "@/app/lib/markdown";
+import ReactMarkdown from "react-markdown";
+import { SpecialBox } from "@/components/ui/special-box";
+import { Metadata } from "next";
+
+export async function generateStaticParams() {
+    return PROJECTS.map((project) => ({
+        slug: project.slug,
+    }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const project = getProjectBySlug(slug);
+
+    if (!project) {
+        return {
+            title: "Project Not Found",
+        };
+    }
+
+    return {
+        title: `${project.title} | Guru Vyas`,
+        description: project.description,
+    };
+}
 
 export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -16,6 +42,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
     if (!project) {
         notFound();
     }
+
+    const content = await getProjectContent(slug);
 
     return (
         <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
@@ -66,36 +94,23 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                 </Section>
 
                 <Container>
-                    {/* Articles Section (Only if articles exist) */}
-                    {project.articleLinks && project.articleLinks.length > 0 && (
-                        <Section className="mb-16">
-                            <div className="w-full py-4">
-                                <div className="flex flex-col gap-4 w-full">
-                                    {project.articleLinks.map((article, i) => (
-                                        <div key={i} className="relative mb-6 w-fit max-w-full md:max-w-2/3">
-                                            {/* Inner Content Box (Full Border) */}
-                                            <div className="relative z-10 border border-(--article-border) p-4 w-full bg-background transition-colors duration-500">
-                                                <p className="font-source-code text-base leading-relaxed text-(--description-text) [word-spacing:-4px]">
-                                                    {article.description || `Read more about this project on ${article.label}`}
-                                                    <span className="mx-3 text-foreground/40">→</span>
-                                                    <Link
-                                                        href={article.url}
-                                                        target="_blank"
-                                                        className="text-foreground underline underline-offset-4 decoration-1 hover:decoration-2"
-                                                    >
-                                                        {article.title}
-                                                    </Link>
-                                                </p>
-                                            </div>
-
-                                            {/* Outer/Offset Border (Right and Bottom Only) */}
-                                            <div className="absolute top-[5px] left-[5px] w-full h-full border-r border-b border-(--article-border) z-0 pointer-events-none transition-colors duration-500"></div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </Section>
-                    )}
+                    {/* Markdown Content Section (Replaces old 'Article Links') */}
+                    <Section className="mb-16">
+                        <article className="prose prose-lg dark:prose-invert max-w-3xl mx-auto font-oxygen leading-relaxed
+                            prose-headings:font-tasa prose-headings:font-bold prose-headings:tracking-tight
+                            prose-p:text-(--blog-text) prose-p:leading-8
+                            prose-strong:text-foreground
+                            prose-code:text-accent prose-code:bg-muted/50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+                         ">
+                            <ReactMarkdown
+                                components={{
+                                    blockquote: ({ node, ...props }) => <SpecialBox {...(props as any)} />,
+                                }}
+                            >
+                                {content}
+                            </ReactMarkdown>
+                        </article>
+                    </Section>
 
                     {/* All Works Link */}
                     <div className="flex flex-col mb-25 md:mb-25">
