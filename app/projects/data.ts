@@ -1,16 +1,19 @@
 export interface Project {
   title: string;
+  slug: string;
   year: string;
   category: string;
   description: string;
   href: string;
   images: string[];
   links: { label: string; url: string }[];
+  articleLinks?: { title: string; url: string; label: string }[];
 }
 
 export const PROJECTS: Project[] = [
   {
     title: "EdVid",
+    slug: "edvid",
     year: "2024",
     category: "AI Video Generation",
     description: "AI-Powered Educational Video Generator. An educational video creation tool that leverages Manim for animations, allowing users to generate content via a web interface.",
@@ -20,10 +23,16 @@ export const PROJECTS: Project[] = [
       "/images_project/edvid/Screenshot 2025-11-04 235348.png",
       "/images_project/edvid/Screenshot 2025-11-04 235529.png"
     ],
-    links: []
+    links: [],
+    articleLinks: [
+      { label: "Blog", title: "Building EdVid: The Journey", url: "#" },
+      { label: "LinkedIn", title: "EdVid Launch Post", url: "#" },
+      { label: "LinkedIn", title: "EdVid Technical Deep Dive", url: "#" }
+    ]
   },
   {
     title: "Dark PDF",
+    slug: "dark-pdf",
     year: "2024",
     category: "Utility Tool",
     description: "A smart PDF viewer that intelligently converts light-mode documents into dark mode, reducing eye strain during long reading sessions.",
@@ -33,19 +42,23 @@ export const PROJECTS: Project[] = [
       "/images_project/darkpdf/Screenshot 2025-12-28 162754.png",
       "/images_project/darkpdf/Screenshot 2025-12-28 162759.png"
     ],
-    links: []
+    links: [],
+    articleLinks: []
   },
   {
     title: "Peer to Peer",
+    slug: "peer-to-peer",
     year: "2024",
     category: "Turborepo Architecture",
     description: "A scalable monorepo starter using Turborepo, designed for building high-performance peer-to-peer applications with modern tooling.",
     href: "https://github.com/wakeupguruu/peer-to-peer",
     images: ["/images/22.jpg", "/images/28.jpg", "/images/42.jpg"],
-    links: []
+    links: [],
+    articleLinks: []
   },
   {
     title: "Zulip Open Source",
+    slug: "zulip-open-source",
     year: "2024",
     category: "Open Source Contribution",
     description: "Performance optimization for Zulip's web client. Implemented the Page Lifecycle API to instantly reconnect frozen tabs upon resumption, replacing inefficient polling mechanisms.",
@@ -56,6 +69,13 @@ export const PROJECTS: Project[] = [
       "/images_project/zulip/Screenshot 2025-12-28 164918.png",
       "/images_project/zulip/lifecycle-diagram.png"
     ],
-    links: []
+    links: [],
+    articleLinks: [
+      { label: "Medium", title: "Optimizing Zulip with Page Lifecycle API", url: "https://medium.com" }
+    ]
   }
 ];
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return PROJECTS.find((project) => project.slug === slug);
+}
