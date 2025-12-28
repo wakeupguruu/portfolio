@@ -20,6 +20,16 @@ export const POSTS = [
         readingTime: "5 min read"
     },
     { 
+        date: "JANUARY 2025", 
+        title: "My First Open Source Contribution", 
+        slug: "zulip-open-source",
+        href: "/blog/zulip-open-source", 
+        excerpt: "The illusion of 'real-time' in software and in the human brain.",
+        image: "/hero-character-removebg-preview.png",
+        caption: "Buffering...",
+        readingTime: "5 min read"
+    },
+    { 
         date: "JUNE 2024", 
         title: "The weirdest vector algebra class", 
         slug: "the-weirdest-vector-algebra-class",

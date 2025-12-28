@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { SayHello } from "@/components/say-hello";
-import { POSTS } from "../data";
+import { getPostBySlug, POSTS } from "../data";
 import { notFound } from "next/navigation";
 import fs from "fs/promises";
 import path from "path";
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
             title: post.title,
             description: post.excerpt,
             type: "article",
-            publishedTime: post.date, // Note: date format might need parsing if structured data requires ISO
+            publishedTime: post.date,
         },
     };
 }
@@ -84,7 +84,6 @@ export default async function BlogPostPage({ params }: PageParams) {
                                     </span>
                                     <div className="h-px flex-1 bg-border ml-6"></div>
                                 </div>
-                                {/* Excerpt is usually not shown in detail view if it's redundant with content, but I'll keep it for now if needed, or maybe just remove it as the image didn't clearly show it. User said "header and date section". I will keep excerpt for now but maybe move it below date or remove if not needed. I'll keep it below date. */}
                                 <p className="max-w-3xl text-xl text-muted-foreground font-oxygen leading-relaxed">
                                     {post.excerpt}
                                 </p>
@@ -105,6 +104,51 @@ export default async function BlogPostPage({ params }: PageParams) {
                                     {content}
                                 </ReactMarkdown>
                             </article>
+
+                            {/* Footer Content */}
+                            <div className="mt-16 max-w-3xl">
+                                <div className="h-px w-full bg-border mb-8"></div>
+                                <p className="font-oxygen text-muted-foreground leading-relaxed mb-16">
+                                    That concludes the article. If you spot any typo or would like to share your
+                                    thoughts on this article, please feel free to{" "}
+                                    <a href="#" className="underline decoration-1 underline-offset-4 hover:text-foreground transition-colors">
+                                        get in touch
+                                    </a>
+                                    . 👋
+                                </p>
+
+                                {/* Important Articles Section */}
+                                <div>
+                                    <h2 className="font-tasa font-bold text-2xl md:text-3xl mb-8 tracking-tight">
+                                        Articles Which Are Important to Me
+                                    </h2>
+
+                                    <div className="mb-8">
+                                        <h3 className="font-oxygen font-bold text-lg mb-6">2025</h3>
+                                        <div className="flex flex-col gap-5">
+                                            {POSTS.map((p) => (
+                                                <a
+                                                    key={p.slug}
+                                                    href={p.href}
+                                                    className="group flex items-center justify-between w-full gap-4"
+                                                >
+                                                    <span className="font-oxygen text-muted-foreground group-hover:text-foreground group-hover:underline underline-offset-4 decoration-border transition-colors whitespace-nowrap">
+                                                        {p.title}
+                                                    </span>
+
+                                                    {/* Connecting Line */}
+                                                    <div className="h-px bg-border flex-1 group-hover:bg-foreground/20 transition-colors"></div>
+
+                                                    {/* Category Pill */}
+                                                    <span className="shrink-0 px-3 py-1 rounded-full border border-border text-xs font-oxygen text-muted-foreground group-hover:border-foreground group-hover:text-foreground transition-all">
+                                                        {(p as any).category || 'Blog'}
+                                                    </span>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </Section>
                 </Container>
