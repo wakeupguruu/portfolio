@@ -71,24 +71,6 @@ export const PROJECTS: Project[] = [
     links: [],
     articleLinks: []
   },
-  {
-    title: "Zulip Open Source",
-    slug: "zulip-open-source",
-    year: "2024",
-    category: "Open Source Contribution",
-    description: "Performance optimization for Zulip's web client. Implemented the Page Lifecycle API to instantly reconnect frozen tabs upon resumption, replacing inefficient polling mechanisms.",
-    href: "https://github.com/zulip/zulip/pull/37039",
-    images: [
-      "/images_project/zulip/Screenshot 2025-12-28 164813.png",
-      "/images_project/zulip/Screenshot 2025-12-28 164857.png",
-      "/images_project/zulip/Screenshot 2025-12-28 164918.png",
-      "/images_project/zulip/lifecycle-diagram.png"
-    ],
-    links: [],
-    articleLinks: [
-      { label: "Medium", title: "Optimizing Zulip with Page Lifecycle API", url: "https://medium.com" }
-    ]
-  }
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
