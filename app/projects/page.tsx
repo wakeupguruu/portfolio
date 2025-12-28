@@ -62,7 +62,7 @@ export default function ProjectsPage() {
 
                             <Container>
                                 <div>
-                                    <Link href={project.href} className="group inline-flex items-center gap-2 text-sm scale-y-[1.1] font-light tracking-normal uppercase hover:underline underline-offset-4">
+                                    <Link href={`/projects/${project.slug}`} className="group inline-flex items-center gap-2 text-sm scale-y-[1.1] font-light tracking-normal uppercase hover:underline underline-offset-4">
                                         MORE ABOUT THE PROJECT <MinimalArrow className="w-4 h-5 text-(--text-more-arrow)" />
                                     </Link>
                                 </div>
