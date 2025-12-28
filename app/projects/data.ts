@@ -15,7 +15,11 @@ export const PROJECTS: Project[] = [
     category: "AI Video Generation",
     description: "AI-Powered Educational Video Generator. An educational video creation tool that leverages Manim for animations, allowing users to generate content via a web interface.",
     href: "https://github.com/wakeupguruu/EdVid",
-    images: ["/images/21.jpg", "/images/22.jpg", "/images/28.jpg"],
+    images: [
+      "/images_project/edvid/Screenshot 2025-11-04 234039.png",
+      "/images_project/edvid/Screenshot 2025-11-04 235348.png",
+      "/images_project/edvid/Screenshot 2025-11-04 235529.png"
+    ],
     links: []
   },
   {
@@ -24,7 +28,11 @@ export const PROJECTS: Project[] = [
     category: "Utility Tool",
     description: "A smart PDF viewer that intelligently converts light-mode documents into dark mode, reducing eye strain during long reading sessions.",
     href: "https://github.com/wakeupguruu/dark-pdf",
-    images: ["/images/42.jpg", "/images/18.jpg", "/images/21.jpg"],
+    images: [
+      "/images_project/darkpdf/Screenshot 2025-12-28 162740.png",
+      "/images_project/darkpdf/Screenshot 2025-12-28 162754.png",
+      "/images_project/darkpdf/Screenshot 2025-12-28 162759.png"
+    ],
     links: []
   },
   {
@@ -42,7 +50,12 @@ export const PROJECTS: Project[] = [
     category: "Open Source Contribution",
     description: "Performance optimization for Zulip's web client. Implemented the Page Lifecycle API to instantly reconnect frozen tabs upon resumption, replacing inefficient polling mechanisms.",
     href: "https://github.com/zulip/zulip/pull/37039",
-    images: ["/images/18.jpg", "/images/21.jpg", "/images/22.jpg"],
+    images: [
+      "/images_project/zulip/Screenshot 2025-12-28 164813.png",
+      "/images_project/zulip/Screenshot 2025-12-28 164857.png",
+      "/images_project/zulip/Screenshot 2025-12-28 164918.png",
+      "/images_project/zulip/lifecycle-diagram.png"
+    ],
     links: []
   }
 ];

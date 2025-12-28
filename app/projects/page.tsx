@@ -45,13 +45,15 @@ export default function ProjectsPage() {
                             <div className="mb-5 pl-4 md:pl-0">
                                 <PhotographsScroll>
                                     {project.images.map((imgSrc, i) => (
-                                        <div key={i} className="relative h-[400px] md:h-[500px] w-auto aspect-3/4 shrink-0 snap-center bg-muted overflow-hidden">
+                                        <div key={i} className="relative h-[400px] md:h-[610px] w-auto shrink-0 snap-center bg-muted overflow-hidden">
                                             <Image
                                                 src={imgSrc}
                                                 alt={`${project.title} image ${i + 1}`}
-                                                fill
-                                                className="object-cover transition-transform duration-700"
-                                                sizes="(max-width: 768px) 300px, 500px"
+                                                width={0}
+                                                height={0}
+                                                className="h-full w-auto object-contain transition-transform duration-700"
+                                                sizes="(max-width: 768px) 800px, 1200px"
+                                                quality={90}
                                             />
                                         </div>
                                     ))}
