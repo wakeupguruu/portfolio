@@ -150,6 +150,7 @@ a:hover {
   /* User requested specific separator colors */
   --border-separator: #d6d3d1;
   --color-underline: var(--accent);
+  --article-border: #5d674f; /* Dark olive for light mode */
 
   /* More Photographs Card */
   --bg-more-card: #f5f5f4;
@@ -167,6 +168,7 @@ a:hover {
   --bg-footer: #44403b;
   --text-footer: #ededed; /* Using opacity in usage or explicit color */
   --border-separator: #57534d;
+  --article-border: #d8d8c0; /* Pale olive for dark mode */
 
   /* More Photographs Card */
   --bg-more-card: #292524;

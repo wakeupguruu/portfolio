@@ -45,7 +45,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                 </Container>
 
                 {/* Photo Grid - Full Width Scroll */}
-                <Section className="mb-24">
+                <Section className="mb-12">
                     <div className="pl-4 md:pl-0">
                         <PhotographsScroll>
                             {project.images.map((imgSrc, i) => (
@@ -70,14 +70,14 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                     {project.articleLinks && project.articleLinks.length > 0 && (
                         <Section className="mb-16">
                             <div className="w-full py-4">
-                                <h3 className="font-tasa text-lg md:text-xl font-bold mb-6 text-muted-foreground/80">Related Articles</h3>
                                 <div className="flex flex-col gap-4 w-full">
                                     {project.articleLinks.map((article, i) => (
-                                        <div key={i} className="relative mb-2 w-full md:w-2/3">
-                                            <div className="relative z-10 border border-accent/20 p-4 md:p-5 w-full flex items-center bg-background">
-                                                <p className="font-source-code text-sm leading-relaxed text-neutral-400">
+                                        <div key={i} className="relative mb-6 w-fit max-w-full md:max-w-2/3">
+                                            {/* Inner Content Box (Full Border) */}
+                                            <div className="relative z-10 border border-(--article-border) p-4 w-full bg-background transition-colors duration-500">
+                                                <p className="font-source-code text-base leading-relaxed text-(--description-text) [word-spacing:-4px]">
                                                     {article.description || `Read more about this project on ${article.label}`}
-                                                    <span className="mx-3 text-foreground/20">→</span>
+                                                    <span className="mx-3 text-foreground/40">→</span>
                                                     <Link
                                                         href={article.url}
                                                         target="_blank"
@@ -87,8 +87,9 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                                                     </Link>
                                                 </p>
                                             </div>
-                                            {/* Decorative Corner Frame */}
-                                            <div className="absolute -right-1.5 -bottom-1.5 w-1/6 h-1/2 border-r border-b border-accent/30 z-0"></div>
+
+                                            {/* Outer/Offset Border (Right and Bottom Only) */}
+                                            <div className="absolute top-[5px] left-[5px] w-full h-full border-r border-b border-(--article-border) z-0 pointer-events-none transition-colors duration-500"></div>
                                         </div>
                                     ))}
                                 </div>
