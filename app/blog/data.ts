@@ -1,5 +1,25 @@
 export const POSTS = [
     { 
+        date: "DECEMBER 2025", 
+        title: "I Tried to Turn Text Into Videos. This Is What It Cost Me.", 
+        slug: "building-edvid-text-to-video",
+        href: "/blog/building-edvid-text-to-video", 
+        excerpt: "Building EdVid taught me more about money, execution, and software reality than any tutorial ever could.",
+        image: "/hero-character-removebg-preview.png",
+        caption: "The cost of ambition.",
+        readingTime: "3 min read"
+    },
+    { 
+        date: "JANUARY 2025", 
+        title: "Reading Massive Open-Source Codebases Is Unrealistic", 
+        slug: "reading-massive-open-source-codebases-is-unrealistic",
+        href: "/blog/reading-massive-open-source-codebases-is-unrealistic", 
+        excerpt: "What actually helped me understand large open-source projects without drowning in code.",
+        image: "/hero-character-removebg-preview.png",
+        caption: "Navigating complexity.",
+        readingTime: "5 min read"
+    },
+    { 
         date: "JUNE 2024", 
         title: "The weirdest vector algebra class", 
         slug: "the-weirdest-vector-algebra-class",
@@ -7,32 +27,5 @@ export const POSTS = [
         excerpt: "Reflecting on an unexpected lesson in vector algebra.",
         image: "/hero-character-removebg-preview.png",
         caption: "A lesson in direction and magnitude.",
-    },
-    { 
-        date: "MARCH 2024", 
-        title: "The day it rained", 
-        slug: "the-day-it-rained",
-        href: "/blog/the-day-it-rained", 
-        excerpt: "A story about rain and its impact.",
-        image: "/hero-character-removebg-preview.png",
-        caption: "Watching the world wash away.",
-    },
-    { 
-        date: "MARCH 2024", 
-        title: "The Green Eyed Monster", 
-        slug: "the-green-eyed-monster",
-        href: "/blog/the-green-eyed-monster", 
-        excerpt: "Thoughts on jealousy and human nature.",
-        image: "/hero-character-removebg-preview.png",
-        caption: "Reflections in the mirror.",
-    },
-    { 
-        date: "MARCH 2024", 
-        title: "Comfort zone", 
-        slug: "comfort-zone",
-        href: "/blog/comfort-zone", 
-        excerpt: "Why stepping out of your comfort zone is essential.",
-        image: "/hero-character-removebg-preview.png",
-        caption: "Breaking through the wall.",
     },
 ];

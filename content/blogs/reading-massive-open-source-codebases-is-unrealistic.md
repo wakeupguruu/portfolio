@@ -1,18 +1,8 @@
----
-title: "Reading Massive Open-Source Codebases Is Unrealistic"
-description: "What actually helped me understand large open-source projects without drowning in code."
-author: Guru
-date: 2025-01-25
-readingTime: "5 min"
----
-
-## Reading Massive Open-Source Codebases Is Unrealistic
-
-### Here’s What Actually Helped Me
+## Reading Massive Open-Source Codebases Is Unrealistic : Here’s What Actually Helped Me
 
 When I first started contributing to open source, I had a naive belief:
 
-> _“If I just read the code carefully, I’ll understand it.”_
+_“If I just read the code carefully, I’ll understand it.”_
 
 That belief didn’t survive my first serious organization.
 

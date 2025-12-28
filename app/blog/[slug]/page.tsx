@@ -70,9 +70,14 @@ export default async function BlogPostPage({ params }: PageParams) {
                     <Section className="mb-12 md:mb-20">
                         <div>
                             <div className="mb-8">
-                                <h1 className="max-w-3xl font-tasa text-4xl md:text-5xl font-extrabold leading-tight tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] mb-3">
-                                    {post.title}
-                                </h1>
+                                <div className="flex justify-between items-baseline gap-4 mb-3">
+                                    <h1 className="max-w-3xl font-tasa text-4xl md:text-5xl font-extrabold leading-tight tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed]">
+                                        {post.title}
+                                    </h1>
+                                    <span className="shrink-0 text-xs font-oxygen text-muted-foreground">
+                                        {(post as any).readingTime}
+                                    </span>
+                                </div>
                                 <div className="flex items-center w-full mb-6">
                                     <span className="text-sm tracking-wide font-oxygen uppercase text-muted-foreground whitespace-nowrap">
                                         {post.date}
