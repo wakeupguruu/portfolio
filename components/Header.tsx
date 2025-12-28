@@ -21,7 +21,7 @@ export function Header() {
 
   const links = [
     { href: "/blog", label: "BLOG" },
-    { href: "/about", label: "WHO?" },
+    { href: "/experience", label: "EXPERIENCE" },
     { href: "/projects", label: "PROJECTS" },
     { href: "/photography", label: "FOTOGRAFIE" },
   ];
