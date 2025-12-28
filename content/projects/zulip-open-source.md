@@ -22,7 +22,7 @@ But there is a problem with polling. It relies on luck.
 
 If you wake your computer up one second after the watchdog just checked, the app will sit there, frozen and disconnected, for four more seconds until the timer ticks again.
 
-> "Magnitude without direction is just chaos." - [A random math teacher](#)
+> "Magnitude without direction is just chaos." - [A random math teacher]()
 
 And chaos is exactly what a user feels when they stare at a frozen screen that should be working.
 
