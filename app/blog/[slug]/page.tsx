@@ -36,11 +36,11 @@ export default async function BlogPostPage({
     const years = Object.keys(groupedPosts).sort((a, b) => Number(b) - Number(a));
 
     return (
-        <div className="min-h-screen bg-background text-foreground font-newsreader">
+        <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: 'var(--font-newsreader)' }}>
             <Header />
 
             <article className="pt-32 md:pt-40 pb-0">
-                <Container className="max-w-3xl">
+                <Container className="max-w-2xl">
 
                     {/* Header Section: Title Left Aligned */}
                     <header className="mb-12">
@@ -48,7 +48,7 @@ export default async function BlogPostPage({
                             {post.title}
                         </h1>
 
-                        <div className="flex items-center gap-4 mb-10 text-sm text-muted-foreground font-sans tracking-wide">
+                        <div className="flex items-center gap-4 mb-10 text-sm text-muted-foreground font-mono tracking-wide">
                             <span className="uppercase">{post.date}</span>
                         </div>
 
@@ -63,7 +63,7 @@ export default async function BlogPostPage({
                                     />
                                 </div>
                                 {post.caption && (
-                                    <figcaption className="mt-4 text-center text-sm text-muted-foreground font-sans italic">
+                                    <figcaption className="mt-4 text-left text-sm text-muted-foreground font-mono italic">
                                         {post.caption}
                                     </figcaption>
                                 )}
@@ -72,7 +72,7 @@ export default async function BlogPostPage({
                     </header>
 
                     {/* Content Section */}
-                    <Section className="mb-20">
+                    <Section className="mb-12">
                         <div
                             className="
                     prose prose-lg dark:prose-invert 
@@ -86,6 +86,11 @@ export default async function BlogPostPage({
                         />
                     </Section>
 
+                    {/* Dialogue Text (Reference Style) */}
+                    <p className="mb-12 text-lg text-foreground font-serif leading-relaxed">
+                        That concludes the article. If you spot any typo or would like to share your thoughts on this article, please feel free to get in touch. 🙆‍♂️
+                    </p>
+
                 </Container>
             </article>
 
@@ -93,7 +98,7 @@ export default async function BlogPostPage({
             <div className="w-full border-t-4 border-foreground mb-16"></div>
 
             {/* "My other articles" Section */}
-            <Container className="max-w-3xl mb-24">
+            <Container className="max-w-2xl mb-24">
                 <h2 className="text-2xl font-bold tracking-tight mb-12 font-tasa">Articles Which Are Important to Me</h2>
 
                 <div className="flex flex-col gap-12">
