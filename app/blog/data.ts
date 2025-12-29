@@ -37,5 +37,6 @@ export const POSTS = [
         excerpt: "Reflecting on an unexpected lesson in vector algebra.",
         image: "/hero-character-removebg-preview.png",
         caption: "A lesson in direction and magnitude.",
+        readingTime: "4 min read"
     },
 ];
