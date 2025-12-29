@@ -28,20 +28,20 @@ export const PROJECTS: Project[] = [
       { 
         label: "Blog", 
         title: "Building EdVid: The Journey", 
-        url: "#",
+        url: "/blog/building-edvid-text-to-video",
         description: "I documented the entire process of building this tool, from the initial idea to the final product."
       },
       { 
         label: "LinkedIn", 
         title: "EdVid Launch Post", 
-        url: "#",
+        url: "https://www.linkedin.com/posts/guru-vyas-16a0b82a7_im-currently-building-a-tool-ed-vid-quite-activity-7358424843257589760-hXRM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEngIeIBRUkRqxnasBxsj-Cy5y9dz-EneBg",
         description: "When launching EdVid, I shared my thoughts on the future of AI in education."
       },
       { 
         label: "LinkedIn", 
-        title: "EdVid Technical Deep Dive", 
-        url: "#",
-        description: "A technical breakdown of how I integrated Manim with a web interface."
+        title: "Project Update: Moving On", 
+        url: "https://www.linkedin.com/posts/guru-vyas-16a0b82a7_an-update-on-edvid-i-left-the-project-in-activity-7406364988623466497-xL-m?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEngIeIBRUkRqxnasBxsj-Cy5y9dz-EneBg",
+        description: "A final update on the project, sharing lessons learned and why I decided to move on."
       }
     ]
   },
@@ -58,16 +58,26 @@ export const PROJECTS: Project[] = [
       "/images_project/darkpdf/Screenshot 2025-12-28 162759.png"
     ],
     links: [],
-    articleLinks: []
+    articleLinks: [
+      {
+        label: "LinkedIn",
+        title: "Dark PDF Launch",
+        url: "https://www.linkedin.com/posts/guru-vyas-16a0b82a7_during-my-exams-i-was-reading-through-bright-activity-7346510057791979520-Ru8c?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEngIeIBRUkRqxnasBxsj-Cy5y9dz-EneBg",
+        description: "Sharing the release of Dark PDF."
+      }
+    ]
   },
   {
-    title: "Peer to Peer",
-    slug: "peer-to-peer",
-    year: "2024",
-    category: "Turborepo Architecture",
-    description: "A scalable monorepo starter using Turborepo, designed for building high-performance peer-to-peer applications with modern tooling.",
-    href: "https://github.com/wakeupguruu/peer-to-peer",
-    images: ["/images/22.jpg", "/images/28.jpg", "/images/42.jpg"],
+    title: "Websparkel AI",
+    slug: "websparkel-ai",
+    year: "2025",
+    category: "AI Platform",
+    description: "An open-source browser-based development environment that runs Node.js entirely in your browser using WebContainers. Secure, instant, and powerful.",
+    href: "https://github.com/wakeupguruu/WebSpark-AI",
+    images: [
+      "/images_project/websparkel-ai/Screenshot 2025-12-29 071508.png",
+      "/images_project/websparkel-ai/Screenshot 2025-12-29 063511.png"
+    ],
     links: [],
     articleLinks: []
   },
