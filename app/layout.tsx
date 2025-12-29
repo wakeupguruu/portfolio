@@ -48,6 +48,9 @@ const vt323 = VT323({
 export const metadata: Metadata = {
   title: "Guru Vyas",
   description: "Portfolio of Guru Vyas",
+  icons: {
+    icon: "/hero-character-removebg-preview.png",
+  },
 };
 
 const sourceCodePro = Source_Code_Pro({
