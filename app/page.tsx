@@ -24,11 +24,10 @@ export default function Home() {
 
 
   const socials = [
-    { name: "GitHub", href: "#" },
-    { name: "Instagram", href: "#" },
-    { name: "YouTube", href: "#" },
-    { name: "Twitter", href: "#" },
-    { name: "LinkedIn", href: "#" },
+    { name: "GitHub", href: "https://github.com/wakeupguruu" },
+    { name: "Instagram", href: "https://www.instagram.com/guruthlesss/" },
+    { name: "Medium", href: "https://medium.com/@vyasguru44" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/guru-vyas-16a0b82a7/" },
   ];
 
   return (
@@ -81,7 +80,7 @@ export default function Home() {
         <Container>
           <div className="mb-3 flex items-center justify-between w-full md:w-[79%]">
             <h2 className="font-tasa scale-y-[1.075] text-[2.1rem] font-semibold" style={{ color: 'var(--accent)' }}>Writing</h2>
-            <Link href="#" className="text-sm scale-y-[1.075] font-mono">ALL ARTICLES →</Link>
+            <Link href="/blog" className="text-sm scale-y-[1.075] font-mono">ALL ARTICLES →</Link>
           </div>
 
 

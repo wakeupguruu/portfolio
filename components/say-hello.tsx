@@ -32,24 +32,24 @@ export function SayHello() {
                         <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
                             <span className="text-base font-bold font-tasa" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
                             <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
-                                linkedin.com/in/johann-schopplich
+                                linkedin.com/in/guru-vyas
                             </div>
                             <div className="flex justify-end pr-4">
                                 <MinimalArrow className="w-6 h-6 text-[#1c1917] dark:text-[#ededed]" />
                             </div>
-                            <a href="https://linkedin.com/in/johann-schopplich" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label="Visit LinkedIn"></a>
+                            <a href="https://www.linkedin.com/in/guru-vyas-16a0b82a7/" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label="Visit LinkedIn"></a>
                         </li>
 
-                        {/* Everything else */}
+                        {/* Instagram */}
                         <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
-                            <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Everything else</span>
+                            <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Instagram</span>
                             <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
-                                byjohann.link
+                                instagram.com/guruthlesss
                             </div>
                             <div className="flex justify-end pr-4">
                                 <MinimalArrow className="w-6 h-6 text-[#1c1917] dark:text-[#ededed]" />
                             </div>
-                            <a href="#" className="absolute inset-0 z-10" aria-label="Everything else"></a>
+                            <a href="https://www.instagram.com/guruthlesss/" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label="Visit Instagram"></a>
                         </li>
                     </ul>
 

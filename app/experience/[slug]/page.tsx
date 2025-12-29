@@ -113,7 +113,7 @@ export default async function ExperienceDetailPage({ params }: PageParams) {
                                 <div className="h-px w-full bg-border mb-8"></div>
                                 <p className="font-oxygen text-muted-foreground leading-relaxed mb-16">
                                     Start a conversation about this role?{" "}
-                                    <a href="#" className="underline decoration-1 underline-offset-4 hover:text-foreground transition-colors">
+                                    <a href="mailto:vyasguruwork@gmail.com" className="underline decoration-1 underline-offset-4 hover:text-foreground transition-colors">
                                         Get in touch
                                     </a>
                                     .
