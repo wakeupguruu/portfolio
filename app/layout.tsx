@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   title: "Guru Vyas",
   description: "Portfolio of Guru Vyas",
   icons: {
-    icon: "/favicon-optimized.png",
+    icon: "/favicon-v2.png",
   },
 };
 
