@@ -51,6 +51,7 @@ export default function Home() {
                 width={64}
                 height={64}
                 className="w-10 h-10 sm:w-16 sm:h-16 object-contain"
+                suppressHydrationWarning
               />
             </HeroAnimation>
           </h1>
@@ -82,6 +83,8 @@ export default function Home() {
             <h2 className="font-tasa scale-y-[1.075] text-[2.1rem] font-semibold" style={{ color: 'var(--accent)' }}>Writing</h2>
             <Link href="#" className="text-sm scale-y-[1.075] font-mono">ALL ARTICLES →</Link>
           </div>
+
+
         </Container>
 
 

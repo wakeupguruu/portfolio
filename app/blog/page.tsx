@@ -5,6 +5,12 @@ import { SayHello } from "@/components/say-hello";
 import { POSTS } from "./data";
 import Link from "next/link";
 import { MinimalArrow } from "@/components/minimal-arrow";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Guru's Blog",
+    description: "My thoughts on software engineering, open source, and building products.",
+};
 
 export default function BlogPage() {
     return (
@@ -17,6 +23,12 @@ export default function BlogPage() {
                         <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-[3.4rem]">
                             All Articles
                         </h1>
+                        <p
+                            className="max-w-2xl mt-6 tracking-tight text-[1.05rem] leading-relaxed font-oxygen"
+                            style={{ color: "var(--description-text)" }}
+                        >
+                            I've recently started writing to document my technical journey and the things I learn along the way. I love the clarity that comes from structuring my thoughts and sharing them with the community. You can also follow me on <a href="https://medium.com/@vyasguru44" target="_blank" rel="noreferrer" className="underline decoration-1 underline-offset-4 hover:text-foreground transition-colors">Medium</a>.
+                        </p>
                     </Section>
                 </Container>
 
