@@ -12,8 +12,9 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 20px matches the -top-5 (1.25rem) offset
-      setIsScrolled(window.scrollY > 20);
+      // 20px for laptop to match -top-5, 10px for mobile as a small buffer
+      const threshold = window.innerWidth >= 768 ? 20 : 10;
+      setIsScrolled(window.scrollY > threshold);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -31,9 +32,10 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky -top-5 z-50 w-full transition-colors duration-500 ease-in-out border-b border-transparent",
-        isScrolled && "border-border",
-        "h-auto py-2 md:h-[78px] md:py-0"
+        "sticky z-50 w-full transition-colors duration-500 ease-in-out border-b",
+        "md:-top-5 top-0",
+        isScrolled ? "border-border" : "border-transparent",
+        "h-auto pt-2 pb-4 md:h-[78px] md:pt-5 md:pb-0"
       )}
     >
       {/* ... layers ... */}
@@ -73,7 +75,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "group flex items-center gap-1.5 md:gap-2 no-underline hover:no-underline px-1 flex-shrink-0",
+                  "group flex items-center gap-1.5 md:gap-2 no-underline hover:no-underline px-1 shrink-0",
                   isActive && "pointer-events-none"
                 )}
               >
