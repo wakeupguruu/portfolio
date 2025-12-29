@@ -69,7 +69,7 @@ export default function Home() {
             className="mt-10 max-w-2xl tracking-tight text-[1.05rem] leading-relaxed font-oxygen"
             style={{ color: "var(--description-text)" }}
           >
-            I build clear, well-structured TypeScript architectures. I'm focusing on Open Source Contribution and building tools for the web.
+            I'm a Full Stack Developer specializing in Next.js and TypeScript. I build open source tools and high-performance web applications.
 
           </p>
         </Container>
