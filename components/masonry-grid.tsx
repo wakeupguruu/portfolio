@@ -10,6 +10,7 @@ export interface Photo {
     src: string;
     alt: string;
     caption?: string;
+    description?: string;
     className?: string; // Allow custom classes per photo
 }
 
@@ -29,13 +30,14 @@ interface ActivePhotoState {
 
 export function MasonryGrid({ columns }: MasonryGridProps) {
     const [activeState, setActiveState] = useState<ActivePhotoState | null>(null);
+    const [activeDescription, setActiveDescription] = useState<{ text: string, title?: string } | null>(null);
     const [exitingPhotoId, setExitingPhotoId] = useState<string | null>(null);
     const [minUpliftElapsed, setMinUpliftElapsed] = useState(false);
     const [isBelowHeader, setIsBelowHeader] = useState(false); // Controls z-index flip
 
     // Close on scroll
     useEffect(() => {
-        if (activeState && activeState.phase !== 'returning') {
+        if ((activeState && activeState.phase !== 'returning') || activeDescription) {
             const handleScroll = () => {
                 // If scrolling happens, force return immediately
                 handleClose();
@@ -45,7 +47,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                 window.removeEventListener("scroll", handleScroll);
             };
         }
-    }, [activeState]);
+    }, [activeState, activeDescription]);
 
     // Timer: Enforce minimum uplift duration (200ms)
     useEffect(() => {
@@ -122,7 +124,20 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
         });
     };
 
+    const handleCaptionClick = (e: React.MouseEvent, photo: Photo) => {
+        e.stopPropagation();
+        if (photo.description) {
+            setActiveDescription({ text: photo.description, title: photo.caption });
+        }
+    };
+
     const handleClose = () => {
+        // If description modal is open, close it
+        if (activeDescription) {
+            setActiveDescription(null);
+            return;
+        }
+
         if (activeState && activeState.phase !== 'returning') {
             setActiveState(prev => prev ? { ...prev, phase: 'returning' } : null);
 
@@ -171,9 +186,17 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                     </div>
                                 </div>
                                 {photo.caption && (
-                                    <p className="mt-4 text-xs font-oxygen tracking-widest uppercase text-muted-foreground text-center transition-colors duration-300 group-hover:text-foreground">
-                                        {photo.caption}
-                                    </p>
+                                    <div className="mt-4 flex justify-center">
+                                        <p
+                                            onClick={(e) => handleCaptionClick(e, photo)}
+                                            className={cn(
+                                                "text-xs font-oxygen tracking-widest uppercase text-muted-foreground text-center transition-all duration-300 group-hover:text-foreground",
+                                                photo.description ? "cursor-help hover:underline underline-offset-4 decoration-muted-foreground/50" : ""
+                                            )}
+                                        >
+                                            {photo.caption}
+                                        </p>
+                                    </div>
                                 )}
                             </motion.div>
                         ))}
@@ -184,16 +207,16 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
             {/* 1. Backdrop Overlay */}
             {/* Z-INDEX 55 to cover Header (50) */}
             <AnimatePresence>
-                {activeState && (
+                {(activeState || activeDescription) && (
                     <motion.div
                         key="backdrop"
                         initial={{ opacity: 0 }}
                         animate={{
-                            opacity: activeState.phase === 'returning' ? 0 : 1
+                            opacity: activeState?.phase === 'returning' ? 0 : 1
                         }}
                         exit={{ opacity: 0 }}
                         transition={{
-                            duration: activeState.phase === 'returning' ? 0.2 : 0.4,
+                            duration: activeState?.phase === 'returning' ? 0.2 : 0.4,
                             ease: "easeOut"
                         }}
                         className="fixed inset-0 z-[55] bg-background/95 backdrop-blur-sm"
@@ -202,7 +225,38 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                 )}
             </AnimatePresence>
 
-            {/* 2. Active Photo Object */}
+            {/* 2. Description Popup */}
+            <AnimatePresence>
+                {activeDescription && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        className="fixed inset-0 z-[70] flex items-center justify-center p-4 pointer-events-none"
+                    >
+                        <div
+                            className="bg-card border border-border p-8 md:p-10 max-w-lg w-full shadow-2xl pointer-events-auto relative"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {activeDescription.title && (
+                                <h3 className="text-xl font-bold font-interTight mb-4 tracking-tight">{activeDescription.title}</h3>
+                            )}
+                            <p className="text-base font-oxygen leading-relaxed text-muted-foreground">
+                                {activeDescription.text}
+                            </p>
+                            <button
+                                onClick={handleClose}
+                                className="absolute top-4 right-4 p-2 text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 18 12" /></svg>
+                            </button>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* 3. Active Photo Object */}
             {/* We render this OUTSIDE AnimatePresence to control unmount precisely after 'returning' completes */}
             {activeState && (
                 <motion.div
@@ -236,6 +290,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                                 left: activeState.targetRect.left,
                                 width: activeState.targetRect.width,
                                 height: activeState.targetRect.height,
+                                // Use 95% of target width if in description mode? No, distinct modes.
                                 scale: 1,
                                 boxShadow: "0 30px 60px -15px rgba(0,0,0,0.4)",
                                 borderRadius: "2px",

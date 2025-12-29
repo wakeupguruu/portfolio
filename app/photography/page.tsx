@@ -30,8 +30,7 @@ export default function PhotographyPage() {
         <Section className="mb-32">
           <Container>
             <div className="flex items-baseline justify-between mb-12 pb-4">
-              <h2 className="text-2xl font-bold tracking-tight">Recent Work</h2>
-              <span className="font-mono text-sm text-muted-foreground">2024–2025</span>
+              <h2 className="text-2xl font-bold tracking-tight">2025</h2>
             </div>
           </Container>
           <div className="w-screen relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw]">
@@ -43,8 +42,7 @@ export default function PhotographyPage() {
         <Section>
           <Container>
             <div className="flex items-baseline justify-between mb-12 border-b border-border pb-4">
-              <h2 className="text-2xl font-bold tracking-tight">Archive</h2>
-              <span className="font-mono text-sm text-muted-foreground">Selects</span>
+              <h2 className="text-2xl font-bold tracking-tight">2024-2023</h2>
             </div>
           </Container>
           <div className="w-screen relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw]">
