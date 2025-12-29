@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter, VT323, Source_Code_Pro, Newsreader } from "ne
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Header } from "@/components/Header";
 
 const fredericka = localFont({
   src: "../public/fonts/FrederickatheGreat-Regular.ttf",
@@ -98,7 +99,9 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
+          disableTransitionOnChange
         >
+          <Header />
           {children}
         </ThemeProvider>
       </body>

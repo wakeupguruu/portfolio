@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import { PixelIcon } from "@/components/pixel-icon";
 import { HeroAnimation } from "@/components/hero-animation";
 import Link from "next/link";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { MinimalArrow } from "@/components/minimal-arrow";
@@ -37,8 +36,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen font-interTight bg-background text-foreground">
-      {/* Full-width header to allow nav at the far right */}
-      <Header />
+      {/* Hero */}
 
 
 
