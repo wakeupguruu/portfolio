@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react"; // Start using Lucide for consistent icons if available, or text X
+import { X } from "lucide-react";
 
 export interface Photo {
     id: string;
@@ -28,20 +28,9 @@ interface ActivePhotoState {
     initialSrc: string;
 }
 
-// Helper for delay
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-function ExpandingCaption({
-    photo,
-    isActive,
-    onToggle,
-    onClose
-}: {
-    photo: Photo;
-    isActive: boolean;
-    onToggle: (e: React.MouseEvent) => void;
-    onClose: () => void;
-}) {
+function ExpandingCaption({ photo, isActive, onToggle, onClose }: { photo: Photo; isActive: boolean; onToggle: (e: React.MouseEvent) => void; onClose: () => void; }) {
     const [captionText, setCaptionText] = useState(photo.caption || "");
     const [descriptionText, setDescriptionText] = useState("");
     const [showPopup, setShowPopup] = useState(false);
@@ -55,15 +44,11 @@ function ExpandingCaption({
     });
 
     useEffect(() => {
-        // Reset ref on mount
         stateRef.current.captionText = photo.caption || "";
     }, [photo.caption]);
 
     useEffect(() => {
-        // Cancel any running animation
         stateRef.current.cancelCurrent();
-
-        // Define cancellation token
         let cancelled = false;
         stateRef.current.cancelCurrent = () => { cancelled = true; };
 
@@ -74,22 +59,22 @@ function ExpandingCaption({
             if (!fullDesc) return;
             stateRef.current.isAnimating = true;
 
-            // 1. Backspace Caption
-            let currentCap = stateRef.current.captionText; // Start from whatever is currently shown
+            // 1. Backspace Caption (FASTER)
+            let currentCap = stateRef.current.captionText;
             while (currentCap.length > 0) {
                 if (cancelled) return;
                 currentCap = currentCap.slice(0, -1);
                 setCaptionText(currentCap);
                 stateRef.current.captionText = currentCap;
-                await delay(30);
+                await delay(10); // Was 30
             }
 
-            // 2. Expand Box
+            // 2. Expand Box (FASTER)
             if (cancelled) return;
             setShowPopup(true);
-            await delay(400); // Wait for expansion animation
+            await delay(250); // Was 400
 
-            // 3. Type Description
+            // 3. Type Description (FASTER)
             if (cancelled) return;
             let currentDesc = "";
             for (let i = 0; i < fullDesc.length; i++) {
@@ -97,7 +82,7 @@ function ExpandingCaption({
                 currentDesc = fullDesc.slice(0, i + 1);
                 setDescriptionText(currentDesc);
                 stateRef.current.descriptionText = currentDesc;
-                await delay(15);
+                await delay(5); // Was 15
             }
 
             stateRef.current.isAnimating = false;
@@ -106,34 +91,32 @@ function ExpandingCaption({
         const runCloseSequence = async () => {
             stateRef.current.isAnimating = true;
 
-            // 1. Untype Description (Fast)
+            // 1. Untype Description (Super Fast)
             let currentDesc = stateRef.current.descriptionText;
             while (currentDesc.length > 0) {
                 if (cancelled) return;
-                // Faster untyping
-                currentDesc = currentDesc.slice(0, -2); // Remove 2 chars at a time
+                currentDesc = currentDesc.slice(0, -5); // Delete chunks
                 if (currentDesc.length < 0) currentDesc = "";
                 setDescriptionText(currentDesc);
                 stateRef.current.descriptionText = currentDesc;
-                await delay(10);
+                await delay(5); // Was 10
             }
 
-            // 2. Shrink Box
+            // 2. Shrink Box (FASTER)
             if (cancelled) return;
             setShowPopup(false);
-            await delay(300); // Wait for shrink
+            await delay(200); // Was 300
 
-            // 3. Retype Caption
+            // 3. Retype Caption (FASTER)
             if (cancelled) return;
             let currentCap = stateRef.current.captionText;
             const targetCap = fullCaption;
-            // Find where we left off (usually 0, but maybe interrupted)
             while (currentCap.length < targetCap.length) {
                 if (cancelled) return;
                 currentCap = targetCap.slice(0, currentCap.length + 1);
                 setCaptionText(currentCap);
                 stateRef.current.captionText = currentCap;
-                await delay(30);
+                await delay(10); // Was 30
             }
 
             stateRef.current.isAnimating = false;
@@ -142,7 +125,6 @@ function ExpandingCaption({
         if (isActive) {
             runOpenSequence();
         } else {
-            // Only run close sequence if we are not already in "idle" state (caption full, popup hidden)
             const isIdle = !showPopup && stateRef.current.captionText === fullCaption;
             if (!isIdle) {
                 runCloseSequence();
@@ -154,7 +136,6 @@ function ExpandingCaption({
     return (
         <div className="mt-4 flex flex-col items-center justify-center relative min-h-[24px]">
             {/* Caption Trigger */}
-            {/* Only show cursor pointer if there is a description */}
             <div
                 className={cn(
                     "relative z-10 px-2 py-1",
@@ -164,17 +145,10 @@ function ExpandingCaption({
             >
                 <p className={cn(
                     "text-xs font-oxygen tracking-widest uppercase text-center transition-all duration-300",
-                    // When popup is open (caption is gone), this element effectively holds the "space". 
-                    // But we want the user to still be able to click "something"? 
-                    // Actually the caption is disappearing.
-                    // We might want to keep a "toggle" icon or just rely on the box?
-                    // User said: "Fixing the issue where the description pop-up does not close when clicked again."
-                    // If the text is gone, they can't click it easily.
-                    // FIX: Min height/width or a placeholder container.
                     isActive ? "text-transparent" : "text-muted-foreground hover:text-foreground",
                     photo.description && !isActive && "hover:underline underline-offset-4 decoration-muted-foreground/50"
                 )}>
-                    {captionText}&nbsp; {/* nbsp preserves height if empty */}
+                    {captionText}&nbsp;
                 </p>
             </div>
 
@@ -185,12 +159,11 @@ function ExpandingCaption({
                         initial={{ opacity: 0, scale: 0.8, x: -20 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.8, x: -10 }}
-                        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                        transition={{ type: "spring", bounce: 0, duration: 0.3 }} // Faster spring
                         className="absolute bottom-full mb-3 z-50 origin-bottom"
-                        onClick={(e) => e.stopPropagation()} // Prevent click-outside from firing immediately on popup click
+                        onClick={(e) => e.stopPropagation()}
                     >
                         <div className="relative w-64 md:w-80 bg-[#5c6b45] text-[#f2f2f2] p-5 rounded shadow-xl flex flex-col items-start text-left">
-                            {/* Close Button */}
                             <button
                                 onClick={(e) => {
                                     e.stopPropagation();
@@ -218,13 +191,77 @@ function ExpandingCaption({
     );
 }
 
+// Sub-component to handle individual photo loading state
+function GridPhotoItem({
+    photo,
+    index,
+    isActive,
+    activeDescriptionId,
+    onPhotoClick,
+    onCaptionToggle,
+    onCloseDescription
+}: {
+    photo: Photo;
+    index: number;
+    isActive: boolean;
+    activeDescriptionId: string | null;
+    onPhotoClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+    onCaptionToggle: (e: React.MouseEvent) => void;
+    onCloseDescription: () => void;
+}) {
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    return (
+        <motion.div
+            className={cn(
+                "group relative",
+                activeDescriptionId === photo.id ? "z-40" : "z-0"
+            )}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+        >
+            <div className="cursor-zoom-in" onClick={onPhotoClick}>
+                <div className={cn(
+                    "relative w-full overflow-hidden transition-opacity duration-300 bg-neutral-200 dark:bg-neutral-800", // Solid background placeholder
+                    isActive ? "opacity-0" : "opacity-100"
+                )}>
+                    {/* Placeholder Logic: Div has bg color. Image fades in (opacity-0 -> 100) */}
+                    <div className="w-full h-full relative">
+                        <Image
+                            src={photo.src}
+                            alt={photo.alt}
+                            width={800}
+                            height={600}
+                            className={cn(
+                                "w-full h-auto max-h-[600px] object-cover transition-all duration-700",
+                                photo.className,
+                                isLoaded ? "opacity-100 blur-0" : "opacity-0 blur-lg scale-105" // Blur-up effect
+                            )}
+                            onLoad={() => setIsLoaded(true)}
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            {photo.caption && (
+                <ExpandingCaption
+                    photo={photo}
+                    isActive={activeDescriptionId === photo.id}
+                    onToggle={onCaptionToggle}
+                    onClose={onCloseDescription}
+                />
+            )}
+        </motion.div>
+    );
+}
+
 export function MasonryGrid({ columns }: MasonryGridProps) {
     const [activeState, setActiveState] = useState<ActivePhotoState | null>(null);
     const [activeDescriptionId, setActiveDescriptionId] = useState<string | null>(null);
 
     // ... (Existing Scroll/Resize Logic) ... 
-    // We retain the logic for Zoom, but update the Description logic.
-
     const [minUpliftElapsed, setMinUpliftElapsed] = useState(false);
     const [isBelowHeader, setIsBelowHeader] = useState(false);
 
@@ -264,7 +301,6 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
     }, [activeState?.phase, activeState?.isLoaded, minUpliftElapsed]);
 
     const handlePhotoClick = (photo: Photo, e: React.MouseEvent<HTMLDivElement>) => {
-        // ... (Existing Zoom Logic Logic) ...
         const rect = e.currentTarget.getBoundingClientRect();
         const imgElement = e.currentTarget.querySelector("img");
         const initialSrc = imgElement?.currentSrc || photo.src;
@@ -327,43 +363,16 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                 {columns.map((columnPhotos, colIndex) => (
                     <div key={colIndex} className="flex flex-col gap-16 flex-1">
                         {columnPhotos.map((photo, i) => (
-                            <motion.div
+                            <GridPhotoItem
                                 key={photo.id}
-                                className={cn(
-                                    "group relative",
-                                    activeDescriptionId === photo.id ? "z-40" : "z-0"
-                                )}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.1 }}
-                            >
-                                <div className="cursor-zoom-in" onClick={(e) => handlePhotoClick(photo, e)}>
-                                    <div className={cn(
-                                        "relative w-full overflow-hidden bg-gray-100 dark:bg-zinc-800 transition-opacity duration-300",
-                                        (activeState?.photo.id === photo.id) ? "opacity-0" : "opacity-100"
-                                    )}>
-                                        <div className="w-full h-full">
-                                            <Image
-                                                src={photo.src}
-                                                alt={photo.alt}
-                                                width={800}
-                                                height={600}
-                                                className={cn("w-full h-auto max-h-[600px] object-cover transition-transform duration-700", photo.className)}
-                                                sizes="(max-width: 768px) 100vw, 33vw"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {photo.caption && (
-                                    <ExpandingCaption
-                                        photo={photo}
-                                        isActive={activeDescriptionId === photo.id}
-                                        onToggle={(e) => handleCaptionToggle(e, photo)}
-                                        onClose={() => setActiveDescriptionId(null)}
-                                    />
-                                )}
-                            </motion.div>
+                                photo={photo}
+                                index={i}
+                                isActive={activeState?.photo.id === photo.id}
+                                activeDescriptionId={activeDescriptionId}
+                                onPhotoClick={(e) => handlePhotoClick(photo, e)}
+                                onCaptionToggle={(e) => handleCaptionToggle(e, photo)}
+                                onCloseDescription={() => setActiveDescriptionId(null)}
+                            />
                         ))}
                     </div>
                 ))}
