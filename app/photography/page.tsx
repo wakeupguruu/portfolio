@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { MasonryGrid } from "@/components/masonry-grid";
@@ -7,6 +8,10 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { MinimalArrow } from "@/components/minimal-arrow";
 import { SayHello } from "@/components/say-hello";
+
+export const metadata: Metadata = {
+  title: "Photographs by Guru",
+};
 
 export default function PhotographyPage() {
   return (

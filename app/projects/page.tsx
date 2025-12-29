@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { PROJECTS } from "./data";
@@ -7,6 +8,10 @@ import Image from "next/image";
 import { MinimalArrow } from "@/components/minimal-arrow";
 import { PhotographsScroll } from "@/components/photographs-scroll";
 import { SayHello } from "@/components/say-hello";
+
+export const metadata: Metadata = {
+    title: "Projects by Guru",
+};
 
 export default function ProjectsPage() {
     return (
@@ -35,7 +40,7 @@ export default function ProjectsPage() {
                                     <span className="font-oxygen text-sm tracking-tight text-(--description-text) mb-2">
                                         {project.category} ({project.year})
                                     </span>
-                                    <Link href={`/projects/${project.slug}`} className="hover:opacity-80 transition-opacity block w-fit">
+                                    <Link href={`/projects/${project.slug}`} className="hover:opacity-80 transition-opacity block w-fit no-underline! hover:no-underline!">
                                         <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight underline decoration-4 decoration-accent underline-offset-8">
                                             {project.title}
                                         </h2>

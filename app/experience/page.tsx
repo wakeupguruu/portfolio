@@ -1,10 +1,15 @@
 import { Header } from "@/components/Header";
+import { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { SayHello } from "@/components/say-hello";
 import { EXPERIENCE } from "./data";
 import Link from "next/link";
 import { MinimalArrow } from "@/components/minimal-arrow";
+
+export const metadata: Metadata = {
+    title: "Experience of Guru",
+};
 
 export default function ExperiencePage() {
     return (
