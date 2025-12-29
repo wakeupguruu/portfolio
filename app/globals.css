@@ -12,10 +12,27 @@
   --accent: #89937a;
   --description-text: #79716b;
   --hello-text: #1c1917;
+
+  /* Semantic Theme Variables moved to top block */
+  --bg-hello: #f5f5f4;
+  --text-hello: #171717;
+  --bg-footer: #e7e5e4;
+  --text-footer: #525252;
+  --border-separator: #d6d3d1;
+  --color-underline: var(--accent);
+  --article-border: #5d674f;
+  --blog-text: #57534e;
+  --bg-more-card: #f5f5f4;
+  --border-more-card-hover: #1c1917;
+  --text-more-card: #1c1917;
+  --text-more-card-sub: #79716b;
+  --text-more-arrow: #1c1917;
+  --border-hover: #1c1917;
+  --bg-dot-inactive: #e5e5e5;
 }
 
+/* Dark mode overrides */
 .dark {
-  /* Dark mode overrides */
   --background: #1c1917; /* near-black warm brown */
   --foreground: #ffffff; /* warm light foreground */
   --muted: #a8a29e; /* muted body text */
@@ -24,6 +41,30 @@
   --accent: #9da591; /* olive-green section title */
   --description-text: #a6a09b;
   --hello-text: #ededed;
+
+  /* Semantic Theme Variables moved from bottom */
+  --bg-hello: #292524;
+  --text-hello: #ededed;
+  --bg-footer: #44403b;
+  --text-footer: #ededed;
+  --border-separator: #57534d;
+  --article-border: #d8d8c0;
+  --blog-text: #d6d3d1;
+  --bg-more-card: #292524;
+  --border-more-card-hover: #ededed;
+  --text-more-card: #ededed;
+  --text-more-card-sub: #a8a29e;
+  --text-more-arrow: #ededed;
+  --border-hover: #ededed;
+  --bg-dot-inactive: #44403c;
+}
+
+/* Nav Dot Utility to ensure correct color switching */
+.nav-dot {
+  background-color: var(--bg-dot-inactive);
+}
+.group:hover .nav-dot {
+  background-color: var(--accent);
 }
 
 @theme inline {
@@ -146,44 +187,9 @@ a:hover {
 }
 
 /* Semantic Theme Variables */
-:root {
-  --bg-hello: #f5f5f4;
-  --text-hello: #171717; /* neutral-900 */
-  --bg-footer: #e7e5e4;
-  --text-footer: #525252; /* neutral-600 */
-  /* User requested specific separator colors */
-  --border-separator: #d6d3d1;
-  --color-underline: var(--accent);
-  --article-border: #5d674f; /* Dark olive for light mode */
-  --blog-text: #57534e; /* Darker than description-text for blog readability */
+/* Semantic Theme Variables moved to top block */
 
-  /* More Photographs Card */
-  --bg-more-card: #f5f5f4;
-  --border-more-card-hover: #1c1917; /* High contrast black for light mode */
-  --text-more-card: #1c1917;
-  --text-more-card-sub: #79716b;
-  --text-more-card-sub: #79716b;
-  --text-more-arrow: #1c1917;
-  --border-hover: #1c1917; /* High contrast for light mode */
-}
-
-.dark {
-  --bg-hello: #292524;
-  --text-hello: #ededed;
-  --bg-footer: #44403b;
-  --text-footer: #ededed; /* Using opacity in usage or explicit color */
-  --border-separator: #57534d;
-  --article-border: #d8d8c0; /* Pale olive for dark mode */
-  --blog-text: #d6d3d1; /* Lighter than description-text for blog readability */
-
-  /* More Photographs Card */
-  --bg-more-card: #292524;
-  --border-more-card-hover: #ededed; /* High contrast white for dark mode */
-  --text-more-card: #ededed;
-  --text-more-card-sub: #a8a29e;
-  --text-more-arrow: #ededed;
-  --border-hover: #ededed; /* High contrast for dark mode */
-}
+/* Removed redundant .dark block */
 
 /* Semantic Classes (as requested to clean up inline styles) */
 .section-hello {

@@ -4,9 +4,11 @@ import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,24 +54,40 @@ export function Header() {
         </Link>
 
         <nav className="relative z-10 flex items-center gap-6">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="group flex items-center gap-2 no-underline hover:no-underline bg-background px-1"
-            >
-              {/* Circle: Light gray by default, Olive on group hover */}
-              <div
-                className="h-2 w-2 rounded-full bg-[#e5e5e5] transition-colors duration-200 group-hover:bg-accent"
-                aria-hidden="true"
-              />
+          {links.map((link) => {
+            const isActive = pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "group flex items-center gap-2 no-underline hover:no-underline bg-background px-1",
+                  isActive && "pointer-events-none"
+                )}
+              >
+                {/* Circle: Light gray by default, Olive on group hover. Active: White (Foreground) */}
+                <div
+                  className={cn(
+                    "h-2 w-2 rounded-full transition-colors duration-200",
+                    isActive
+                      ? "bg-foreground"
+                      : "nav-dot"
+                  )}
+                  aria-hidden="true"
+                />
 
-              {/* Text: Tall and slim (text-lg + tracking-tight), theme-aware default, Olive on group hover */}
-              <span className="inline-block transform scale-y-110 text-sm tracking-widest uppercase text-muted-foreground transition-colors duration-200 group-hover:text-accent font-oswald">
-                {link.label}
-              </span>
-            </Link>
-          ))}
+                {/* Text: Active: Foreground. Inactive: Muted -> Accent on Hover */}
+                <span className={cn(
+                  "inline-block transform scale-y-110 text-sm tracking-widest uppercase transition-colors duration-200 font-oswald",
+                  isActive
+                    ? "text-foreground"
+                    : "text-muted-foreground group-hover:text-accent"
+                )}>
+                  {link.label}
+                </span>
+              </Link>
+            );
+          })}
           <div className="pl-5">
             <div className="ml-2 border-l border-border">
               <div className="bg-background ml-2">
