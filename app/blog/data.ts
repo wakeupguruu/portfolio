@@ -1,6 +1,16 @@
 export const POSTS = [
     { 
         date: "DECEMBER 2025", 
+        title: "My First Open Source Contribution", 
+        slug: "zulip-open-source",
+        href: "/blog/zulip-open-source", 
+        excerpt: "The illusion of 'real-time' in software and in the human brain.",
+        image: "/hero-character-removebg-preview.png",
+        caption: "Buffering...",
+        readingTime: "5 min read"
+    },
+    { 
+        date: "DECEMBER 2025", 
         title: "I Tried to Turn Text Into Videos. This Is What It Cost Me.", 
         slug: "building-edvid-text-to-video",
         href: "/blog/building-edvid-text-to-video", 
@@ -17,16 +27,6 @@ export const POSTS = [
         excerpt: "What actually helped me understand large open-source projects without drowning in code.",
         image: "/hero-character-removebg-preview.png",
         caption: "Navigating complexity.",
-        readingTime: "5 min read"
-    },
-    { 
-        date: "DECEMBER 2025", 
-        title: "My First Open Source Contribution", 
-        slug: "zulip-open-source",
-        href: "/blog/zulip-open-source", 
-        excerpt: "The illusion of 'real-time' in software and in the human brain.",
-        image: "/hero-character-removebg-preview.png",
-        caption: "Buffering...",
         readingTime: "5 min read"
     },
     { 
