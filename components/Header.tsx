@@ -31,14 +31,13 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky -top-5 z-50 w-full h-[78px] transition-colors duration-500 ease-in-out border-b border-transparent",
-        isScrolled && "border-border"
+        "sticky -top-5 z-50 w-full transition-colors duration-500 ease-in-out border-b border-transparent",
+        isScrolled && "border-border",
+        "h-auto py-2 md:h-[78px] md:py-0"
       )}
     >
-      {/* Layer 1: The Blur (Visible through the holes) */}
+      {/* ... layers ... */}
       <div className="absolute inset-0 -z-20 h-full w-full backdrop-blur-md bg-transparent" />
-
-      {/* Layer 2: The Solid Plate with Holes (Masked) */}
       <div
         className="absolute inset-0 -z-10 h-full w-full bg-background/90"
         style={{
@@ -48,12 +47,25 @@ export function Header() {
           WebkitMaskSize: "4px 4px",
         }}
       />
-      <div className="mx-auto flex h-full pt-2 max-w-screen-2xl items-center justify-between px-5 md:px-16">
-        <Link href="/" className="relative z-10 text-lg font-medium tracking-wider text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110 font-oswald">
+
+      <div className="mx-auto flex h-full max-w-screen-2xl flex-wrap items-center justify-between px-5 md:flex-nowrap md:px-16">
+        {/* Logo - Reduced size on mobile */}
+        <Link href="/" className="relative z-10 text-base md:text-lg font-medium tracking-wider text-foreground/90 no-underline hover:no-underline inline-block transform scale-y-110 font-oswald mr-auto">
           Guru Vyas
         </Link>
 
-        <nav className="relative z-10 flex items-center gap-6">
+        {/* Theme Toggle */}
+        <div className="relative z-10 flex md:order-3 md:ml-6 md:border-l md:border-border md:pl-6">
+          <ThemeToggle />
+        </div>
+
+        {/* Navigation - Single line on mobile: overflow-x-auto or wrap with tight spacing? User wants single line. 
+            Reducing gap and font size to attempt fit. Flex-nowrap with overflow scrolling is safer if it really doesn't fit, 
+            but "single line" usually implies "fit it on the screen". 
+            Let's try flex-wrap with VERY tight spacing and small font first, 
+            but user said "single line". I will use flex-nowrap and overflow-hidden/text-ellipsis or just let it be tight.
+        */}
+        <nav className="relative z-10 flex w-full items-center gap-x-3 gap-y-2 pt-2 md:w-auto md:pt-0 md:order-2 md:gap-6 overflow-x-auto no-scrollbar scroll-smooth whitespace-nowrap mask-linear-fade">
           {links.map((link) => {
             const isActive = pathname.startsWith(link.href);
             return (
@@ -61,14 +73,14 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "group flex items-center gap-2 no-underline hover:no-underline bg-background px-1",
+                  "group flex items-center gap-1.5 md:gap-2 no-underline hover:no-underline px-1 flex-shrink-0",
                   isActive && "pointer-events-none"
                 )}
               >
-                {/* Circle: Light gray by default, Olive on group hover. Active: White (Foreground) */}
+                {/* Circle */}
                 <div
                   className={cn(
-                    "h-2 w-2 rounded-full transition-colors duration-200",
+                    "h-1.5 w-1.5 md:h-2 md:w-2 rounded-full transition-colors duration-200",
                     isActive
                       ? "bg-foreground"
                       : "nav-dot"
@@ -76,9 +88,9 @@ export function Header() {
                   aria-hidden="true"
                 />
 
-                {/* Text: Active: Foreground. Inactive: Muted -> Accent on Hover */}
+                {/* Text - Reduced size */}
                 <span className={cn(
-                  "inline-block transform scale-y-110 text-sm tracking-widest uppercase transition-colors duration-200 font-oswald",
+                  "inline-block transform scale-y-110 text-[0.7rem] md:text-sm tracking-widest uppercase transition-colors duration-200 font-oswald",
                   isActive
                     ? "text-foreground"
                     : "text-muted-foreground group-hover:text-accent"
@@ -88,13 +100,6 @@ export function Header() {
               </Link>
             );
           })}
-          <div className="pl-5">
-            <div className="ml-2 border-l border-border">
-              <div className="bg-background ml-2">
-                <ThemeToggle />
-              </div>
-            </div>
-          </div>
         </nav>
       </div>
     </header>
