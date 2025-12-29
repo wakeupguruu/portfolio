@@ -10,7 +10,7 @@ export const POSTS = [
         readingTime: "3 min read"
     },
     { 
-        date: "JANUARY 2025", 
+        date: "DECEMBER 2025", 
         title: "Reading Massive Open-Source Codebases Is Unrealistic", 
         slug: "reading-massive-open-source-codebases-is-unrealistic",
         href: "/blog/reading-massive-open-source-codebases-is-unrealistic", 
@@ -20,7 +20,7 @@ export const POSTS = [
         readingTime: "5 min read"
     },
     { 
-        date: "JANUARY 2025", 
+        date: "DECEMBER 2025", 
         title: "My First Open Source Contribution", 
         slug: "zulip-open-source",
         href: "/blog/zulip-open-source", 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Metadata } from "next";
 import { PixelIcon } from "@/components/pixel-icon";
 import { HeroAnimation } from "@/components/hero-animation";
 import Link from "next/link";
@@ -18,6 +19,10 @@ const interTight = Inter_Tight({
 });
 
 import { POSTS } from "@/app/blog/data";
+
+export const metadata: Metadata = {
+  title: "Guru Vyas",
+};
 
 export default function Home() {
   const posts = POSTS;
@@ -62,7 +67,7 @@ export default function Home() {
             <span className="text-muted-foreground/40">/</span>
             <a href="https://www.instagram.com/guruthlesss/" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">Instagram</a>
             <span className="text-muted-foreground/40">/</span>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">X</a>
+            <a href="https://medium.com/@vyasguru44" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">Medium</a>
           </div>
 
           <p
