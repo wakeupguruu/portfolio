@@ -43,9 +43,9 @@ export default function Home() {
 
 
       {/* Hero */}
-      <Section className="pt-24">
+      <Section className="pt-12 md:pt-24">
         <Container>
-          <h1 className="font-tasa text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-[3.4rem] max-w-4xl">
+          <h1 className="font-tasa text-[2rem] md:text-4xl sm:text-[3.4rem] font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] max-w-4xl">
             <span>Hi, I'm <Link href="/about" className="hover:underline underline-offset-4 decoration-2 decoration-accent transition-all">Guru</Link>. Developer with a taste for music.</span>
 
             <HeroAnimation className="align-bottom">
@@ -54,13 +54,13 @@ export default function Home() {
                 alt="Guru Character"
                 width={64}
                 height={64}
-                className="w-10 h-10 sm:w-16 sm:h-16 object-contain"
+                className="w-8 h-8 md:w-16 md:h-16 object-contain"
                 suppressHydrationWarning
               />
             </HeroAnimation>
           </h1>
 
-          <div className="mt-8 flex flex-wrap items-center gap-2 text-base font-oxygen text-muted-foreground">
+          <div className="mt-6 md:mt-8 flex flex-wrap items-center gap-2 text-[0.9rem] md:text-base font-oxygen text-muted-foreground">
             <a href="https://github.com/wakeupguruu" target="_blank" rel="noreferrer" className="px-1 -ml-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">GitHub</a>
             <span className="text-muted-foreground/40">/</span>
             <a href="https://www.linkedin.com/in/guru-vyas-16a0b82a7" target="_blank" rel="noreferrer" className="px-1 transition-all duration-75 hover:bg-black hover:text-white! dark:hover:bg-white dark:hover:text-black! rounded-sm">LinkedIn</a>
@@ -71,7 +71,7 @@ export default function Home() {
           </div>
 
           <p
-            className="mt-10 max-w-2xl tracking-tight text-[1.05rem] leading-relaxed font-oxygen"
+            className="mt-8 md:mt-10 max-w-2xl tracking-tight text-[0.95rem] md:text-[1.05rem] leading-relaxed font-oxygen"
             style={{ color: "var(--description-text)" }}
           >
             I'm a Full Stack Developer specializing in Next.js and TypeScript. I build open source tools and high-performance web applications.
@@ -106,12 +106,12 @@ export default function Home() {
                     const isLeft = i % 2 === 0;
                     const isFirstRow = i < 2;
 
-                    // Base classes: Reduced padding (px-5)
-                    let classes = "relative px-5 py-6 border-custom-separator";
+                    // Base classes: Reduced padding (px-0 on mobile, px-5 on sm)
+                    let classes = "relative px-0 sm:px-5 py-6 border-custom-separator";
 
-                    // Vertical Divider (Left Column Only) - Stops short of top/bottom
+                    // Vertical Divider (Left Column Only) - Stops short of top/bottom (Hidden on mobile)
                     if (isLeft) {
-                      classes += " after:content-[''] after:absolute after:right-0 after:top-5 after:bottom-5 after:w-px after:bg-[var(--border-separator)]";
+                      classes += " sm:after:content-[''] sm:after:absolute sm:after:right-0 sm:after:top-5 sm:after:bottom-5 sm:after:w-px sm:after:bg-[var(--border-separator)]";
                     }
 
                     // Middle Horizontal Divider (First Row Only) - Text Aligned (left-5)
@@ -162,7 +162,7 @@ export default function Home() {
         {/* Removed Container wrapper to allow full-bleed left edge (no padding) */}
         <PhotographsScroll>
           {/* Photo 1 */}
-          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+          <div className="relative h-[400px] md:h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
               src="/images/21.jpg"
               alt="Photograph 1"
@@ -172,7 +172,7 @@ export default function Home() {
             />
           </div>
           {/* Photo 2 */}
-          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+          <div className="relative h-[400px] md:h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
               src="/images/22.jpg"
               alt="Photograph 2"
@@ -182,7 +182,7 @@ export default function Home() {
             />
           </div>
           {/* Photo 3 */}
-          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+          <div className="relative h-[400px] md:h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
               src="/images/28.jpg"
               alt="Photograph 3"
@@ -192,7 +192,7 @@ export default function Home() {
             />
           </div>
           {/* Photo 4 */}
-          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+          <div className="relative h-[400px] md:h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
               src="/images/42.jpg"
               alt="Photograph 4"
@@ -202,7 +202,7 @@ export default function Home() {
             />
           </div>
           {/* Photo 5 */}
-          <div className="relative h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
+          <div className="relative h-[400px] md:h-[600px] w-auto aspect-2/3 shrink-0 snap-center bg-gray-100 dark:bg-zinc-800 overflow-hidden group">
             <Image
               src="/images/18.jpg"
               alt="Photograph 5"
@@ -213,7 +213,7 @@ export default function Home() {
           </div>
 
           {/* More Link Card */}
-          <Link href="/photography" className="group relative h-[600px] w-[400px] shrink-0 snap-center flex flex-col items-center justify-center text-center p-6 transition-colors duration-300 bg-(--bg-more-card) border border-transparent hover:border-(--border-more-card-hover)">
+          <Link href="/photography" className="group relative h-[400px] md:h-[600px] w-auto aspect-2/3 shrink-0 snap-center flex flex-col items-center justify-center text-center p-6 transition-colors duration-300 bg-(--bg-more-card) border border-transparent hover:border-(--border-more-card-hover)">
             <span className="font-oxygen text-xs tracking-widest uppercase mb-4 text-(--text-more-card-sub)">View All</span>
             <div className="flex items-center gap-2 text-base font-sans font-bold text-(--text-more-card)">
               <span>MORE PHOTOGRAPHS</span>
