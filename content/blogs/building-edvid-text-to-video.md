@@ -124,4 +124,4 @@ If you’re building something ambitious and it feels harder than expected, that
 ## Project Link
 
 You can check out the project here:  
-👉 **GitHub:** `https://github.com/wakeupguruu/EdVid`
+👉 **GitHub:** [EdVid](https://github.com/wakeupguruu/EdVid)
