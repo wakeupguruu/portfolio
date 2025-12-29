@@ -386,7 +386,7 @@ export function MasonryGrid({ columns }: MasonryGridProps) {
                         animate={{ opacity: activeState.phase === 'returning' ? 0 : 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: activeState.phase === 'returning' ? 0.2 : 0.4 }}
-                        className="fixed inset-0 z-[55] bg-background/95 backdrop-blur-sm"
+                        className="fixed inset-0 z-55 bg-background/95 backdrop-blur-sm"
                         onClick={handleClose}
                     />
                 )}
