@@ -35,9 +35,11 @@ export default function ProjectsPage() {
                                     <span className="font-oxygen text-sm tracking-tight text-(--description-text) mb-2">
                                         {project.category} ({project.year})
                                     </span>
-                                    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight underline decoration-4 decoration-accent underline-offset-8">
-                                        {project.title}
-                                    </h2>
+                                    <Link href={`/projects/${project.slug}`} className="hover:opacity-80 transition-opacity block w-fit">
+                                        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight underline decoration-4 decoration-accent underline-offset-8">
+                                            {project.title}
+                                        </h2>
+                                    </Link>
                                 </div>
                             </Container>
 

@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
   {
     title: "EdVid",
     slug: "edvid",
-    year: "2024",
+    year: "2025",
     category: "AI Video Generation",
     description: "AI-Powered Educational Video Generator. An educational video creation tool that leverages Manim for animations, allowing users to generate content via a web interface.",
     href: "https://github.com/wakeupguruu/EdVid",
@@ -48,7 +48,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Dark PDF",
     slug: "dark-pdf",
-    year: "2024",
+    year: "2025",
     category: "Utility Tool",
     description: "A smart PDF viewer that intelligently converts light-mode documents into dark mode, reducing eye strain during long reading sessions.",
     href: "https://github.com/wakeupguruu/dark-pdf",
