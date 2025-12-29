@@ -99,12 +99,14 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                         <article className="prose prose-lg dark:prose-invert max-w-3xl font-oxygen leading-relaxed
                             prose-headings:font-tasa prose-headings:font-bold prose-headings:tracking-tight
                             prose-p:text-(--blog-text) prose-p:leading-8
+                            prose-li:text-(--blog-text) prose-li:marker:text-accent
                             prose-strong:text-foreground
                             prose-code:text-foreground prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-mono prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
                          ">
                             <ReactMarkdown
                                 components={{
                                     blockquote: ({ node, ...props }) => <SpecialBox {...(props as any)} />,
+                                    hr: ({ ...props }) => <hr className="my-8 border-custom-separator" {...props} />,
                                 }}
                             >
                                 {content}

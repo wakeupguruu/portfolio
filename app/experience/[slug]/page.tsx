@@ -101,6 +101,7 @@ export default async function ExperienceDetailPage({ params }: PageParams) {
                                 <ReactMarkdown
                                     components={{
                                         blockquote: ({ node, ...props }) => <SpecialBox {...(props as any)} />,
+                                        hr: ({ ...props }) => <hr className="my-8 border-custom-separator" {...props} />,
                                     }}
                                 >
                                     {content}

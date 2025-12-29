@@ -93,12 +93,14 @@ export default async function BlogPostPage({ params }: PageParams) {
                             <article className="prose prose-lg dark:prose-invert max-w-3xl font-oxygen leading-relaxed
                 prose-headings:font-tasa prose-headings:font-bold prose-headings:tracking-tight
                 prose-p:text-(--blog-text) prose-p:leading-8
+                prose-li:text-(--blog-text) prose-li:marker:text-accent
                 prose-strong:text-foreground
                 prose-code:text-accent prose-code:bg-muted/50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
               ">
                                 <ReactMarkdown
                                     components={{
                                         blockquote: ({ node, ...props }) => <SpecialBox {...(props as any)} />,
+                                        hr: ({ ...props }) => <hr className="my-8 border-custom-separator" {...props} />,
                                     }}
                                 >
                                     {content}
@@ -111,7 +113,7 @@ export default async function BlogPostPage({ params }: PageParams) {
                                 <p className="font-oxygen text-muted-foreground leading-relaxed mb-16">
                                     That concludes the article. If you spot any typo or would like to share your
                                     thoughts on this article, please feel free to{" "}
-                                    <a href="#" className="underline decoration-1 underline-offset-4 hover:text-foreground transition-colors">
+                                    <a href="mailto:vyasguruwork@gmail.com" className="underline decoration-1 underline-offset-4 hover:text-foreground transition-colors">
                                         get in touch
                                     </a>
                                     . 👋
@@ -126,7 +128,7 @@ export default async function BlogPostPage({ params }: PageParams) {
                                     <div className="mb-8">
                                         <h3 className="font-oxygen font-bold text-lg mb-6">2025</h3>
                                         <div className="flex flex-col gap-5">
-                                            {POSTS.map((p) => (
+                                            {POSTS.filter(p => p.slug === 'zulip-open-source').map((p) => (
                                                 <a
                                                     key={p.slug}
                                                     href={p.href}
@@ -141,7 +143,7 @@ export default async function BlogPostPage({ params }: PageParams) {
 
                                                     {/* Category Pill */}
                                                     <span className="shrink-0 px-3 py-1 rounded-full border border-border text-xs font-oxygen text-muted-foreground group-hover:border-foreground group-hover:text-foreground transition-all">
-                                                        {(p as any).category || 'Blog'}
+                                                        Open Source
                                                     </span>
                                                 </a>
                                             ))}
