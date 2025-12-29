@@ -11,7 +11,7 @@ export function SpecialBox({ children, className, ...props }: SpecialBoxProps) {
         <div className={cn("relative mb-8 w-fit max-w-full md:max-w-2/3 not-prose", className)} {...props}>
             {/* Inner Content Box (Full Border) */}
             <div className="relative z-10 border-2 border-[#89937a] p-4 w-full bg-background transition-colors duration-500">
-                <div className="font-source-code text-base leading-relaxed text-(--description-text) [word-spacing:-4px]">
+                <div className="font-source-code text-[0.75rem] md:text-base leading-7 md:leading-relaxed tracking-tight md:tracking-normal text-(--description-text) [word-spacing:-4px]">
                     {children}
                 </div>
             </div>

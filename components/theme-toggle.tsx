@@ -31,10 +31,10 @@ export function ThemeToggle({ withText = false }: { withText?: boolean }) {
       <div className="relative h-6 w-6">
         {/* Pixel Moon Icon (shown in dark mode) */}
         <div
-          className="absolute inset-0 h-full w-full transition-all duration-500 ease-out"
+          className="absolute inset-0 h-full w-full transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1)"
           style={{
             opacity: isDark ? 1 : 0,
-            transform: isDark ? 'rotate(0deg) scale(1)' : 'rotate(-15deg) scale(0.9)'
+            transform: isDark ? 'rotate(0deg) scale(1)' : 'rotate(-45deg) scale(0.8)'
           }}
         >
           <svg
@@ -72,10 +72,10 @@ export function ThemeToggle({ withText = false }: { withText?: boolean }) {
 
         {/* Pixel Sun Icon (shown in light mode) */}
         <div
-          className="absolute inset-0 h-full w-full transition-all duration-500 ease-out"
+          className="absolute inset-0 h-full w-full transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1)"
           style={{
             opacity: isDark ? 0 : 1,
-            transform: isDark ? 'rotate(15deg) scale(0.9)' : 'rotate(0deg) scale(1)'
+            transform: isDark ? 'rotate(45deg) scale(0.8)' : 'rotate(0deg) scale(1)'
           }}
         >
           <svg
