@@ -10,13 +10,13 @@ export function SayHello() {
             {/* Say hello - Full Width */}
             <div className="w-full section-hello">
                 <Container className="mb-0 pt-25 pb-10"> {/* Increased top padding again */}
-                    <h3 className="mb-10 text-3xl font-bold! font-tasa">Say hello</h3>
+                    <h3 className="mb-10 text-3xl font-bold font-tasa">Say hello</h3>
 
                     {/* List Container - No top border on title, Borders handled by items  */}
                     <ul className="flex flex-col">
                         {/* E-Mail */}
-                        <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
-                            <span className="text-base font-bold font-mono scale-y-[1.075]" style={{ color: 'var(--hello-text)' }}>E-Mail</span>
+                        <li className="relative grid grid-cols-[1fr_auto] md:grid-cols-[335px_1fr_auto] items-center py-5 gap-y-1 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
+                            <span className="text-base font-bold font-mono scale-y-[1.075] col-span-2 md:col-span-1" style={{ color: 'var(--hello-text)' }}>E-Mail</span>
                             <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors" style={{ color: 'var(--hello-text)' }}>
                                 <span className="font-source-code flex items-center">
                                     vyasguruwork@gmail.com
@@ -29,8 +29,8 @@ export function SayHello() {
                         </li>
 
                         {/* LinkedIn */}
-                        <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
-                            <span className="text-base font-bold font-tasa" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
+                        <li className="relative grid grid-cols-[1fr_auto] md:grid-cols-[335px_1fr_auto] items-center py-5 gap-y-1 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
+                            <span className="text-base font-bold font-tasa col-span-2 md:col-span-1" style={{ color: 'var(--hello-text)' }}>LinkedIn</span>
                             <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                                 linkedin.com/in/guru-vyas
                             </div>
@@ -41,8 +41,8 @@ export function SayHello() {
                         </li>
 
                         {/* Instagram */}
-                        <li className="relative grid grid-cols-[335px_1fr_auto] items-center py-5 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
-                            <span className="text-base font-bold" style={{ color: 'var(--hello-text)' }}>Instagram</span>
+                        <li className="relative grid grid-cols-[1fr_auto] md:grid-cols-[335px_1fr_auto] items-center py-5 gap-y-1 group cursor-pointer transition-colors w-full md:w-[79%] after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:right-4 after:bg-(--border-separator) after:transition-colors hover:after:bg-(--border-hover)">
+                            <span className="text-base font-bold col-span-2 md:col-span-1" style={{ color: 'var(--hello-text)' }}>Instagram</span>
                             <div className="text-base flex items-center gap-2 group-hover:underline decoration-1 underline-offset-4 transition-colors font-source-code" style={{ color: 'var(--hello-text)' }}>
                                 instagram.com/guruthlesss
                             </div>
@@ -54,7 +54,7 @@ export function SayHello() {
                     </ul>
 
                     {/* Lights On Toggle - Moved here, Aligned Right, Padded */}
-                    <div className="flex justify-end mt-27 w-full md:w-[79%]">
+                    <div className="flex justify-end mt-28 w-full md:w-[79%]">
                         <ThemeToggle withText={true} />
                     </div>
                 </Container>
