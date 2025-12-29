@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
@@ -15,14 +14,12 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
     return (
-        <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
-            <Header />
-
-            <div className="pt-24  w-full overflow-x-hidden">
+        <div className="w-full">
+            <div className="pt-15 w-full overflow-x-hidden">
                 {/* Intro Section */}
                 <Container>
                     <Section className="mb-24">
-                        <p className="font-tasa text-4xl pb-8 font-bold leading-none tracking-tight text-(--hello-text) sm:text-[3.4rem] max-w-5xl">
+                        <p className="font-tasa text-3xl md:text-4xl pb-8 font-bold leading-none tracking-tight text-(--hello-text) sm:text-[3.4rem] max-w-5xl">
                             Find my favorite projects on <a className="underline decoration-5 decoration-accent hover:decoration-(--hello-text) transition-colors duration-300 underline-offset-4" href="https://github.com/wakeupguruu" target="_blank" rel="noopener noreferrer">GitHub</a> and by scrolling down.
                         </p>
                         <p className="max-w-3xl text-[1.05rem] tracking-tight leading-relaxed font-oxygen text-(--description-text)">
@@ -52,14 +49,14 @@ export default function ProjectsPage() {
                             <div className="mb-5 pl-4 md:pl-0">
                                 <PhotographsScroll>
                                     {project.images.map((imgSrc, i) => (
-                                        <div key={i} className="relative h-[400px] md:h-[610px] w-auto shrink-0 snap-center bg-muted overflow-hidden">
+                                        <div key={i} className="relative h-[300px] md:h-[610px] w-[85vw] md:w-auto shrink-0 snap-start bg-muted overflow-hidden">
                                             <Image
                                                 src={imgSrc}
                                                 alt={`${project.title} image ${i + 1}`}
                                                 width={0}
                                                 height={0}
-                                                className="h-full w-auto object-contain transition-transform duration-700"
-                                                sizes="(max-width: 768px) 800px, 1200px"
+                                                className="h-full w-full md:w-auto object-cover md:object-contain transition-transform duration-700"
+                                                sizes="(max-width: 768px) 85vw, 1200px"
                                                 quality={90}
                                             />
                                         </div>
@@ -69,7 +66,7 @@ export default function ProjectsPage() {
 
                             <Container>
                                 <div>
-                                    <Link href={`/projects/${project.slug}`} className="group inline-flex items-center gap-2 text-sm scale-y-[1.1] font-light tracking-normal uppercase hover:underline underline-offset-4">
+                                    <Link href={`/projects/${project.slug}`} className="group inline-flex items-center gap-2 text-xs md:text-sm scale-y-[1.1] font-light tracking-normal uppercase hover:underline underline-offset-4">
                                         MORE ABOUT THE PROJECT <MinimalArrow className="w-4 h-5 text-(--text-more-arrow)" />
                                     </Link>
                                 </div>

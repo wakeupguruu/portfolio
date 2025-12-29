@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
@@ -15,9 +14,7 @@ export const metadata: Metadata = {
 
 export default function PhotographyPage() {
   return (
-    <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
-      <Header />
-
+    <div className="w-full">
       <div className="pt-24 w-full overflow-x-hidden">
         {/* Intro Section */}
         <Container>

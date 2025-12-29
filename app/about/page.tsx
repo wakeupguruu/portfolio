@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { SayHello } from "@/components/say-hello";
@@ -6,9 +5,7 @@ import Link from "next/link";
 
 export default function AboutPage() {
     return (
-        <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
-            <Header />
-
+        <div className="w-full">
             <div className="pt-24 w-full overflow-x-hidden">
                 <Container>
                     <Section className="mb-12">

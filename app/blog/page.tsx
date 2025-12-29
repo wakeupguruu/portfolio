@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { SayHello } from "@/components/say-hello";
@@ -14,10 +13,8 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
     return (
-        <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
-            <Header />
-
-            <div className="pt-12 md:pt-24 w-full overflow-x-hidden">
+        <div className="w-full">
+            <div className="pt-[61px] md:pt-24 w-full overflow-x-hidden">
                 <Container>
                     <Section className="mb-12">
                         <h1 className="font-tasa text-[2rem] md:text-4xl font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] sm:text-[3.4rem]">
