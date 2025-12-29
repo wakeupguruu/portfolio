@@ -42,8 +42,6 @@ Unlike closed-source alternatives, WebSpark-AI is designed for transparency. It 
 
 ## Check It Out
 
-The code is live, open, and ready for you to explore. Whether you want to contribute, fork it, or just see how it works, head over to the repo.
+The code is open, and ready for you to explore. Whether you want to contribute, fork it, or just see how it works, head over to the repo.
 
 [**View WebSpark-AI on GitHub**](https://github.com/wakeupguruu/WebSpark-AI)
-
-Let’s build the future, one prompt at a time..

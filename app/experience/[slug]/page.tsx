@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { SayHello } from "@/components/say-hello";
@@ -57,10 +56,8 @@ export default async function ExperienceDetailPage({ params }: PageParams) {
     }
 
     return (
-        <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
-            <Header />
-
-            <div className="pt-24 w-full overflow-x-hidden">
+        <div className="w-full">
+            <div className="pt-15 w-full overflow-x-hidden">
                 <Container>
                     <Section className="mb-12 md:mb-20">
                         <div>
@@ -79,29 +76,31 @@ export default async function ExperienceDetailPage({ params }: PageParams) {
                                     </span>
                                     <div className="h-px flex-1 bg-border ml-6"></div>
                                 </div>
-                                <p className="max-w-3xl text-lg text-muted-foreground font-oxygen leading-relaxed">
+                                <p className="max-w-3xl text-sm md:text-lg text-muted-foreground font-oxygen leading-relaxed">
                                     {item.description}
                                 </p>
                                 {item.externalLink && item.externalLink !== '#' && (
-                                    <a href={item.externalLink} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-accent hover:underline decoration-1 underline-offset-4 font-oxygen">
+                                    <a href={item.externalLink} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-accent text-sm md:text-lg hover:underline decoration-1 underline-offset-4 font-oxygen">
                                         View Project / PR →
                                     </a>
                                 )}
                             </div>
 
                             {/* Main Content */}
-                            <article className="prose prose-lg dark:prose-invert max-w-3xl font-oxygen leading-relaxed
+                            <article className="prose prose-sm md:prose-lg dark:prose-invert max-w-3xl font-oxygen leading-relaxed
                 prose-headings:font-tasa prose-headings:font-bold prose-headings:tracking-tight
+                prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mt-12 prose-h2:mb-6
+                prose-h3:text-2xl md:prose-h3:text-3xl prose-h3:mt-8 prose-h3:mb-4
                 prose-h1:text-3xl
                 prose-p:text-(--blog-text) prose-p:leading-8
                 prose-li:text-(--blog-text) prose-li:marker:text-accent
                 prose-strong:text-foreground
                 prose-code:text-foreground prose-code:bg-secondary prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+                prose-hr:hidden
               ">
                                 <ReactMarkdown
                                     components={{
                                         blockquote: ({ node, ...props }) => <SpecialBox {...(props as any)} />,
-                                        hr: ({ ...props }) => <hr className="my-8 border-custom-separator" {...props} />,
                                     }}
                                 >
                                     {content}

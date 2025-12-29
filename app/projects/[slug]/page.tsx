@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Container, Section } from "@/components/ui/section";
 import { getProjectBySlug, PROJECTS } from "../data";
@@ -46,27 +45,25 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
     const content = await getProjectContent(slug);
 
     return (
-        <div className="min-h-screen font-interTight bg-background text-foreground transition-colors duration-500">
-            <Header />
-
-            <div className="pt-32 w-full overflow-x-hidden">
+        <div className="w-full">
+            <div className="pt-15 w-full overflow-x-hidden">
                 <Container>
                     <Section className="mb-0">
                         {/* Title */}
-                        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+                        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-3">
                             {project.title} · <span className="text-muted-foreground font-light">{project.category}</span>
                         </h1>
 
                         {/* Timeline and Line */}
-                        <div className="flex items-center w-full mb-16">
-                            <span className="font-oxygen text-sm tracking-wide uppercase scale-y-110 text-(--description-text)">
+                        <div className="flex items-center w-full mb-10">
+                            <span className="font-oxygen text-xs md:text-sm tracking-wide uppercase scale-y-110 text-(--description-text)">
                                 {project.year}
                             </span>
                             <div className="h-px flex-1 bg-(--border-separator) ml-6"></div>
                         </div>
 
                         {/* Description */}
-                        <p className="max-w-3xl text-[1.1rem] leading-relaxed font-oxygen text-(--description-text) mb-0">
+                        <p className="max-w-3xl text-sm md:text-[1.1rem] leading-relaxed font-oxygen text-(--description-text) mb-4">
                             {project.description}
                         </p>
                     </Section>
@@ -77,14 +74,14 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                     <div className="pl-4 md:pl-0">
                         <PhotographsScroll>
                             {project.images.map((imgSrc, i) => (
-                                <div key={i} className="relative h-[400px] md:h-[600px] w-auto shrink-0 snap-center bg-muted overflow-hidden">
+                                <div key={i} className="relative h-[300px] md:h-[600px] w-[85vw] md:w-auto shrink-0 snap-start bg-muted overflow-hidden">
                                     <Image
                                         src={imgSrc}
                                         alt={`${project.title} image ${i + 1}`}
                                         width={0}
                                         height={0}
-                                        className="h-full w-auto object-contain"
-                                        sizes="(max-width: 768px) 800px, 1200px"
+                                        className="h-full w-full md:w-auto object-cover md:object-contain"
+                                        sizes="(max-width: 768px) 85vw, 1200px"
                                         quality={90}
                                     />
                                 </div>
@@ -96,17 +93,19 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                 <Container>
                     {/* Markdown Content Section (Replaces old 'Article Links') */}
                     <Section className="mb-16">
-                        <article className="prose prose-lg dark:prose-invert max-w-3xl font-oxygen leading-relaxed
+                        <article className="prose prose-sm md:prose-lg dark:prose-invert max-w-3xl font-oxygen leading-relaxed
                             prose-headings:font-tasa prose-headings:font-bold prose-headings:tracking-tight
+                            prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mt-12 prose-h2:mb-6
+                            prose-h3:text-2xl md:prose-h3:text-3xl prose-h3:mt-8 prose-h3:mb-4
                             prose-p:text-(--blog-text) prose-p:leading-8
                             prose-li:text-(--blog-text) prose-li:marker:text-accent
                             prose-strong:text-foreground
                             prose-code:text-foreground prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-mono prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
+                            prose-hr:hidden
                          ">
                             <ReactMarkdown
                                 components={{
                                     blockquote: ({ node, ...props }) => <SpecialBox {...(props as any)} />,
-                                    hr: ({ ...props }) => <hr className="my-8 border-custom-separator" {...props} />,
                                 }}
                             >
                                 {content}
