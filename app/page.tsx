@@ -43,7 +43,7 @@ export default function Home() {
       {/* Hero */}
       <Section className="pt-12 md:pt-24">
         <Container>
-          <h1 className="font-tasa text-[2rem] md:text-4xl sm:text-[3.4rem] font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] max-w-4xl">
+          <h1 className="font-tasa text-[2rem] md:text-6xl sm:text-[3.4rem] font-extrabold leading-none tracking-[-0.04em] text-[#1c1917] dark:text-[#ededed] max-w-4xl">
             <span>Hi, I'm <Link href="/about" className="hover:underline underline-offset-4 decoration-2 decoration-accent transition-all">Guru</Link>. Developer with a taste for music.</span>
 
             <HeroAnimation className="align-bottom">
