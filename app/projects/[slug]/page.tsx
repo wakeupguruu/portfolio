@@ -117,8 +117,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                     <div className="flex flex-col mb-25 md:mb-25">
                         <div className="h-px w-full bg-(--border-separator) mb-8"></div>
                         <div className="flex justify-end">
-                            <Link href="/projects" className="group inline-flex items-center gap-2 text-sm scale-y-[1.1] font-light tracking-normal uppercase hover:underline underline-offset-4">
-                                ALL WORKS <MinimalArrow className="w-4 h-5 text-(--text-more-arrow)" />
+                            <Link href="/projects" className="group inline-flex items-center gap-2 text-xs md:text-sm scale-y-[1.1] font-light tracking-normal uppercase hover:underline underline-offset-4">
+                                ALL WORKS <MinimalArrow className="w-4 h-5 rotate-0 md:-rotate-45 md:group-hover:rotate-0 transition-transform duration-300 text-(--text-more-arrow)" />
                             </Link>
                         </div>
                     </div>

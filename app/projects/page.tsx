@@ -66,8 +66,8 @@ export default function ProjectsPage() {
 
                             <Container>
                                 <div>
-                                    <Link href={`/projects/${project.slug}`} className="group inline-flex items-center gap-2 text-xs md:text-sm scale-y-[1.1] font-light tracking-normal uppercase hover:underline underline-offset-4">
-                                        MORE ABOUT THE PROJECT <MinimalArrow className="w-4 h-5 text-(--text-more-arrow)" />
+                                    <Link href={`/projects/${project.slug}`} className="group inline-flex items-center gap-2 text-[10px] md:text-sm scale-y-[1.1] font-light tracking-normal uppercase hover:underline underline-offset-4">
+                                        MORE ABOUT THE PROJECT <MinimalArrow className="w-4 h-5 rotate-0 md:-rotate-45 md:group-hover:rotate-0 transition-transform duration-300 text-(--text-more-arrow)" />
                                     </Link>
                                 </div>
                             </Container>

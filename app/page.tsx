@@ -83,7 +83,9 @@ export default function Home() {
         <Container>
           <div className="mb-3 flex items-center justify-between w-full md:w-[79%]">
             <h2 className="font-tasa scale-y-[1.075] text-[2.1rem] font-semibold" style={{ color: 'var(--accent)' }}>Writing</h2>
-            <Link href="/blog" className="text-sm scale-y-[1.075] font-mono">ALL ARTICLES →</Link>
+            <Link href="/blog" className="group flex items-center gap-1.5 text-xs md:text-sm scale-y-[1.075] font-mono hover:underline underline-offset-4">
+              ALL ARTICLES <MinimalArrow className="w-4 h-4 rotate-0 md:-rotate-45 md:group-hover:rotate-0 transition-transform duration-300 text-(--text-more-arrow)" />
+            </Link>
           </div>
 
 
@@ -153,7 +155,9 @@ export default function Home() {
         <Container>
           <div className="mb-8 flex items-center justify-between w-full md:w-[79%]">
             <h2 className="font-tasa text-3xl font-semibold" style={{ color: 'var(--accent)' }}>Photographs</h2>
-            <Link href="/photography" className="text-sm font-robot hover:underline underline-offset-4 decoration-1">MORE PHOTOGRAPHS →</Link>
+            <Link href="/photography" className="group flex items-center gap-1.5 text-xs md:text-sm font-robot hover:underline underline-offset-4 decoration-1">
+              MORE PHOTOGRAPHS <MinimalArrow className="w-4 h-4 rotate-0 md:-rotate-45 md:group-hover:rotate-0 transition-transform duration-300 text-(--text-more-arrow)" />
+            </Link>
           </div>
         </Container>
 
@@ -214,9 +218,9 @@ export default function Home() {
           {/* More Link Card */}
           <Link href="/photography" className="group relative h-[400px] md:h-[600px] w-auto aspect-2/3 shrink-0 snap-center flex flex-col items-center justify-center text-center p-6 transition-colors duration-300 bg-(--bg-more-card) border border-transparent hover:border-(--border-more-card-hover)">
             <span className="font-oxygen text-xs tracking-widest uppercase mb-4 text-(--text-more-card-sub)">View All</span>
-            <div className="flex items-center gap-2 text-base font-sans font-bold text-(--text-more-card)">
+            <div className="flex items-center gap-2 text-sm md:text-base font-sans font-bold text-(--text-more-card)">
               <span>MORE PHOTOGRAPHS</span>
-              <MinimalArrow className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500 text-(--text-more-arrow)" />
+              <MinimalArrow className="w-6 h-6 rotate-0 md:-rotate-45 md:group-hover:rotate-0 transition-transform duration-500 text-(--text-more-arrow)" />
             </div>
           </Link>
         </PhotographsScroll>
