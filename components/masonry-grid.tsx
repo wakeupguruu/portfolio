@@ -146,9 +146,9 @@ function ExpandingCaption({ photo, isActive, onToggle, onClose }: { photo: Photo
                 <p className={cn(
                     "text-xs font-oxygen tracking-widest uppercase text-center transition-all duration-300",
                     isActive ? "text-transparent" : "text-muted-foreground hover:text-foreground",
-                    photo.description && !isActive && "hover:underline underline-offset-4 decoration-muted-foreground/50"
+                    photo.description && !isActive && "underline decoration-dashed decoration-[var(--accent)] underline-offset-4 decoration-2"
                 )}>
-                    {captionText}&nbsp;
+                    {captionText}
                 </p>
             </div>
 

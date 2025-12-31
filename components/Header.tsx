@@ -58,7 +58,9 @@ export function Header() {
 
         {/* Theme Toggle */}
         <div className="relative z-10 flex md:order-3 md:ml-6 md:border-l md:border-border md:pl-6">
-          <ThemeToggle />
+          <div className="bg-background">
+            <ThemeToggle />
+          </div>
         </div>
 
         {/* Navigation - Single line on mobile: overflow-x-auto or wrap with tight spacing? User wants single line. 
@@ -75,7 +77,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "group flex items-center gap-1.5 md:gap-2 no-underline hover:no-underline px-1 shrink-0",
+                  "group flex items-center gap-1.5 md:gap-2 no-underline hover:no-underline px-1 shrink-0 bg-background",
                   isActive && "pointer-events-none"
                 )}
               >
