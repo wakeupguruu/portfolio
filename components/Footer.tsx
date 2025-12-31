@@ -9,10 +9,10 @@ export function Footer() {
         <div className="w-full md:w-[79%] flex items-center justify-between px-4 md:px-12 text-base font-mono">
           <div className="px-5 font-tasa">© {new Date().getFullYear()} Guru Vyas</div>
           <div className="flex gap-8">
-            <Link href="/about" className="text-secondary/60 hover:text-foreground hover:underline transition-colors decoration-1 underline-offset-4 font-tasa uppercase text-sm tracking-widest hover:decoration-accent hover:decoration-[3px]">
+            <Link href="/about" className="text-secondary/60 hover:text-foreground link-footer-hover transition-colors font-tasa uppercase text-sm tracking-widest">
               About
             </Link>
-            <Link href="/resume" className="text-secondary/60 hover:text-foreground hover:underline transition-colors decoration-1 underline-offset-4 font-tasa uppercase text-sm tracking-widest hover:decoration-accent hover:decoration-[3px]">
+            <Link href="/resume" className="text-secondary/60 hover:text-foreground link-footer-hover transition-colors font-tasa uppercase text-sm tracking-widest">
               Resume
             </Link>
           </div>

@@ -217,7 +217,20 @@ a:hover {
   text-decoration-color: var(--color-underline);
   text-decoration-thickness: 3px;
   text-underline-offset: 4px;
+  text-underline-offset: 4px;
   transition-timing-function: ease-in-out;
+}
+
+.link-footer-hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px; /* Default thin */
+  text-decoration-color: transparent; /* Initially invisible/transparent or inherits */
+  text-underline-offset: 4px;
+  transition: all 0.3s ease-in-out;
+}
+.link-footer-hover:hover {
+  text-decoration-color: var(--color-underline);
+  text-decoration-thickness: 3px;
 }
 
 /* Global Text Selection */
