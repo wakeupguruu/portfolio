@@ -77,7 +77,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "group flex items-center gap-1.5 md:gap-2 no-underline hover:no-underline px-1 shrink-0 bg-background",
+                  "group flex items-center gap-1.5 md:gap-2 no-underline hover:no-underline px-1 shrink-0",
                   isActive && "pointer-events-none"
                 )}
               >
