@@ -394,7 +394,7 @@ export function SpotifySearch() {
                                                     className={`text-sm font-caveat truncate max-w-[80px] ${session.suggesterName?.toLowerCase() === "stu" ||
                                                         session.suggesterName?.toLowerCase() === "stuti"
                                                         ? "text-sky-300 dark:text-sky-300"
-                                                        : "text-[var(--accent)]"
+                                                        : "text-accent"
                                                         }`}
                                                 >
                                                     {session.suggesterName || "Anonymous"}
