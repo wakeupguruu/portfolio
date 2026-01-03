@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { POSTS } from './blog/data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://your-domain.com' // Replace with your actual domain
+  const baseUrl = 'https://guruvyas.vercel.app'
 
   const blogPosts = POSTS.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const projects = [
     'dark-pdf',
-    'building-edvid-text-to-video', // Corresponds to edvid slug check
+    'building-edvid-text-to-video',
     'websparkel-ai'
   ].map((slug) => ({
     url: `${baseUrl}/projects/${slug}`,
