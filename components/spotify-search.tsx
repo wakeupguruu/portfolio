@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Search, Loader2, Music, Play, Pause, Sparkles, Send } from "lucide-react";
-import { useTheme } from "next-themes";
+
 import { motion } from "framer-motion";
 
 interface SpotifyTrack {
@@ -290,7 +290,7 @@ export function SpotifySearch() {
                                     : "inset(0 50% 0 50% round 9999px)"
                             }}
                             transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="absolute inset-0 border-[1.5px] border-[var(--accent)] rounded-full pointer-events-none z-20"
+                            className="absolute inset-0 border-[1.5px] border-accent rounded-full pointer-events-none z-20"
                         />
 
                         <button
