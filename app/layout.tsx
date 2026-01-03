@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/Header";
+import { Analytics } from "@vercel/analytics/react";
 
 const fredericka = localFont({
   src: "../public/fonts/FrederickatheGreat-Regular.ttf",
@@ -166,6 +167,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
