@@ -23,6 +23,7 @@ interface SpotifyTrack {
 interface SuggestionSession {
     track: SpotifyTrack;
     timestamp: number;
+    suggesterName: string;
 }
 
 export function SpotifySearch() {
@@ -38,6 +39,7 @@ export function SpotifySearch() {
 
     // Audio Preview State
     const [playingTrackId, setPlayingTrackId] = useState<string | null>(null);
+    const [isFocused, setIsFocused] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
@@ -116,7 +118,7 @@ export function SpotifySearch() {
                 setResults([]);
 
                 // Update History
-                const newHistory = [{ track, timestamp: Date.now() }, ...recentSuggestions].slice(0, 5);
+                const newHistory = [{ track, timestamp: Date.now(), suggesterName }, ...recentSuggestions].slice(0, 5);
                 setRecentSuggestions(newHistory);
                 localStorage.setItem("spotify_recent_suggestions", JSON.stringify(newHistory));
             } else {
@@ -172,7 +174,7 @@ export function SpotifySearch() {
                     >
                         {/* Front Face: Bird with Note (Generic Thank You) */}
                         <div className="absolute w-full h-full rounded-sm flex flex-col items-center justify-center bg-transparent" style={{ backfaceVisibility: "hidden" }}>
-                            <div className="relative w-48 h-48 animate-bounce-slow">
+                            <div className="relative w-64 h-64 animate-bounce-slow">
                                 <Image
                                     src="/images/thank-you-bird.png"
                                     alt="Bird saying thank you"
@@ -264,21 +266,42 @@ export function SpotifySearch() {
                     className="w-full bg-transparent border-b border-muted-foreground/30 py-2 text-sm focus:outline-none focus:border-accent transition-colors"
                 />
 
-                <form onSubmit={handleSearch} className="relative flex gap-2">
-                    <input
-                        type="text"
-                        placeholder="Search Spotify..."
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        className="w-full bg-secondary/50 rounded-lg pl-4 pr-12 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent transition-all"
-                    />
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:text-accent transition-colors disabled:opacity-50"
-                    >
-                        {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
-                    </button>
+                <form onSubmit={handleSearch} className="relative flex gap-2 w-full">
+                    <div className="relative w-full">
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+                            <Search className="h-4 w-4 text-muted-foreground" />
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Search Spotify..."
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
+                            className="w-full bg-secondary/50 border-0 pl-10 pr-12 py-3 text-sm focus:outline-none placeholder:text-muted-foreground/50 transition-colors relative z-0 rounded-full"
+                        />
+
+                        {/* Animated Border */}
+                        <motion.div
+                            initial={{ clipPath: "inset(0 50% 0 50% round 9999px)" }}
+                            animate={{
+                                clipPath: isFocused
+                                    ? "inset(0 0 0 0 round 9999px)"
+                                    : "inset(0 50% 0 50% round 9999px)"
+                            }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="absolute inset-0 border-[1.5px] border-[var(--accent)] rounded-full pointer-events-none z-20"
+                        />
+
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 hover:text-accent transition-colors disabled:opacity-50 z-30 flex items-center justify-center"
+                        >
+                            {loading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Send className="h-3.5 w-3.5" />}
+                            <span className="sr-only">Search</span>
+                        </button>
+                    </div>
                 </form>
             </div>
 
@@ -347,20 +370,35 @@ export function SpotifySearch() {
                                 </div>
                                 <div className="space-y-3">
                                     {recentSuggestions.map((session, idx) => (
-                                        <div key={idx} className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
-                                            <div className="relative w-8 h-8 rounded-md overflow-hidden bg-secondary">
-                                                {session.track.album.images[0] && (
-                                                    <Image
-                                                        src={session.track.album.images[0].url}
-                                                        alt={session.track.name}
-                                                        fill
-                                                        className="object-cover"
-                                                    />
-                                                )}
+                                        <div key={idx} className="flex items-center justify-between gap-3 opacity-60 hover:opacity-100 transition-opacity w-full">
+                                            <div className="flex items-center gap-3 overflow-hidden">
+                                                <div className="relative w-8 h-8 rounded-md overflow-hidden bg-secondary shrink-0">
+                                                    {session.track.album.images[0] && (
+                                                        <Image
+                                                            src={session.track.album.images[0].url}
+                                                            alt={session.track.name}
+                                                            fill
+                                                            className="object-cover"
+                                                        />
+                                                    )}
+                                                </div>
+                                                <div className="overflow-hidden mr-2">
+                                                    <p className="text-xs font-medium truncate">{session.track.name}</p>
+                                                    <p className="text-[10px] text-muted-foreground truncate">
+                                                        {session.track.artists[0].name}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div className="overflow-hidden">
-                                                <p className="text-xs font-medium truncate">{session.track.name}</p>
-                                                <p className="text-[10px] text-muted-foreground truncate">{session.track.artists[0].name}</p>
+                                            <div className="shrink-0 text-right">
+                                                <p
+                                                    className={`text-sm font-caveat truncate max-w-[80px] ${session.suggesterName?.toLowerCase() === "stu" ||
+                                                        session.suggesterName?.toLowerCase() === "stuti"
+                                                        ? "text-sky-300 dark:text-sky-300"
+                                                        : "text-[var(--accent)]"
+                                                        }`}
+                                                >
+                                                    {session.suggesterName || "Anonymous"}
+                                                </p>
                                             </div>
                                         </div>
                                     ))}
