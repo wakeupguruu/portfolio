@@ -29,14 +29,5 @@ export const POSTS = [
         caption: "Navigating complexity.",
         readingTime: "5 min read"
     },
-    { 
-        date: "JUNE 2024", 
-        title: "The weirdest vector algebra class", 
-        slug: "the-weirdest-vector-algebra-class",
-        href: "/blog/the-weirdest-vector-algebra-class", 
-        excerpt: "Reflecting on an unexpected lesson in vector algebra.",
-        image: "/hero-character-removebg-preview.png",
-        caption: "A lesson in direction and magnitude.",
-        readingTime: "2 min read"
-    },
+
 ];
