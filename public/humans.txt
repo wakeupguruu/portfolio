@@ -1,0 +1,27 @@
+   ____ _   _ ____  _   _  __     ____   __    _    ____ 
+  / ___| | | |  _ \| | | | \ \   / /\ \ / /   / \  / ___|
+ | |  _| | | | |_) | | | |  \ \ / /  \ V /   / _ \ \___ \
+ | |_| | |_| |  _ <| |_| |   \ V /    | |   / ___ \ ___) |
+  \____|\___/|_| \_\\___/     \_/     |_|  /_/   \_\____/
+
+  The humans.txt (https://humanstxt.org/) file explains
+  the team, technology, and graphic assets behind this site,
+  guruvyas.vercel.app
+
+  ----------------------------------------------------
+
+  /* TEAM */
+  > Captain: Guru Vyas
+  > Role: Software Engineer & Designer
+  > Contact: https://guruvyas.vercel.app
+
+  /* TECH STACK */
+  > Framework: [Next.js](https://nextjs.org/)
+  > Styling: [Tailwind CSS v4](https://tailwindcss.com/)
+  > Deployment: [Vercel](https://vercel.com/)
+  > Fonts: [Google Fonts](https://fonts.google.com/)
+  > Icons: [Lucide](https://lucide.dev/)
+
+  /* THANKS */
+  > API: [Spotify](https://developer.spotify.com/)
+  > Email: [Resend](https://resend.com/)

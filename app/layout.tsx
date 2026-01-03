@@ -51,14 +51,6 @@ const caveat = Caveat({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Guru Vyas",
-  description: "Portfolio of Guru Vyas",
-  icons: {
-    icon: "/favicon.png",
-  },
-};
-
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
   variable: "--font-source-code",
@@ -88,6 +80,73 @@ const oxygen = localFont({
   variable: "--font-oxygen",
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://guruvyas.vercel.app"),
+  title: {
+    default: "Guru Vyas | Software Engineer",
+    template: "%s | Guru Vyas",
+  },
+
+  icons: {
+    icon: "/favicon.png",
+  },
+
+  description:
+    "Portfolio of Guru Vyas, a software engineer building performant web systems, scalable backends, and thoughtful user interfaces. Experience in React, Next.js, Node.js, open source, and system design.",
+
+  keywords: [
+    "Software Engineer",
+    "Web Engineer",
+    "Full Stack Developer",
+    "Next.js",
+    "React",
+    "Node.js",
+    "Backend Development",
+    "System Design",
+    "Open Source Contributor",
+    "Performance Optimization",
+    "Web Architecture",
+    "Guru Vyas",
+  ],
+
+  authors: [{ name: "Guru Vyas" }],
+  creator: "Guru Vyas",
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://guruvyas.vercel.app",
+    title: "Guru Vyas | Software Engineer",
+    description:
+      "Software engineer focused on building scalable web systems, clean architectures, and high-quality user experiences. Open source contributor with hands-on backend and frontend experience.",
+    siteName: "Guru Vyas",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Guru Vyas | Software Engineer",
+    description:
+      "Building scalable web systems, clean architectures, and thoughtful user experiences.",
+    creator: "@guruvyas", // CHANGE if/when you actually use Twitter/X
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  verification: {
+    google: "e6dNfCtg6hfE7BTEAe6l9j4934x6OisIYFr6wKjOso4",
+  },
+};
 
 export default function RootLayout({
   children,
