@@ -81,11 +81,9 @@
     var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
   --font-fredericka: var(--font-fredericka);
-  --font-fredericka: var(--font-fredericka);
   --font-croissant: var(--font-croissant);
   --font-tasa: var(--font-tasa);
   --font-robot: var(--font-robot);
-  --font-oswald: var(--font-oswald);
   --font-oswald: var(--font-oswald);
   --font-oxygen: var(--font-oxygen);
   --font-source-code: var(--font-source-code);

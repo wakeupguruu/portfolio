@@ -9,7 +9,7 @@ interface MinimalArrowProps {
 
 export function MinimalArrow({ className }: MinimalArrowProps) {
     return (
-        <div className={cn("relative z-50 w-6 h-6 flex items-center justify-center text-black dark:text-white", className)}>
+        <div className={cn("relative z-10 w-6 h-6 flex items-center justify-center text-black dark:text-white", className)}>
             <div
                 className="w-full h-full transition-all! duration-500! ease-[cubic-bezier(0.2,0.8,0.2,1)]! -rotate-45 group-hover:rotate-0"
             >
