@@ -46,8 +46,10 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
               />
             </div>
             {photo.caption && (
-              <p className="mt-3 text-sm font-fredericka tracking-tight text-muted font-medium underline underline-offset-4 decoration-accent decoration-1">
-                {photo.caption}
+              <p className="mt-3 text-sm font-fredericka tracking-wide text-muted font-medium">
+                <span className="border-b-2 border-accent pb-1">
+                  {photo.caption}
+                </span>
               </p>
             )}
           </motion.div>
