@@ -9,9 +9,9 @@ export interface Photo {
   id: string;
   src: string;
   alt: string;
-  width?: number; 
+  width?: number;
   height?: number;
-  caption?: string; 
+  caption?: string;
   span?: string; // Kept for backward compatibility if needed
 }
 
@@ -46,7 +46,7 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
               />
             </div>
             {photo.caption && (
-              <p className="mt-3 text-sm font-fredericka tracking-wide text-muted font-medium">
+              <p className="mt-3 text-sm font-fredericka tracking-tight text-muted font-medium underline underline-offset-4 decoration-accent decoration-1">
                 {photo.caption}
               </p>
             )}
@@ -56,15 +56,15 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
 
       {/* Lightbox Overlay */}
       {selectedPhoto && (
-        <div 
+        <div
           className="fixed inset-0 z-100 flex items-center justify-center bg-background/95 backdrop-blur-sm p-4"
           onClick={() => setSelectedPhoto(null)}
         >
           <div className="absolute top-4 right-4 text-muted cursor-pointer hover:text-foreground">
-             ✕
+            ✕
           </div>
           <div className="relative w-full max-w-7xl h-[85vh]">
-             <Image
+            <Image
               src={selectedPhoto.src}
               alt={selectedPhoto.alt}
               fill
