@@ -31,6 +31,8 @@ interface ActivePhotoState {
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 function ExpandingCaption({ photo, isActive, onToggle, onClose }: { photo: Photo; isActive: boolean; onToggle: (e: React.MouseEvent) => void; onClose: () => void; }) {
+    const [placement, setPlacement] = useState<'top' | 'bottom'>('top');
+    const triggerRef = useRef<HTMLDivElement>(null);
     const [captionText, setCaptionText] = useState(photo.caption || "");
     const [descriptionText, setDescriptionText] = useState("");
     const [showPopup, setShowPopup] = useState(false);
@@ -56,6 +58,13 @@ function ExpandingCaption({ photo, isActive, onToggle, onClose }: { photo: Photo
         const fullDesc = photo.description || "";
 
         const runOpenSequence = async () => {
+            // Determine placement based on screen position
+            if (triggerRef.current) {
+                const rect = triggerRef.current.getBoundingClientRect();
+                // If element is in upper 250px of screen, show popup below
+                setPlacement(rect.top < 250 ? 'bottom' : 'top');
+            }
+
             if (!fullDesc) return;
             stateRef.current.isAnimating = true;
 
@@ -134,7 +143,7 @@ function ExpandingCaption({ photo, isActive, onToggle, onClose }: { photo: Photo
     }, [isActive, photo.caption, photo.description]);
 
     return (
-        <div className="mt-4 flex flex-col items-center justify-center relative min-h-[24px]">
+        <div ref={triggerRef} className="mt-4 flex flex-col items-center justify-center relative min-h-[24px]">
             {/* Caption Trigger */}
             <div
                 className={cn(
@@ -145,10 +154,16 @@ function ExpandingCaption({ photo, isActive, onToggle, onClose }: { photo: Photo
             >
                 <p className={cn(
                     "text-xs font-oxygen tracking-widest uppercase text-center transition-all duration-300",
-                    isActive ? "text-transparent" : "text-muted-foreground hover:text-foreground",
-                    photo.description && !isActive && "hover:underline underline-offset-4 decoration-muted-foreground/50"
+                    isActive ? "text-transparent" : "text-muted-foreground",
+                    photo.description && "cursor-pointer"
                 )}>
-                    {captionText}&nbsp;
+                    <span className={cn(
+                        "underline decoration-2 underline-offset-4 decoration-accent",
+                        photo.description && !isActive && "group-hover:text-foreground"
+                    )}>
+                        {captionText.trim()}
+                    </span>
+                    &nbsp;
                 </p>
             </div>
 
@@ -160,7 +175,12 @@ function ExpandingCaption({ photo, isActive, onToggle, onClose }: { photo: Photo
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.8, x: -10 }}
                         transition={{ type: "spring", bounce: 0, duration: 0.3 }} // Faster spring
-                        className="absolute bottom-full mb-3 z-50 origin-bottom"
+                        className={cn(
+                            "absolute z-50",
+                            placement === 'top'
+                                ? "bottom-full mb-3 origin-bottom"
+                                : "top-full mt-3 origin-top"
+                        )}
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="relative w-64 md:w-80 bg-[#5c6b45] text-[#f2f2f2] p-5 rounded shadow-xl flex flex-col items-start text-left">

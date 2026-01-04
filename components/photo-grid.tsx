@@ -47,8 +47,8 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
             </div>
             {photo.caption && (
               <p className="mt-3 text-sm font-fredericka tracking-wide text-muted font-medium">
-                <span className="border-b-2 border-accent pb-1">
-                  {photo.caption}
+                <span className="underline decoration-accent decoration-2 underline-offset-4">
+                  {photo.caption.trim()}
                 </span>
               </p>
             )}
