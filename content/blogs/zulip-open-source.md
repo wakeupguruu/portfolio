@@ -1,3 +1,5 @@
+**Update (Jan 2026): This PR has now been merged into Zulip’s main branch.**
+
 I finally did it.
 
 I clicked the green button. I generated Pull Request #37039.
