@@ -72,8 +72,7 @@ export default function Home() {
             className="mt-8 md:mt-10 max-w-2xl tracking-tight text-[0.95rem] md:text-[1.05rem] leading-relaxed font-oxygen"
             style={{ color: "var(--description-text)" }}
           >
-            I'm a Full Stack Developer specializing in Next.js and TypeScript. I build open source tools and high-performance web applications.
-
+            I work across full stack and AI — building the backend logic, shaping the UI, and wiring models into real products.
           </p>
         </Container>
       </Section>
