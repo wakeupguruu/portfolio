@@ -120,6 +120,31 @@ export default async function BlogPostPage({ params }: PageParams) {
                                     </div>
 
                                     <div className="mb-8">
+                                        <h3 className="font-oxygen font-bold text-base mb-6">2026</h3>
+                                        <div className="flex flex-col gap-5">
+                                            {POSTS.filter(p => p.slug === 'my-dream-house').map((p) => (
+                                                <a
+                                                    key={p.slug}
+                                                    href={p.href}
+                                                    className="group flex items-center justify-between w-full gap-4 overflow-hidden"
+                                                >
+                                                    <span className="font-oxygen text-muted-foreground group-hover:text-foreground group-hover:underline underline-offset-4 decoration-border transition-colors truncate text-[0.75rem] md:text-base">
+                                                        {p.title}
+                                                    </span>
+
+                                                    {/* Connecting Line */}
+                                                    <div className="h-px bg-border flex-1 group-hover:bg-foreground/20 transition-colors"></div>
+
+                                                    {/* Category Pill */}
+                                                    <span className="shrink-0 px-2 py-0.5 md:px-3 md:py-1 rounded-full border border-border text-[0.55rem] md:text-xs font-oxygen text-muted-foreground group-hover:border-foreground group-hover:text-foreground transition-all">
+                                                        Personal
+                                                    </span>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-8 mt-12">
                                         <h3 className="font-oxygen font-bold text-base mb-6">2025</h3>
                                         <div className="flex flex-col gap-5">
                                             {POSTS.filter(p => p.slug === 'zulip-open-source').map((p) => (
