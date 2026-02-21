@@ -36,9 +36,26 @@ export default function Home() {
 
   return (
     <div className="min-h-screen font-interTight bg-background text-foreground">
-      {/* Hero */}
-
-
+      {/* SEO Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Guru Vyas",
+            "alternateName": ["Vyas Guru", "guruvyas", "vyasguru"],
+            "url": "https://guruvyas.vercel.app",
+            "jobTitle": "Software Engineer",
+            "sameAs": [
+              "https://github.com/wakeupguruu",
+              "https://www.linkedin.com/in/guru-vyas-16a0b82a7/",
+              "https://www.instagram.com/guruthlesss/",
+              "https://medium.com/@vyasguru44"
+            ]
+          })
+        }}
+      />
 
       {/* Hero */}
       <Section className="pt-12 md:pt-24">

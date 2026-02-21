@@ -85,8 +85,12 @@ const oxygen = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://guruvyas.vercel.app"),
   title: {
-    default: "Guru Vyas | Software Engineer",
+    default: "Guru Vyas",
     template: "%s | Guru Vyas",
+  },
+
+  alternates: {
+    canonical: "https://guruvyas.vercel.app",
   },
 
   icons: {
@@ -97,6 +101,12 @@ export const metadata: Metadata = {
     "Portfolio of Guru Vyas, a software engineer building performant web systems, scalable backends, and thoughtful user interfaces. Experience in React, Next.js, Node.js, open source, and system design.",
 
   keywords: [
+    "Guru Vyas",
+    "Vyas Guru",
+    "guruvyas",
+    "vyasguru",
+    "Guru Vyas portfolio",
+    "Guru Vyas software engineer",
     "Software Engineer",
     "Web Engineer",
     "Full Stack Developer",
@@ -108,7 +118,6 @@ export const metadata: Metadata = {
     "Open Source Contributor",
     "Performance Optimization",
     "Web Architecture",
-    "Guru Vyas",
   ],
 
   authors: [{ name: "Guru Vyas" }],
