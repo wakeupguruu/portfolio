@@ -12,6 +12,22 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    title: "TaxCopilot",
+    slug: "taxcopilot",
+    year: "2026",
+    category: "AI Legal Tech",
+    description: "An AI-powered assistant for Indian tax professionals. Upload a GST notice and get an instant structured analysis, a court-ready reply draft grounded in real law, and an ongoing legal research chat—all backed by RAG, AWS Textract, Bedrock, and pgvector.",
+    href: "https://taxcopilot.link/",
+    images: [
+      "/images_project/taxcopilot/1.png",
+      "/images_project/taxcopilot/2.png",
+      "/images_project/taxcopilot/3.png",
+      "/images_project/taxcopilot/4.png"
+    ],
+    links: [{ label: "Live Site", url: "https://taxcopilot.link/" }],
+    articleLinks: []
+  },
+  {
     title: "EdVid",
     slug: "edvid",
     year: "2025",

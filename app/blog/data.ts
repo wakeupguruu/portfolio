@@ -5,7 +5,7 @@ export const POSTS = [
     slug: "my-dream-house",
     href: "/blog/my-dream-house",
     excerpt:
-      "A forgotten child's dream resurfaces, stripped of naïve certainty but holding onto persistence.",
+      "A brief moment of nostalgia, a dream from the past.",
     image: "/images/blog/6.jpeg",
     caption: "The vision stays.",
     readingTime: "3 min read",
