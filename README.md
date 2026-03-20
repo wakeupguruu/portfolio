@@ -28,8 +28,8 @@
 1. **Clone & Install**
 
    ```bash
-   git clone https://github.com/wakeupguruu/guru-portfolio.git
-   cd guru-portfolio
+   git clone https://github.com/wakeupguruu/portfolio.git
+   cd portfolio
    npm install
    ```
 
