@@ -69,7 +69,7 @@ export function Header() {
             Let's try flex-wrap with VERY tight spacing and small font first, 
             but user said "single line". I will use flex-nowrap and overflow-hidden/text-ellipsis or just let it be tight.
         */}
-        <nav className="relative z-10 flex w-full items-center gap-x-3 gap-y-2 pt-2 md:w-auto md:pt-0 md:order-2 md:gap-6 overflow-x-auto no-scrollbar scroll-smooth whitespace-nowrap mask-linear-fade">
+        <nav className="relative z-10 flex w-full items-center gap-x-2 pt-2 md:w-auto md:pt-0 md:order-2 md:gap-3 overflow-x-auto no-scrollbar scroll-smooth whitespace-nowrap mask-linear-fade pb-2">
           {links.map((link) => {
             const isActive = pathname.startsWith(link.href);
             return (
@@ -77,8 +77,10 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "group flex items-center gap-1.5 md:gap-2 no-underline hover:no-underline px-1 shrink-0",
-                  isActive && "pointer-events-none"
+                  "group flex items-center gap-1.5 md:gap-2 no-underline hover:no-underline px-3.5 py-1.5 md:px-4 md:py-1.5 shrink-0 rounded-full bg-background transition-all duration-300",
+                  isActive 
+                    ? "pointer-events-none bg-muted/10" 
+                    : "hover:bg-muted/5"
                 )}
               >
                 {/* Circle */}
@@ -94,7 +96,7 @@ export function Header() {
 
                 {/* Text - Reduced size */}
                 <span className={cn(
-                  "inline-block transform scale-y-110 text-[0.7rem] md:text-sm tracking-widest uppercase transition-colors duration-200 font-oswald",
+                  "inline-block transform scale-y-110 text-[0.75rem] md:text-sm tracking-widest uppercase transition-colors duration-200 font-oswald",
                   isActive
                     ? "text-foreground"
                     : "text-muted-foreground group-hover:text-accent"

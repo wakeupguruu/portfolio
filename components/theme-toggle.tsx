@@ -4,12 +4,29 @@ import * as React from "react";
 import { useTheme } from "next-themes";
 
 export function ThemeToggle({ withText = false }: { withText?: boolean }) {
-  const { theme, setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
+  const isAnimating = React.useRef(false);
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleToggle = () => {
+    if (isAnimating.current) return;
+
+    // Lock further clicks
+    isAnimating.current = true;
+
+    // Toggle theme
+    const isCurrentlyDark = document.documentElement.classList.contains("dark");
+    setTheme(isCurrentlyDark ? "light" : "dark");
+
+    // Unlock after animation duration
+    setTimeout(() => {
+      isAnimating.current = false;
+    }, 700);
+  };
 
   if (!mounted) {
     return (
@@ -20,11 +37,11 @@ export function ThemeToggle({ withText = false }: { withText?: boolean }) {
     );
   }
 
-  const isDark = theme === "dark";
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={handleToggle}
       className="group flex cursor-pointer items-center gap-3 font-robot text-lg leading-none transition-colors duration-500 ease-in-out hover:text-foreground/80 focus-visible:outline-none focus:outline-none"
       aria-label="Toggle theme"
     >
